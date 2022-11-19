@@ -34,26 +34,10 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="dkthongtin">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Dang ky thong tin"/>
+                <Property name="text" type="java.lang.String" value="QL nguoi thue"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dkthongtinActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="dktaikhoan">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Dang ky tai khoan"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dktaikhoanActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="dsnguoithue">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Danh sach nguoi thue"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dsnguoithueActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

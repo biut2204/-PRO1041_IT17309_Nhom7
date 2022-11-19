@@ -21,28 +21,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "HopDong")
 public class HopDong {
-    @Id
-    @Column(name = "Id", columnDefinition = "UNIQUEIDENTIFIER")
-    @GeneratedValue
-    private UUID id;
-    
-    @ManyToOne
-    @JoinColumn(name = "ChuNhaID")
-    private ChuNha chuNha;
-    
-    @ManyToOne
-    @JoinColumn(name = "PhongID")
-    private Phong phong;
-    
-    @ManyToOne
-    @JoinColumn(name = "NguoiThueID")
-    private NguoiThue nguoiThue;
-    
-    @Column(name = "Ma")
-    private String ma;
-    
-    @Column(name = "GiaPhong")
-    private String giaPhong;
+
+    public HopDong(UUID id, ChuNha chuNha, Phong phong, NguoiThue nguoiThue, String ma, int giaPhong, String noiThatPhong, String hienTrang, int soXe, String noiDung, Date ngayBatDau, Date ngayHetHan, Date ngaySua, String trangThai) {
+        this.id = id;
+        this.chuNha = chuNha;
+        this.phong = phong;
+        this.nguoiThue = nguoiThue;
+        this.ma = ma;
+        this.giaPhong = giaPhong;
+        this.noiThatPhong = noiThatPhong;
+        this.hienTrang = hienTrang;
+        this.soXe = soXe;
+        this.noiDung = noiDung;
+        this.ngayBatDau = ngayBatDau;
+        this.ngayHetHan = ngayHetHan;
+        this.ngaySua = ngaySua;
+        this.trangThai = trangThai;
+    }
 
     public UUID getId() {
         return id;
@@ -84,52 +79,20 @@ public class HopDong {
         this.ma = ma;
     }
 
-    public String getGiaPhong() {
+    public int getGiaPhong() {
         return giaPhong;
     }
 
-    public void setGiaPhong(String giaPhong) {
+    public void setGiaPhong(int giaPhong) {
         this.giaPhong = giaPhong;
     }
 
-    public String getTivi() {
-        return tivi;
+    public String getNoiThatPhong() {
+        return noiThatPhong;
     }
 
-    public void setTivi(String tivi) {
-        this.tivi = tivi;
-    }
-
-    public String getTuLanh() {
-        return tuLanh;
-    }
-
-    public void setTuLanh(String tuLanh) {
-        this.tuLanh = tuLanh;
-    }
-
-    public String getNongLanh() {
-        return nongLanh;
-    }
-
-    public void setNongLanh(String nongLanh) {
-        this.nongLanh = nongLanh;
-    }
-
-    public String getDieuHoa() {
-        return dieuHoa;
-    }
-
-    public void setDieuHoa(String dieuHoa) {
-        this.dieuHoa = dieuHoa;
-    }
-
-    public String getGiuong() {
-        return giuong;
-    }
-
-    public void setGiuong(String giuong) {
-        this.giuong = giuong;
+    public void setNoiThatPhong(String noiThatPhong) {
+        this.noiThatPhong = noiThatPhong;
     }
 
     public String getHienTrang() {
@@ -138,6 +101,14 @@ public class HopDong {
 
     public void setHienTrang(String hienTrang) {
         this.hienTrang = hienTrang;
+    }
+
+    public int getSoXe() {
+        return soXe;
+    }
+
+    public void setSoXe(int soXe) {
+        this.soXe = soXe;
     }
 
     public String getNoiDung() {
@@ -179,44 +150,37 @@ public class HopDong {
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
-
-    public HopDong(UUID id, ChuNha chuNha, Phong phong, NguoiThue nguoiThue, String ma, String giaPhong, String tivi, String tuLanh, String nongLanh, String dieuHoa, String giuong, String hienTrang, String noiDung, Date ngayBatDau, Date ngayHetHan, Date ngaySua, String trangThai) {
-        this.id = id;
-        this.chuNha = chuNha;
-        this.phong = phong;
-        this.nguoiThue = nguoiThue;
-        this.ma = ma;
-        this.giaPhong = giaPhong;
-        this.tivi = tivi;
-        this.tuLanh = tuLanh;
-        this.nongLanh = nongLanh;
-        this.dieuHoa = dieuHoa;
-        this.giuong = giuong;
-        this.hienTrang = hienTrang;
-        this.noiDung = noiDung;
-        this.ngayBatDau = ngayBatDau;
-        this.ngayHetHan = ngayHetHan;
-        this.ngaySua = ngaySua;
-        this.trangThai = trangThai;
-    }
+    @Id
+    @Column(name = "Id", columnDefinition = "UNIQUEIDENTIFIER")
+    @GeneratedValue
+    private UUID id;
     
-    @Column(name = "Tivi")
-    private String tivi;
+    @ManyToOne
+    @JoinColumn(name = "ChuNhaID")
+    private ChuNha chuNha;
     
-    @Column(name = "TuLanh")
-    private String tuLanh;
+    @ManyToOne
+    @JoinColumn(name = "PhongID")
+    private Phong phong;
     
-    @Column(name = "NongLanh")
-    private String nongLanh;
+    @ManyToOne
+    @JoinColumn(name = "NguoiThueID")
+    private NguoiThue nguoiThue;
     
-    @Column(name = "DieuHoa")
-    private String dieuHoa;
+    @Column(name = "Ma")
+    private String ma;
     
-    @Column(name = "Giuong")
-    private String giuong;
+    @Column(name = "GiaPhong")
+    private int giaPhong;
+    
+    @Column(name = "NoiThatPhong")
+    private String noiThatPhong;
     
     @Column(name = "HienTrang")
     private String hienTrang;
+    
+    @Column(name = "SoXe")
+    private int soXe;
     
     @Column(name = "NoiDung")
     private String noiDung;

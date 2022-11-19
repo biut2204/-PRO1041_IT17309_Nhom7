@@ -40,8 +40,6 @@ public class ChuNhaView extends javax.swing.JFrame {
         qlPhong = new javax.swing.JMenuItem();
         aaaa = new javax.swing.JMenu();
         dkthongtin = new javax.swing.JMenuItem();
-        dktaikhoan = new javax.swing.JMenuItem();
-        dsnguoithue = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,29 +101,13 @@ public class ChuNhaView extends javax.swing.JFrame {
 
         aaaa.setText("Quan ly nguoi thue");
 
-        dkthongtin.setText("Dang ky thong tin");
+        dkthongtin.setText("QL nguoi thue");
         dkthongtin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dkthongtinActionPerformed(evt);
             }
         });
         aaaa.add(dkthongtin);
-
-        dktaikhoan.setText("Dang ky tai khoan");
-        dktaikhoan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dktaikhoanActionPerformed(evt);
-            }
-        });
-        aaaa.add(dktaikhoan);
-
-        dsnguoithue.setText("Danh sach nguoi thue");
-        dsnguoithue.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dsnguoithueActionPerformed(evt);
-            }
-        });
-        aaaa.add(dsnguoithue);
 
         mn_menu.add(aaaa);
 
@@ -164,24 +146,10 @@ public class ChuNhaView extends javax.swing.JFrame {
 
     private void dkthongtinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dkthongtinActionPerformed
         // TODO add your handling code here:
-        DKThongTinView f = new DKThongTinView();
+        QLNguoiThueView f = new QLNguoiThueView();
         f.setVisible(true);
         this.mn_menu.add(f);
     }//GEN-LAST:event_dkthongtinActionPerformed
-
-    private void dktaikhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dktaikhoanActionPerformed
-        // TODO add your handling code here:
-        DKTaiKhoanView f = new DKTaiKhoanView();
-        f.setVisible(true);
-        this.mn_menu.add(f);
-    }//GEN-LAST:event_dktaikhoanActionPerformed
-
-    private void dsnguoithueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dsnguoithueActionPerformed
-        // TODO add your handling code here:
-        DSNguoiThueView f = new DSNguoiThueView();
-        f.setVisible(true);
-        this.mn_menu.add(f);
-    }//GEN-LAST:event_dsnguoithueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,9 +192,7 @@ public class ChuNhaView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aaaa;
-    private javax.swing.JMenuItem dktaikhoan;
     private javax.swing.JMenuItem dkthongtin;
-    private javax.swing.JMenuItem dsnguoithue;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JMenu jMenu2;
