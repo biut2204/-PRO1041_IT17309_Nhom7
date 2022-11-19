@@ -21,20 +21,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ChiTietTienPhong")
 public class ChiTietTienPhong {
-    @Id
-    @Column(name = "Id", columnDefinition = "UNIQUEIDENTIFIER")
-    @GeneratedValue
-    private UUID id;
-    
-    @ManyToOne
-    @JoinColumn(name = "TienPhongID",referencedColumnName = "Id")
-    private TienPhong tienPhong;
-    
-    @Column(name = "DichVu")
-    private int dichVu;
 
-    public ChiTietTienPhong() {
-        
+    public ChiTietTienPhong(UUID id, TienPhong tienPhong, int dichVu, String ma, int bangKeDien, int bangKeNuoc, int donGiaDien, int donGiaNuoc, Date thoiGianBatDau, Date thoiGianKetThuc, int donGia, String hinhAnhDien, String hinhAnhNuoc) {
+        this.id = id;
+        this.tienPhong = tienPhong;
+        this.dichVu = dichVu;
+        this.ma = ma;
+        this.bangKeDien = bangKeDien;
+        this.bangKeNuoc = bangKeNuoc;
+        this.donGiaDien = donGiaDien;
+        this.donGiaNuoc = donGiaNuoc;
+        this.thoiGianBatDau = thoiGianBatDau;
+        this.thoiGianKetThuc = thoiGianKetThuc;
+        this.donGia = donGia;
+        this.hinhAnhDien = hinhAnhDien;
+        this.hinhAnhNuoc = hinhAnhNuoc;
     }
 
     public UUID getId() {
@@ -125,18 +126,35 @@ public class ChiTietTienPhong {
         this.donGia = donGia;
     }
 
-    public ChiTietTienPhong(UUID id, TienPhong tienPhong, int dichVu, String ma, int bangKeDien, int bangKeNuoc, int donGiaDien, int donGiaNuoc, Date thoiGianBatDau, Date thoiGianKetThuc, int donGia) {
-        this.id = id;
-        this.tienPhong = tienPhong;
-        this.dichVu = dichVu;
-        this.ma = ma;
-        this.bangKeDien = bangKeDien;
-        this.bangKeNuoc = bangKeNuoc;
-        this.donGiaDien = donGiaDien;
-        this.donGiaNuoc = donGiaNuoc;
-        this.thoiGianBatDau = thoiGianBatDau;
-        this.thoiGianKetThuc = thoiGianKetThuc;
-        this.donGia = donGia;
+    public String getHinhAnhDien() {
+        return hinhAnhDien;
+    }
+
+    public void setHinhAnhDien(String hinhAnhDien) {
+        this.hinhAnhDien = hinhAnhDien;
+    }
+
+    public String getHinhAnhNuoc() {
+        return hinhAnhNuoc;
+    }
+
+    public void setHinhAnhNuoc(String hinhAnhNuoc) {
+        this.hinhAnhNuoc = hinhAnhNuoc;
+    }
+    @Id
+    @Column(name = "Id", columnDefinition = "UNIQUEIDENTIFIER")
+    @GeneratedValue
+    private UUID id;
+    
+    @ManyToOne
+    @JoinColumn(name = "TienPhongID",referencedColumnName = "Id")
+    private TienPhong tienPhong;
+    
+    @Column(name = "DichVu")
+    private int dichVu;
+
+    public ChiTietTienPhong() {
+        
     }
     
     @Column(name ="Ma")
@@ -162,4 +180,11 @@ public class ChiTietTienPhong {
     
     @Column(name ="DonGia")
     private int donGia;
+    
+    @Column(name ="HinhAnhDien")
+    private String hinhAnhDien;
+    
+    @Column(name ="HinhAnhNuoc")
+    private String hinhAnhNuoc;
+    
 }
