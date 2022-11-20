@@ -58,7 +58,10 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pa_trangchu" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="pa_trangchu" min="-2" pref="632" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -128,7 +131,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                                       <Component id="jLabel4" min="-2" pref="65" max="-2" attributes="0"/>
-                                      <EmptySpace pref="432" max="32767" attributes="0"/>
+                                      <EmptySpace pref="472" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -228,7 +231,7 @@
                                       </Group>
                                       <Component id="lbl_anhphong" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                                  <EmptySpace pref="59" max="32767" attributes="0"/>
                                   <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                               </Group>
@@ -546,7 +549,7 @@
                                           <Component id="jButton6" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="btn_updatedichvu" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="74" max="32767" attributes="0"/>
+                                      <EmptySpace pref="114" max="32767" attributes="0"/>
                                       <Component id="jScrollPane5" min="-2" pref="159" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                                   </Group>
@@ -723,7 +726,7 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                                   <Component id="jScrollPane4" min="-2" pref="142" max="-2" attributes="0"/>
-                                  <EmptySpace pref="102" max="32767" attributes="0"/>
+                                  <EmptySpace pref="142" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -913,7 +916,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="231" max="32767" attributes="0"/>
+                                  <EmptySpace pref="54" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -929,15 +932,379 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="964" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                              <Component id="txt_timkiem" min="-2" pref="132" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="btn_timkiem" min="-2" pref="90" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="btn_suahopdong" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                                              <Component id="btn_clearhopdong" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jScrollPane7" min="-2" pref="718" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="jPanel15" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="555" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                                      <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="btn_suahopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="btn_clearhopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txt_timkiem" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="btn_timkiem" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="jScrollPane7" min="-2" pref="157" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jPanel15" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                             </DimensionLayout>
                           </Layout>
+                          <SubComponents>
+                            <Container class="javax.swing.JPanel" name="jPanel14">
+                              <Properties>
+                                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                                    <EtchetBorder/>
+                                  </Border>
+                                </Property>
+                              </Properties>
+
+                              <Layout>
+                                <DimensionLayout dim="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jLabel22" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel23" alignment="0" pref="77" max="32767" attributes="0"/>
+                                              <Component id="jLabel24" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel28" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="txt_chunhahopdong" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txt_nguoithuehopdong" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txt_phonghopdong" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txt_trangthaihopdong" alignment="0" pref="167" max="32767" attributes="0"/>
+                                              <Component id="txt_noithathopdong" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txt_hientranghopdong" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jLabel27" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel29" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel25" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel26" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="txt_ngaybatdauhopdong" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txt_ngayhethanhopdong" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txt_ngaysuahopdong" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jScrollPane6" alignment="0" pref="231" max="32767" attributes="0"/>
+                                              <Component id="txt_giaphonghopdong" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txt_soxehopdong" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace pref="44" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                </DimensionLayout>
+                                <DimensionLayout dim="1">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txt_chunhahopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txt_ngaybatdauhopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txt_nguoithuehopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txt_ngayhethanhopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txt_phonghopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txt_giaphonghopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txt_noithathopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txt_soxehopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txt_hientranghopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txt_ngaysuahopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                                  <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txt_trangthaihopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="jScrollPane6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel29" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace pref="19" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                </DimensionLayout>
+                              </Layout>
+                              <SubComponents>
+                                <Component class="javax.swing.JLabel" name="jLabel22">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Chu nha :"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JLabel" name="jLabel23">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Nguoi thue :"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JLabel" name="jLabel24">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Phong ;"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JLabel" name="jLabel25">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Ngay bat dau :"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JLabel" name="jLabel26">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Ngay het han :"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JLabel" name="jLabel27">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Ngay sua :"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JLabel" name="jLabel28">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Trang thai :"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JLabel" name="jLabel29">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Noi dung :"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="txt_chunhahopdong">
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="txt_nguoithuehopdong">
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="txt_phonghopdong">
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="txt_trangthaihopdong">
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="txt_ngaybatdauhopdong">
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="txt_ngayhethanhopdong">
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="txt_ngaysuahopdong">
+                                </Component>
+                                <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+                                  <AuxValues>
+                                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                  </AuxValues>
+
+                                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                  <SubComponents>
+                                    <Component class="javax.swing.JTextArea" name="txt_noidunghopdong">
+                                      <Properties>
+                                        <Property name="columns" type="int" value="20"/>
+                                        <Property name="rows" type="int" value="5"/>
+                                      </Properties>
+                                    </Component>
+                                  </SubComponents>
+                                </Container>
+                                <Component class="javax.swing.JLabel" name="jLabel5">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Noi that :"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="txt_noithathopdong">
+                                </Component>
+                                <Component class="javax.swing.JLabel" name="jLabel6">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Hien trang :"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="txt_hientranghopdong">
+                                </Component>
+                                <Component class="javax.swing.JLabel" name="jLabel7">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Gia phong :"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="txt_giaphonghopdong">
+                                </Component>
+                                <Component class="javax.swing.JLabel" name="jLabel8">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="So xe :"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="txt_soxehopdong">
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                            <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+                              <AuxValues>
+                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                              </AuxValues>
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                              <SubComponents>
+                                <Component class="javax.swing.JTable" name="tb_banghopdong">
+                                  <Properties>
+                                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                      <Table columnCount="12" rowCount="4">
+                                        <Column editable="true" title="Chu nha" type="java.lang.Object"/>
+                                        <Column editable="true" title="Nguoi thue" type="java.lang.Object"/>
+                                        <Column editable="true" title="Phong" type="java.lang.Object"/>
+                                        <Column editable="true" title="Gia phong" type="java.lang.Object"/>
+                                        <Column editable="true" title="Noi that phong" type="java.lang.Object"/>
+                                        <Column editable="true" title="Hien trang" type="java.lang.Object"/>
+                                        <Column editable="true" title="So xe" type="java.lang.Object"/>
+                                        <Column editable="true" title="Noi dung" type="java.lang.Object"/>
+                                        <Column editable="true" title="Ngay bat dau" type="java.lang.Object"/>
+                                        <Column editable="true" title="Ngay het han" type="java.lang.Object"/>
+                                        <Column editable="true" title="Ngay sua" type="java.lang.Object"/>
+                                        <Column editable="true" title="Trang thai" type="java.lang.Object"/>
+                                      </Table>
+                                    </Property>
+                                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                    </Property>
+                                  </Properties>
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                            <Container class="javax.swing.JPanel" name="jPanel15">
+                              <Properties>
+                                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                                    <TitledBorder title="Dich vu phong"/>
+                                  </Border>
+                                </Property>
+                              </Properties>
+
+                              <Layout>
+                                <DimensionLayout dim="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jScrollPane2" min="-2" pref="342" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                </DimensionLayout>
+                                <DimensionLayout dim="1">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jScrollPane2" min="-2" pref="139" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                </DimensionLayout>
+                              </Layout>
+                              <SubComponents>
+                                <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                                  <AuxValues>
+                                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                  </AuxValues>
+
+                                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                  <SubComponents>
+                                    <Component class="javax.swing.JTable" name="tb_bangdichvuphong">
+                                      <Properties>
+                                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                          <Table columnCount="5" rowCount="4">
+                                            <Column editable="true" title="Phong" type="java.lang.Object"/>
+                                            <Column editable="true" title="Ten dich vu" type="java.lang.Object"/>
+                                            <Column editable="true" title="Don gia" type="java.lang.Object"/>
+                                            <Column editable="true" title="Ngay bat dau" type="java.lang.Object"/>
+                                            <Column editable="true" title="Ngay ket thuc" type="java.lang.Object"/>
+                                          </Table>
+                                        </Property>
+                                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                        </Property>
+                                      </Properties>
+                                    </Component>
+                                  </SubComponents>
+                                </Container>
+                              </SubComponents>
+                            </Container>
+                            <Component class="javax.swing.JButton" name="btn_suahopdong">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Sua"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_suahopdongActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="btn_clearhopdong">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Clear"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_clearhopdongActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="txt_timkiem">
+                            </Component>
+                            <Component class="javax.swing.JButton" name="btn_timkiem">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Tim kiem"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_timkiemActionPerformed"/>
+                              </Events>
+                            </Component>
+                          </SubComponents>
                         </Container>
                       </SubComponents>
                     </Container>
