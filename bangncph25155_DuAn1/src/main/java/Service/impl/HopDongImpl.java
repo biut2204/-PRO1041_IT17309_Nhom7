@@ -8,6 +8,7 @@ import Models.HopDong;
 import Repo.HopDongRepo;
 import Service.IsvHopDongImpl;
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
@@ -29,5 +30,10 @@ public class HopDongImpl implements IsvHopDongImpl{
     @Override
     public void update(HopDong hd) {
         hdR.update(hd);
+    }
+    
+    @Override
+    public UUID findByIdDichVu(String ten) {        
+        return hdR.findByIdDichVu(ten);
     }
 }

@@ -19,10 +19,6 @@ public interface IsvPhongImpl {
     
     public UUID findByIdNhaTro(String ten);
     
-    public Long findSoNguoiHienCo(String ten);
-    
-    public Long findSoXeHienCo(String ten, String xe);
-    
     public void save(Phong phong);
 
     public void update(Phong phong);

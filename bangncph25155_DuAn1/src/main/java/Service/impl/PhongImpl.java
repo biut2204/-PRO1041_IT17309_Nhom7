@@ -39,16 +39,6 @@ public class PhongImpl implements IsvPhongImpl{
     }
     
     @Override
-    public Long findSoNguoiHienCo(String ten) {
-        return pR.findSoNguoiHienCo(ten);
-    }
-    
-    @Override
-    public Long findSoXeHienCo(String ten, String xe) {
-        return pR.findXeHienCo(ten, xe);
-    }
-    
-    @Override
     public void update(Phong phong) {
         pR.update(phong);
     }

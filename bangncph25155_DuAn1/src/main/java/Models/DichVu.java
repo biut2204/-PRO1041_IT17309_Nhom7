@@ -24,27 +24,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "DichVu")
 public class DichVu {
-    
-    @Id
-    @Column(name = "Id", columnDefinition = "UNIQUEIDENTIFIER")
-    @GeneratedValue
-    private UUID id;
-    
-    @ManyToOne
-    @JoinColumn(name = "NhaTroID")
-    private NhaTro nhaTro;
-    
-    @Column(name ="Ma")
-    private String ma;
-    
-    @Column(name ="TenDichVu")
-    private String tenDichVu;
-    
-    @Column(name ="DonGia")
-    private int donGia;
 
-    public DichVu() {
-        
+    public DichVu(UUID id, NhaTro nhaTro, String ma, String tenDichVu, int donGia, List<DichVuPhong> dichVuPhongs) {
+        this.id = id;
+        this.nhaTro = nhaTro;
+        this.ma = ma;
+        this.tenDichVu = tenDichVu;
+        this.donGia = donGia;
+        this.dichVuPhongs = dichVuPhongs;
     }
 
     public UUID getId() {
@@ -87,11 +74,37 @@ public class DichVu {
         this.donGia = donGia;
     }
 
-    public DichVu(UUID id, NhaTro nhaTro, String ma, String tenDichVu, int donGia, List<ChiTietTienPhong> chiTietTienPhongs) {
-        this.id = id;
-        this.nhaTro = nhaTro;
-        this.ma = ma;
-        this.tenDichVu = tenDichVu;
-        this.donGia = donGia;
+    public List<DichVuPhong> getDichVuPhongs() {
+        return dichVuPhongs;
+    }
+
+    public void setDichVuPhongs(List<DichVuPhong> dichVuPhongs) {
+        this.dichVuPhongs = dichVuPhongs;
+    }
+    
+    @Id
+    @Column(name = "Id", columnDefinition = "UNIQUEIDENTIFIER")
+    @GeneratedValue
+    private UUID id;
+    
+    @ManyToOne
+    @JoinColumn(name = "NhaTroID")
+    private NhaTro nhaTro;
+    
+    @Column(name ="Ma")
+    private String ma;
+    
+    @Column(name ="TenDichVu")
+    private String tenDichVu;
+    
+    @Column(name ="DonGia")
+    private int donGia;
+    
+    @OneToMany(mappedBy = "dichVu",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<DichVuPhong> dichVuPhongs;
+    
+    public DichVu() {
+        
     }
 }

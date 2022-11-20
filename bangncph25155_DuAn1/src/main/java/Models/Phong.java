@@ -43,14 +43,11 @@ public class Phong {
     @Column(name ="DienTich")
     private float dienTich;
     
-    @Column(name ="SoNguoiHienCo")
-    private int soNguoiHienCo;
-    
-    @Column(name ="SoXe")
-    private int soXe;
-    
     @Column(name ="TinhTrang")
     private String tinhTrang;
+    
+    @Column(name ="AnhPhong")
+    private String anhPhong;
     
     @OneToMany(mappedBy = "phong",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -63,6 +60,10 @@ public class Phong {
     @OneToMany(mappedBy = "phong",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HopDong> hopDongs;
+    
+    @OneToMany(mappedBy = "phong",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<DichVuPhong> dichVuPhongs;
 
     public UUID getId() {
         return id;
@@ -104,28 +105,20 @@ public class Phong {
         this.dienTich = dienTich;
     }
 
-    public int getSoNguoiHienCo() {
-        return soNguoiHienCo;
-    }
-
-    public void setSoNguoiHienCo(int soNguoiHienCo) {
-        this.soNguoiHienCo = soNguoiHienCo;
-    }
-
-    public int getSoXe() {
-        return soXe;
-    }
-
-    public void setSoXe(int soXe) {
-        this.soXe = soXe;
-    }
-
     public String getTinhTrang() {
         return tinhTrang;
     }
 
     public void setTinhTrang(String tinhTrang) {
         this.tinhTrang = tinhTrang;
+    }
+
+    public String getAnhPhong() {
+        return anhPhong;
+    }
+
+    public void setAnhPhong(String anhPhong) {
+        this.anhPhong = anhPhong;
     }
 
     public List<TienPhong> getTienPhongs() {
@@ -152,22 +145,28 @@ public class Phong {
         this.hopDongs = hopDongs;
     }
 
-    public Phong(UUID id, NhaTro nhaTro, String ma, String tenPhong, float dienTich, int soNguoiHienCo, int soXe, String tinhTrang, List<TienPhong> tienPhongs, List<SuCoKH> suCoKHs, List<HopDong> hopDongs) {
+    public List<DichVuPhong> getDichVuPhongs() {
+        return dichVuPhongs;
+    }
+
+    public void setDichVuPhongs(List<DichVuPhong> dichVuPhongs) {
+        this.dichVuPhongs = dichVuPhongs;
+    }
+
+    public Phong(UUID id, NhaTro nhaTro, String ma, String tenPhong, float dienTich, String tinhTrang, String anhPhong, List<TienPhong> tienPhongs, List<SuCoKH> suCoKHs, List<HopDong> hopDongs, List<DichVuPhong> dichVuPhongs) {
         this.id = id;
         this.nhaTro = nhaTro;
         this.ma = ma;
         this.tenPhong = tenPhong;
         this.dienTich = dienTich;
-        this.soNguoiHienCo = soNguoiHienCo;
-        this.soXe = soXe;
         this.tinhTrang = tinhTrang;
+        this.anhPhong = anhPhong;
         this.tienPhongs = tienPhongs;
         this.suCoKHs = suCoKHs;
         this.hopDongs = hopDongs;
+        this.dichVuPhongs = dichVuPhongs;
     }
 
     public Phong(){
     }
-
-    
 }

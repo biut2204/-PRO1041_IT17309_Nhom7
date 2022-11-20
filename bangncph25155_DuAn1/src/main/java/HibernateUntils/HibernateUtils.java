@@ -7,6 +7,7 @@ package HibernateUntils;
 import Models.ChiTietTienPhong;
 import Models.ChuNha;
 import Models.DichVu;
+import Models.DichVuPhong;
 import Models.HopDong;
 import Models.NguoiThue;
 import Models.NhaTro;
@@ -36,7 +37,7 @@ public class HibernateUtils {
         Properties properties = new Properties();
         properties.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");
         properties.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=DUAN1_Nhom8");
+        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=DUAN1_Nhom7");
         properties.put(Environment.USER, "sa");
         properties.put(Environment.PASS, "220401");
         properties.put(Environment.SHOW_SQL, "true");   
@@ -51,6 +52,7 @@ public class HibernateUtils {
         conf.addAnnotatedClass(Phong.class);
         conf.addAnnotatedClass(SuCoNhaTro.class);
         conf.addAnnotatedClass(DichVu.class);
+        conf.addAnnotatedClass(DichVuPhong.class);
         conf.addAnnotatedClass(SuCoKH.class);
         conf.addAnnotatedClass(TienPhong.class);
         conf.addAnnotatedClass(ChiTietTienPhong.class);

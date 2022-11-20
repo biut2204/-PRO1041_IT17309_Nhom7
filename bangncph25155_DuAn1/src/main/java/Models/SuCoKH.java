@@ -49,6 +49,9 @@ public class SuCoKH {
     @Column(name = "TrangThai")
     private String trangThai;
 
+    public SuCoKH(){
+    }
+
     public UUID getId() {
         return id;
     }

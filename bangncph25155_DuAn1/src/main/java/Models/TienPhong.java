@@ -52,8 +52,10 @@ public class TienPhong implements Serializable {
     private String ghiChu;
 
     public TienPhong() {
-        
-    }
+    }    
+    @OneToMany(mappedBy = "tienPhong",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ChiTietTienPhong> chiTietTienPhongs;
 
     public UUID getId() {
         return id;
@@ -129,19 +131,5 @@ public class TienPhong implements Serializable {
         this.ghiChu = ghiChu;
         this.chiTietTienPhongs = chiTietTienPhongs;
     }
-
-    public TienPhong(UUID id, Phong phong, String ma, String hinhThucThanhToan, Date ngayThanhToan, String trangThai, String ghiChu) {
-        this.id = id;
-        this.phong = phong;
-        this.ma = ma;
-        this.hinhThucThanhToan = hinhThucThanhToan;
-        this.ngayThanhToan = ngayThanhToan;
-        this.trangThai = trangThai;
-        this.ghiChu = ghiChu;
-    }
-    
-    @OneToMany(mappedBy = "tienPhong",
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ChiTietTienPhong> chiTietTienPhongs;
 
 }

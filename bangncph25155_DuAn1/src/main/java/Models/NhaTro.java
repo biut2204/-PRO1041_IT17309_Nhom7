@@ -47,6 +47,14 @@ public class NhaTro {
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Phong> phongs;
 
+    @OneToMany(mappedBy = "nhaTro",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<SuCoNhaTro> suCoNhaTros;
+    
+    @OneToMany(mappedBy = "nhaTro",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<DichVu> dichVus;
+
     public UUID getId() {
         return id;
     }
@@ -103,7 +111,15 @@ public class NhaTro {
         this.suCoNhaTros = suCoNhaTros;
     }
 
-    public NhaTro(UUID id, ChuNha chuNha, String ma, String tenNha, String diaChi, List<Phong> phongs, List<SuCoNhaTro> suCoNhaTros) {
+    public List<DichVu> getDichVus() {
+        return dichVus;
+    }
+
+    public void setDichVus(List<DichVu> dichVus) {
+        this.dichVus = dichVus;
+    }
+
+    public NhaTro(UUID id, ChuNha chuNha, String ma, String tenNha, String diaChi, List<Phong> phongs, List<SuCoNhaTro> suCoNhaTros, List<DichVu> dichVus) {
         this.id = id;
         this.chuNha = chuNha;
         this.ma = ma;
@@ -111,11 +127,8 @@ public class NhaTro {
         this.diaChi = diaChi;
         this.phongs = phongs;
         this.suCoNhaTros = suCoNhaTros;
+        this.dichVus = dichVus;
     }
-
-    @OneToMany(mappedBy = "nhaTro",
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<SuCoNhaTro> suCoNhaTros;
 
     public NhaTro() {
     }

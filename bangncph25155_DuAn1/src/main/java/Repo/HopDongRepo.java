@@ -66,4 +66,21 @@ public class HopDongRepo {
         }
     }
     
+    public UUID findByIdDichVu(String ten) {
+        UUID uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select dv.id from DichVu dv where dv.tenDichVu = :tenDichVu";
+            TypedQuery<UUID> query = session.createQuery(statement, UUID.class);
+            query.setParameter("tenDichVu", ten);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public static void main(String[] args) {
+        HopDongRepo hdR = new HopDongRepo();
+        String ten = "tien mang";
+        UUID id = hdR.findByIdDichVu(ten);
+        System.out.println(id);
+    }
 }

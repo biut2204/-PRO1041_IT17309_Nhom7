@@ -4,20 +4,17 @@
  */
 package Service;
 
-import Models.HopDong;
+import Models.DichVuPhong;
 import java.util.List;
-import java.util.UUID;
 
 /**
  *
  * @author MSI
  */
-public interface IsvHopDongImpl {
-    public List<HopDong> getAllData();
+public interface IsvDichVuPhongImpl {
+    public List<DichVuPhong> getAllData();
     
-    public void save(HopDong hd);
+    public void save(DichVuPhong dichVu);
 
-    public void update(HopDong hd);
-    
-    public UUID findByIdDichVu(String ten);
+    public void update(DichVuPhong dichVu);
 }

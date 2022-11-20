@@ -5,11 +5,9 @@
 package Repo;
 
 import HibernateUntils.HibernateUtils;
-import Models.Phong;
+import Models.DichVuPhong;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -17,14 +15,14 @@ import org.hibernate.Transaction;
  *
  * @author MSI
  */
-public class PhongRepo {
-    public List<Phong> getAllData() {
-        List<Phong> list = new ArrayList<>();
+public class DichVuPhongRepo {
+    public List<DichVuPhong> getAllData() {
+        List<DichVuPhong> list = new ArrayList<>();
         Transaction t = null;
         Session session = HibernateUtils.getFACTORY().openSession();
         try {
             t = session.beginTransaction();
-            list = session.createQuery("from Phong").list();
+            list = session.createQuery("from DichVuPhong").list();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
@@ -34,12 +32,12 @@ public class PhongRepo {
         return list;
     }
 
-    public void save(Phong phong) {
+    public void save(DichVuPhong dichVu) {
         Transaction t = null;
         Session s = HibernateUtils.getFACTORY().openSession();
         try {
             t = s.beginTransaction();
-            s.save(phong);
+            s.save(dichVu);
         } catch (Exception e) {
             if (t != null) {
                 t.rollback();
@@ -50,12 +48,12 @@ public class PhongRepo {
         }
     }
     
-    public void update(Phong phong) {
+    public void update(DichVuPhong dichVu) {
         Transaction t = null;
         Session s = HibernateUtils.getFACTORY().openSession();
         try {
             t = s.beginTransaction();
-            s.update(phong);
+            s.update(dichVu);
         } catch (Exception e) {
             if (t != null) {
                 t.rollback();
@@ -65,27 +63,4 @@ public class PhongRepo {
             s.close();
         }
     }
-    
-    public UUID findByIdNT(String ten) {
-        UUID uuid;
-        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
-            String statement = "select nt.id from NguoiThue nt where nt.hoTen = :hoTen";
-            TypedQuery<UUID> query = session.createQuery(statement, UUID.class);
-            query.setParameter("hoTen", ten);
-            uuid = query.getSingleResult();
-        }
-        return uuid;
-    }
-    
-    public UUID findByIdNhaTro(String ten) {
-        UUID uuid;
-        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
-            String statement = "select nt.id from NhaTro nt where nt.tenNha = :tenNha";
-            TypedQuery<UUID> query = session.createQuery(statement, UUID.class);
-            query.setParameter("tenNha", ten);
-            uuid = query.getSingleResult();
-        }
-        return uuid;
-    }
-    
 }
