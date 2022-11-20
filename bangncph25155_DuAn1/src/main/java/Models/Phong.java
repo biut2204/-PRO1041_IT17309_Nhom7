@@ -60,9 +60,10 @@ public class Phong {
     @OneToMany(mappedBy = "phong",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HopDong> hopDongs;
-
-    public Phong(){
-    }
+    
+    @OneToMany(mappedBy = "phong",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<DichVuPhong> dichVuPhongs;
 
     public UUID getId() {
         return id;
@@ -144,7 +145,15 @@ public class Phong {
         this.hopDongs = hopDongs;
     }
 
-    public Phong(UUID id, NhaTro nhaTro, String ma, String tenPhong, float dienTich, String tinhTrang, String anhPhong, List<TienPhong> tienPhongs, List<SuCoKH> suCoKHs, List<HopDong> hopDongs) {
+    public List<DichVuPhong> getDichVuPhongs() {
+        return dichVuPhongs;
+    }
+
+    public void setDichVuPhongs(List<DichVuPhong> dichVuPhongs) {
+        this.dichVuPhongs = dichVuPhongs;
+    }
+
+    public Phong(UUID id, NhaTro nhaTro, String ma, String tenPhong, float dienTich, String tinhTrang, String anhPhong, List<TienPhong> tienPhongs, List<SuCoKH> suCoKHs, List<HopDong> hopDongs, List<DichVuPhong> dichVuPhongs) {
         this.id = id;
         this.nhaTro = nhaTro;
         this.ma = ma;
@@ -155,7 +164,9 @@ public class Phong {
         this.tienPhongs = tienPhongs;
         this.suCoKHs = suCoKHs;
         this.hopDongs = hopDongs;
+        this.dichVuPhongs = dichVuPhongs;
     }
 
-    
+    public Phong(){
+    }   
 }

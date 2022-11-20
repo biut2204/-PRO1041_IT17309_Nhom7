@@ -6,12 +6,18 @@ package Views;
 
 import Models.HopDong;
 import Models.ChuNha;
+import Models.DichVu;
+import Models.DichVuPhong;
 import Models.NguoiThue;
 import Models.Phong;
+import Service.IsvDichVuImpl;
+import Service.IsvDichVuPhongImpl;
 import Service.IsvHopDongImpl;
 import Service.IsvNhaTroImpl;
 import Service.IsvPhongImpl;
 import Service.IsvTienPhongImpl;
+import Service.impl.DichVuImpl;
+import Service.impl.DichVuPhongImpl;
 import Service.impl.HopDongImpl;
 import Service.impl.NhaTroImpl;
 import Service.impl.PhongImpl;
@@ -37,6 +43,8 @@ public class HopDongView extends javax.swing.JFrame {
     private IsvPhongImpl pR = new PhongImpl();
     private IsvNhaTroImpl ntR = new NhaTroImpl();
     private IsvTienPhongImpl tpR = new TienPhongImpl();
+    private IsvDichVuImpl dvR = new DichVuImpl();
+    private IsvDichVuPhongImpl dvpR = new DichVuPhongImpl();
     
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     /**
@@ -47,6 +55,9 @@ public class HopDongView extends javax.swing.JFrame {
         initComponents();
         this.tenphong = tenphong;
         txt_phonghopdong.setText(tenphong);
+        LoadHopDong(hdR.getAllData());
+        LoadDichVu(dvR.getAllData());
+        LoadDichVuPhong(dvpR.getAllData());
     }
     
     private void LoadHopDong(List<HopDong> list) {
@@ -56,6 +67,24 @@ public class HopDongView extends javax.swing.JFrame {
             dtm.addRow(new Object[]{
                 hd.getChuNha().getHoTen(), hd.getNguoiThue().getHoTen(), hd.getPhong().getTenPhong(), hd.getGiaPhong(),hd.getNoiThatPhong(),
                 hd.getHienTrang(), hd.getSoXe(), hd.getNoiDung(),hd.getNgayBatDau(), hd.getNgayHetHan(), hd.getNgaySua(),hd.getTrangThai(), hd.getMa()});
+        }
+    }
+    
+    private void LoadDichVu(List<DichVu> list) {
+        dtm = (DefaultTableModel) tb_bangdichvu.getModel();
+        dtm.setRowCount(0);
+        for (DichVu dv : list) {
+            dtm.addRow(new Object[]{
+                dv.getTenDichVu(), dv.getDonGia()});
+        }
+    }
+    
+    private void LoadDichVuPhong(List<DichVuPhong> list) {
+        dtm = (DefaultTableModel) tb_bangdichvuphong.getModel();
+        dtm.setRowCount(0);
+        for (DichVuPhong dvp : list) {
+            dtm.addRow(new Object[]{
+                dvp.getPhong().getTenPhong(), dvp.getDichVu().getTenDichVu(), dvp.getDonGia(), dvp.getNgayBatdau(), dvp.getNgayHetHan()});
         }
     }
     private HopDongView() {
@@ -102,6 +131,12 @@ public class HopDongView extends javax.swing.JFrame {
         btn_themhopdong = new javax.swing.JButton();
         btn_suahopdong = new javax.swing.JButton();
         btn_clearhopdong = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tb_bangdichvu = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tb_bangdichvuphong = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -251,38 +286,121 @@ public class HopDongView extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dich vu nha tro"));
+
+        tb_bangdichvu.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Ten dich vu", "Don gia"
+            }
+        ));
+        tb_bangdichvu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_bangdichvuMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tb_bangdichvu);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dich vu phong"));
+
+        tb_bangdichvuphong.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Phong", "Ten dich vu", "Don gia", "Ngay bat dau", "Ngay ket thuc"
+            }
+        ));
+        jScrollPane1.setViewportView(tb_bangdichvuphong);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38))
             .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
-                .addComponent(btn_themhopdong)
-                .addGap(164, 164, 164)
-                .addComponent(btn_suahopdong)
-                .addGap(146, 146, 146)
-                .addComponent(btn_clearhopdong)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(btn_themhopdong)
+                        .addGap(164, 164, 164)
+                        .addComponent(btn_suahopdong)
+                        .addGap(146, 146, 146)
+                        .addComponent(btn_clearhopdong))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_themhopdong)
-                    .addComponent(btn_suahopdong)
-                    .addComponent(btn_clearhopdong))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_themhopdong)
+                            .addComponent(btn_suahopdong)
+                            .addComponent(btn_clearhopdong))
+                        .addGap(54, 54, 54)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))))
         );
 
         pack();
@@ -396,6 +514,48 @@ public class HopDongView extends javax.swing.JFrame {
         txt_trangthaihopdong.setText("");
     }//GEN-LAST:event_btn_clearhopdongActionPerformed
 
+    private void tb_bangdichvuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_bangdichvuMouseClicked
+        try {
+            // TODO add your handling code here:
+            int row = tb_bangdichvu.getSelectedRow();
+            if (row == -1) {
+                return;
+            }
+            
+            Phong p = new Phong();
+            DichVuPhong dvp = new DichVuPhong();
+            DichVu dv = new DichVu();
+            
+            String tenphong = txt_phonghopdong.getText().trim();
+            String tendichvu = tb_bangdichvu.getValueAt(row, 0).toString();
+            int dongia = Integer.parseInt(tb_bangdichvu.getValueAt(row, 1).toString());
+            Date ngaybatdau = sdf.parse(JOptionPane.showInputDialog("Ngay bat dau :"));
+            Date ngayketthuc = sdf.parse(JOptionPane.showInputDialog("Ngay bat dau :"));
+            int index = tb_bangdichvuphong.getRowCount() + 1;
+            String ma = "DVP" + String.valueOf(index);
+            
+            UUID idp = tpR.findByIdPhong(tenphong);
+            p.setId(idp);
+            
+            UUID iddv = dvpR.findByIdDichVu(tendichvu);
+            dv.setId(iddv);
+            
+            dvp.setPhong(p);
+            dvp.setDichVu(dv);
+            dvp.setDonGia(dongia);
+            dvp.setNgayBatdau(ngaybatdau);
+            dvp.setNgayHetHan(ngayketthuc);
+            dvp.setMa(ma);
+            dvpR.save(dvp);
+            LoadDichVuPhong(dvpR.getAllData());
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(HopDongView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_tb_bangdichvuMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -447,9 +607,15 @@ public class HopDongView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JTable tb_bangdichvu;
+    private javax.swing.JTable tb_bangdichvuphong;
     private javax.swing.JTable tb_banghopdong;
     private javax.swing.JTextField txt_chunhahopdong;
     private javax.swing.JTextField txt_giaphonghopdong;
