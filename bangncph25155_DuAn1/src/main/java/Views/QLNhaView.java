@@ -99,17 +99,17 @@ public class QLNhaView extends javax.swing.JFrame {
                 scnt.getNhaTro().getTenNha(), scnt.getChuNha().getHoTen(), scnt.getMa()});
         }
     }
-    
+
     private void LoadHopDong(List<HopDong> list) {
         dtm = (DefaultTableModel) tb_banghopdong.getModel();
         dtm.setRowCount(0);
         for (HopDong hd : list) {
             dtm.addRow(new Object[]{
-                hd.getChuNha().getHoTen(), hd.getNguoiThue().getHoTen(), hd.getPhong().getTenPhong(), hd.getGiaPhong(),hd.getNoiThatPhong(),
-                hd.getHienTrang(), hd.getSoXe(), hd.getNoiDung(),hd.getNgayBatDau(), hd.getNgayHetHan(), hd.getNgaySua(),hd.getTrangThai(), hd.getMa()});
+                hd.getChuNha().getHoTen(), hd.getNguoiThue().getHoTen(), hd.getPhong().getTenPhong(), hd.getGiaPhong(), hd.getNoiThatPhong(),
+                hd.getHienTrang(), hd.getSoXe(), hd.getNoiDung(), hd.getNgayBatDau(), hd.getNgayHetHan(), hd.getNgaySua(), hd.getTrangThai(), hd.getMa()});
         }
     }
-    
+
     private void LoadDichVuPhong(List<DichVuPhong> list) {
         dtm = (DefaultTableModel) tb_bangdichvuphong.getModel();
         dtm.setRowCount(0);
@@ -118,6 +118,7 @@ public class QLNhaView extends javax.swing.JFrame {
                 dvp.getPhong().getTenPhong(), dvp.getDichVu().getTenDichVu(), dvp.getDonGia(), dvp.getNgayBatdau(), dvp.getNgayHetHan()});
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -139,9 +140,9 @@ public class QLNhaView extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_bangphong = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cb_TimKiem = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        btb_timkiem = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -303,11 +304,16 @@ public class QLNhaView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_TimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Phòng trống", "Đã có người thuê" }));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("jButton1");
+        btb_timkiem.setText("Tìm kiếm");
+        btb_timkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btb_timkiemActionPerformed(evt);
+            }
+        });
 
         jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -394,11 +400,11 @@ public class QLNhaView extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cb_TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btb_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
@@ -418,9 +424,9 @@ public class QLNhaView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btb_timkiem))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -1240,8 +1246,17 @@ public class QLNhaView extends javax.swing.JFrame {
         tb_banghopdong.setRowSorter(tr);
         tb_bangdichvuphong.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
-        
+
     }//GEN-LAST:event_btn_timkiemActionPerformed
+
+    private void btb_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btb_timkiemActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dmt = (DefaultTableModel) tb_bangphong.getModel();
+        String search = cb_TimKiem.getSelectedItem().toString();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+        tb_bangphong.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(search));
+    }//GEN-LAST:event_btb_timkiemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1280,6 +1295,7 @@ public class QLNhaView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane Hello;
+    private javax.swing.JButton btb_timkiem;
     private javax.swing.JButton btn_clearhopdong;
     private javax.swing.JButton btn_clearphong;
     private javax.swing.JButton btn_clearsuco;
@@ -1292,10 +1308,9 @@ public class QLNhaView extends javax.swing.JFrame {
     private javax.swing.JButton btn_thongbao;
     private javax.swing.JButton btn_timkiem;
     private javax.swing.JButton btn_updatedichvu;
+    private javax.swing.JComboBox<String> cb_TimKiem;
     private javax.swing.JComboBox<String> cb_tinhtrang;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
