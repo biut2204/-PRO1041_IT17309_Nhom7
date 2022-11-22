@@ -123,4 +123,8 @@ public class SuCoKH {
         this.moTa = moTa;
         this.trangThai = trangThai;
     }
+
+    public SuCoKH() {
+    }
+    
 }
