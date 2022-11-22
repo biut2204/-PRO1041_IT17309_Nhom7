@@ -113,8 +113,6 @@ public class PhongRepo {
     
     public static void main(String[] args) {
         PhongRepo pR = new PhongRepo();
-        String ten = "P101";
-        Long list = pR.findSoNguoiHienCo(ten);
-        System.out.println(list);
+
     }
 }

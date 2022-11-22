@@ -17,7 +17,11 @@ public interface IsvTienPhongImpl {
     
     public UUID findByIdPhong(String ten);
     
-    public Integer findTienPhong(String ten);
+    public UUID findByIdTienPhong(String ten);
+    
+    public Long findTienPhong(String ten);
+    
+    public String findTenPhong(String ten);
     
     public void save(TienPhong tienPhong);
 

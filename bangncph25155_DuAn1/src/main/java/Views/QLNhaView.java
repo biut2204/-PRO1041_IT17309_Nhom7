@@ -70,6 +70,7 @@ public class QLNhaView extends javax.swing.JFrame {
         LoadHopDong(hdR.getAllData());
         LoadDichVu(dvR.getAllData());
         LoadDichVuPhong(dvpR.getAllData());
+        LoadSuCoNhaTro(scntR.getAllData());
     }
 
     private void LoadPhong(List<Phong> list) {
@@ -99,17 +100,17 @@ public class QLNhaView extends javax.swing.JFrame {
                 scnt.getNhaTro().getTenNha(), scnt.getChuNha().getHoTen(), scnt.getMa()});
         }
     }
-
+    
     private void LoadHopDong(List<HopDong> list) {
         dtm = (DefaultTableModel) tb_banghopdong.getModel();
         dtm.setRowCount(0);
         for (HopDong hd : list) {
             dtm.addRow(new Object[]{
-                hd.getChuNha().getHoTen(), hd.getNguoiThue().getHoTen(), hd.getPhong().getTenPhong(), hd.getGiaPhong(), hd.getNoiThatPhong(),
-                hd.getHienTrang(), hd.getSoXe(), hd.getNoiDung(), hd.getNgayBatDau(), hd.getNgayHetHan(), hd.getNgaySua(), hd.getTrangThai(), hd.getMa()});
+                hd.getChuNha().getHoTen(), hd.getNguoiThue().getHoTen(), hd.getPhong().getTenPhong(), hd.getGiaPhong(),hd.getNoiThatPhong(),
+                hd.getHienTrang(), hd.getSoXe(), hd.getNoiDung(),hd.getNgayBatDau(), hd.getNgayHetHan(), hd.getNgaySua(),hd.getTrangThai(), hd.getMa()});
         }
     }
-
+    
     private void LoadDichVuPhong(List<DichVuPhong> list) {
         dtm = (DefaultTableModel) tb_bangdichvuphong.getModel();
         dtm.setRowCount(0);
@@ -118,7 +119,6 @@ public class QLNhaView extends javax.swing.JFrame {
                 dvp.getPhong().getTenPhong(), dvp.getDichVu().getTenDichVu(), dvp.getDonGia(), dvp.getNgayBatdau(), dvp.getNgayHetHan()});
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,9 +140,9 @@ public class QLNhaView extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_bangphong = new javax.swing.JTable();
-        cb_TimKiem = new javax.swing.JComboBox<>();
+        cb_loaiphong = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        btb_timkiem = new javax.swing.JButton();
+        btn_timkiemphong = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -200,7 +200,6 @@ public class QLNhaView extends javax.swing.JFrame {
         txt_chunhahopdong = new javax.swing.JTextField();
         txt_nguoithuehopdong = new javax.swing.JTextField();
         txt_phonghopdong = new javax.swing.JTextField();
-        txt_trangthaihopdong = new javax.swing.JTextField();
         txt_ngaybatdauhopdong = new javax.swing.JTextField();
         txt_ngayhethanhopdong = new javax.swing.JTextField();
         txt_ngaysuahopdong = new javax.swing.JTextField();
@@ -214,6 +213,7 @@ public class QLNhaView extends javax.swing.JFrame {
         txt_giaphonghopdong = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txt_soxehopdong = new javax.swing.JTextField();
+        cb_trangthai = new javax.swing.JComboBox<>();
         jScrollPane7 = new javax.swing.JScrollPane();
         tb_banghopdong = new javax.swing.JTable();
         jPanel15 = new javax.swing.JPanel();
@@ -223,6 +223,7 @@ public class QLNhaView extends javax.swing.JFrame {
         btn_clearhopdong = new javax.swing.JButton();
         txt_timkiem = new javax.swing.JTextField();
         btn_timkiem = new javax.swing.JButton();
+        btn_capnhat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -304,14 +305,14 @@ public class QLNhaView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        cb_TimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Phòng trống", "Đã có người thuê" }));
+        cb_loaiphong.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Phòng trống", "Đã có người thuê" }));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btb_timkiem.setText("Tìm kiếm");
-        btb_timkiem.addActionListener(new java.awt.event.ActionListener() {
+        btn_timkiemphong.setText("Tim kiem");
+        btn_timkiemphong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btb_timkiemActionPerformed(evt);
+                btn_timkiemphongActionPerformed(evt);
             }
         });
 
@@ -400,11 +401,11 @@ public class QLNhaView extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(cb_TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cb_loaiphong, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
-                                .addComponent(btb_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btn_timkiemphong, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
@@ -424,9 +425,9 @@ public class QLNhaView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cb_TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_loaiphong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btb_timkiem))
+                    .addComponent(btn_timkiemphong))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -727,6 +728,8 @@ public class QLNhaView extends javax.swing.JFrame {
 
         jLabel8.setText("So xe :");
 
+        cb_trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Phòng trống", "Đã có người thuê" }));
+
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
@@ -742,12 +745,12 @@ public class QLNhaView extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt_chunhahopdong)
+                    .addComponent(txt_chunhahopdong, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                     .addComponent(txt_nguoithuehopdong)
                     .addComponent(txt_phonghopdong)
-                    .addComponent(txt_trangthaihopdong, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                     .addComponent(txt_noithathopdong)
-                    .addComponent(txt_hientranghopdong))
+                    .addComponent(txt_hientranghopdong)
+                    .addComponent(cb_trangthai, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -803,7 +806,7 @@ public class QLNhaView extends javax.swing.JFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel28)
-                        .addComponent(txt_trangthaihopdong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cb_trangthai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel29))
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -820,6 +823,14 @@ public class QLNhaView extends javax.swing.JFrame {
                 "Chu nha", "Nguoi thue", "Phong", "Gia phong", "Noi that phong", "Hien trang", "So xe", "Noi dung", "Ngay bat dau", "Ngay het han", "Ngay sua", "Trang thai"
             }
         ));
+        tb_banghopdong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_banghopdongMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tb_banghopdongMouseEntered(evt);
+            }
+        });
         jScrollPane7.setViewportView(tb_banghopdong);
 
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder("Dich vu phong"));
@@ -875,6 +886,13 @@ public class QLNhaView extends javax.swing.JFrame {
             }
         });
 
+        btn_capnhat.setText("Cap nhat");
+        btn_capnhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_capnhatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -889,9 +907,11 @@ public class QLNhaView extends javax.swing.JFrame {
                         .addComponent(btn_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_suahopdong)
-                        .addGap(79, 79, 79)
+                        .addGap(65, 65, 65)
                         .addComponent(btn_clearhopdong)
-                        .addGap(221, 221, 221))
+                        .addGap(53, 53, 53)
+                        .addComponent(btn_capnhat)
+                        .addGap(107, 107, 107))
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -912,7 +932,8 @@ public class QLNhaView extends javax.swing.JFrame {
                             .addComponent(btn_suahopdong)
                             .addComponent(btn_clearhopdong)
                             .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_timkiem))
+                            .addComponent(btn_timkiem)
+                            .addComponent(btn_capnhat))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -944,9 +965,10 @@ public class QLNhaView extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pa_trangchu, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jDesktopPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -1196,16 +1218,16 @@ public class QLNhaView extends javax.swing.JFrame {
             String tenp = txt_phonghopdong.getText().trim();
             Date ngaybatdau = sdf.parse(txt_ngaybatdauhopdong.getText().trim());
             Date ngayhethan = sdf.parse(txt_ngayhethanhopdong.getText().trim());
-            Date ngaysua = java.util.Calendar.getInstance().getTime();
+            Date ngaysua = sdf.parse(txt_ngaysuahopdong.getText().trim());
             String noidung = txt_noidunghopdong.getText().trim();
-            String trangthai = txt_trangthaihopdong.getText().trim();
+            String trangthai = cb_trangthai.getSelectedItem().toString();
 
             UUID idcn = ntR.findByIdCN(tencn);
             cn.setId(idcn);
 
             UUID idp = tpR.findByIdPhong(tenp);
             p.setId(idp);
-
+            
             UUID idnt = pR.findByIdNT(tennt);
             nt.setId(idnt);
 
@@ -1234,7 +1256,7 @@ public class QLNhaView extends javax.swing.JFrame {
         txt_ngayhethanhopdong.setText("");
         txt_ngaysuahopdong.setText("");
         txt_noidunghopdong.setText("");
-        txt_trangthaihopdong.setText("");
+        cb_trangthai.setSelectedItem(0);
     }//GEN-LAST:event_btn_clearhopdongActionPerformed
 
     private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
@@ -1246,17 +1268,49 @@ public class QLNhaView extends javax.swing.JFrame {
         tb_banghopdong.setRowSorter(tr);
         tb_bangdichvuphong.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
-
+        
     }//GEN-LAST:event_btn_timkiemActionPerformed
 
-    private void btb_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btb_timkiemActionPerformed
+    private void tb_banghopdongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_banghopdongMouseClicked
+        // TODO add your handling code here:
+        int index = tb_banghopdong.getSelectedRow();
+        HopDong hd = hdR.getAllData().get(index);
+        txt_chunhahopdong.setText(hd.getChuNha().getHoTen());
+        txt_nguoithuehopdong.setText(hd.getNguoiThue().getHoTen());
+        txt_phonghopdong.setText(hd.getPhong().getTenPhong());
+        txt_giaphonghopdong.setText(String.valueOf(hd.getGiaPhong()));
+        txt_noithathopdong.setText(hd.getNoiThatPhong());
+        txt_hientranghopdong.setText(hd.getHienTrang());
+        txt_soxehopdong.setText(String.valueOf(hd.getSoXe()));
+        txt_noidunghopdong.setText(hd.getNoiDung());
+        txt_ngaybatdauhopdong.setText(String.valueOf(hd.getNgayBatDau()));
+        txt_ngayhethanhopdong.setText(String.valueOf(hd.getNgayHetHan()));
+        txt_ngaysuahopdong.setText(String.valueOf(hd.getNgaySua()));
+        cb_trangthai.setSelectedItem(hd.getTrangThai());
+    }//GEN-LAST:event_tb_banghopdongMouseClicked
+
+    private void btn_capnhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_capnhatActionPerformed
+        // TODO add your handling code here:
+        int index = tb_banghopdong.getSelectedRow();
+        Phong p = pR.getAllData().get(index);
+        String trangthai = cb_trangthai.getSelectedItem().toString();
+        p.setTinhTrang(trangthai);
+        pR.update(p);
+        LoadPhong(pR.getAllData());
+    }//GEN-LAST:event_btn_capnhatActionPerformed
+
+    private void btn_timkiemphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemphongActionPerformed
         // TODO add your handling code here:
         DefaultTableModel dmt = (DefaultTableModel) tb_bangphong.getModel();
-        String search = cb_TimKiem.getSelectedItem().toString();
+        String search = cb_loaiphong.getSelectedItem().toString();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
         tb_bangphong.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
-    }//GEN-LAST:event_btb_timkiemActionPerformed
+    }//GEN-LAST:event_btn_timkiemphongActionPerformed
+
+    private void tb_banghopdongMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_banghopdongMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tb_banghopdongMouseEntered
 
     /**
      * @param args the command line arguments
@@ -1295,7 +1349,7 @@ public class QLNhaView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane Hello;
-    private javax.swing.JButton btb_timkiem;
+    private javax.swing.JButton btn_capnhat;
     private javax.swing.JButton btn_clearhopdong;
     private javax.swing.JButton btn_clearphong;
     private javax.swing.JButton btn_clearsuco;
@@ -1307,9 +1361,11 @@ public class QLNhaView extends javax.swing.JFrame {
     private javax.swing.JButton btn_themphong;
     private javax.swing.JButton btn_thongbao;
     private javax.swing.JButton btn_timkiem;
+    private javax.swing.JButton btn_timkiemphong;
     private javax.swing.JButton btn_updatedichvu;
-    private javax.swing.JComboBox<String> cb_TimKiem;
+    private javax.swing.JComboBox<String> cb_loaiphong;
     private javax.swing.JComboBox<String> cb_tinhtrang;
+    private javax.swing.JComboBox<String> cb_trangthai;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -1387,7 +1443,6 @@ public class QLNhaView extends javax.swing.JFrame {
     private javax.swing.JTextField txt_tensuco;
     private javax.swing.JTextField txt_thoigianthongbao;
     private javax.swing.JTextField txt_timkiem;
-    private javax.swing.JTextField txt_trangthaihopdong;
     private javax.swing.JTextField txt_trangthaisuco;
     // End of variables declaration//GEN-END:variables
 }

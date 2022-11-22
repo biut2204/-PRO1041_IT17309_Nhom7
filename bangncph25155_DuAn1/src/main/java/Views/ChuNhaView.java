@@ -89,7 +89,7 @@ public class ChuNhaView extends javax.swing.JFrame {
         });
         jMenu2.add(qlNha);
 
-        qlPhong.setText("Quan ly phong");
+        qlPhong.setText("Quan ly tien phong");
         qlPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 qlPhongActionPerformed(evt);
@@ -139,7 +139,7 @@ public class ChuNhaView extends javax.swing.JFrame {
 
     private void qlPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qlPhongActionPerformed
         // TODO add your handling code here:
-        QLPhongView f = new QLPhongView();
+        QLTienPhongView f = new QLTienPhongView();
         f.setVisible(true);
         this.mn_menu.add(f);
     }//GEN-LAST:event_qlPhongActionPerformed
