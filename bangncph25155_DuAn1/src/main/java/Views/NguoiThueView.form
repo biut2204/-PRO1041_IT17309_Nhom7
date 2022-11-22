@@ -409,6 +409,9 @@
                       </Table>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_SuCoKHMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -432,7 +435,7 @@
                           <Component id="jPanel4" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField13" min="-2" pref="135" max="-2" attributes="0"/>
+                                  <Component id="txt_timkiem" min="-2" pref="135" max="-2" attributes="0"/>
                                   <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -451,7 +454,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextField13" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_timkiem" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jPanel6" max="32767" attributes="0"/>
                       </Group>
@@ -981,7 +984,10 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JTextField" name="jTextField13">
+            <Component class="javax.swing.JTextField" name="txt_timkiem">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_timkiemKeyReleased"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

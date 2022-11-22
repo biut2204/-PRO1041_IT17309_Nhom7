@@ -536,9 +536,9 @@ public class HopDongView extends javax.swing.JFrame {
             String tendichvu = tb_bangdichvu.getValueAt(row, 0).toString();
             int dongia = Integer.parseInt(tb_bangdichvu.getValueAt(row, 1).toString());
             Date ngaybatdau = sdf.parse(JOptionPane.showInputDialog("Ngay bat dau :"));
-            Date ngayketthuc = sdf.parse(JOptionPane.showInputDialog("Ngay bat dau :"));
-            int index = tb_bangdichvuphong.getRowCount() + 1;
-            String ma = "DVP" + String.valueOf(index);
+            Date ngayketthuc = sdf.parse(JOptionPane.showInputDialog("Ngay ket thuc :"));
+            
+            String ma = JOptionPane.showInputDialog("Ma dich vu phong de dang ki :");
             
             UUID idp = tpR.findByIdPhong(tenphong);
             p.setId(idp);
