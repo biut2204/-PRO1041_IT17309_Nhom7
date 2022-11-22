@@ -141,6 +141,7 @@ public class ChiTietTienPhong {
     public void setHinhAnhNuoc(String hinhAnhNuoc) {
         this.hinhAnhNuoc = hinhAnhNuoc;
     }
+    
     @Id
     @Column(name = "Id", columnDefinition = "UNIQUEIDENTIFIER")
     @GeneratedValue

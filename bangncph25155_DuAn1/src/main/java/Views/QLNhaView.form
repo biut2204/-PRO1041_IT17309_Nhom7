@@ -58,9 +58,10 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="pa_trangchu" min="-2" pref="632" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -182,11 +183,11 @@
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="jPanel7" max="32767" attributes="0"/>
                                               <Group type="102" attributes="0">
-                                                  <Component id="cb_TimKiem" min="-2" pref="151" max="-2" attributes="0"/>
+                                                  <Component id="cb_loaiphong" min="-2" pref="151" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                                   <Component id="jComboBox2" min="-2" pref="147" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                                  <Component id="btb_timkiem" min="-2" pref="83" max="-2" attributes="0"/>
+                                                  <Component id="btn_timkiemphong" min="-2" pref="83" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
                                           </Group>
@@ -213,9 +214,9 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="cb_TimKiem" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cb_loaiphong" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btb_timkiem" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btn_timkiemphong" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -322,7 +323,7 @@
                             </Container>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JComboBox" name="cb_TimKiem">
+                        <Component class="javax.swing.JComboBox" name="cb_loaiphong">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="2">
@@ -350,12 +351,12 @@
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JButton" name="btb_timkiem">
+                        <Component class="javax.swing.JButton" name="btn_timkiemphong">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m"/>
+                            <Property name="text" type="java.lang.String" value="Tim kiem"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btb_timkiemActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_timkiemphongActionPerformed"/>
                           </Events>
                         </Component>
                         <Container class="javax.swing.JPanel" name="jPanel8">
@@ -943,9 +944,11 @@
                                               <Component id="btn_timkiem" min="-2" pref="90" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Component id="btn_suahopdong" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                                               <Component id="btn_clearhopdong" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                                              <Component id="btn_capnhat" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -973,6 +976,7 @@
                                                   <Component id="btn_clearhopdong" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="txt_timkiem" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="btn_timkiem" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="btn_capnhat" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="jScrollPane7" min="-2" pref="157" max="-2" attributes="0"/>
@@ -1009,12 +1013,12 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="txt_chunhahopdong" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txt_chunhahopdong" alignment="0" pref="167" max="32767" attributes="0"/>
                                               <Component id="txt_nguoithuehopdong" alignment="0" max="32767" attributes="0"/>
                                               <Component id="txt_phonghopdong" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="txt_trangthaihopdong" alignment="0" pref="167" max="32767" attributes="0"/>
                                               <Component id="txt_noithathopdong" alignment="0" max="32767" attributes="0"/>
                                               <Component id="txt_hientranghopdong" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="cb_trangthai" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1080,7 +1084,7 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                                   <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="txt_trangthaihopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cb_trangthai" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="jScrollPane6" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel29" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1137,8 +1141,6 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txt_phonghopdong">
                                 </Component>
-                                <Component class="javax.swing.JTextField" name="txt_trangthaihopdong">
-                                </Component>
                                 <Component class="javax.swing.JTextField" name="txt_ngaybatdauhopdong">
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txt_ngayhethanhopdong">
@@ -1188,6 +1190,19 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txt_soxehopdong">
                                 </Component>
+                                <Component class="javax.swing.JComboBox" name="cb_trangthai">
+                                  <Properties>
+                                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                      <StringArray count="2">
+                                        <StringItem index="0" value="Ph&#xf2;ng tr&#x1ed1;ng"/>
+                                        <StringItem index="1" value="&#x110;&#xe3; c&#xf3; ng&#x1b0;&#x1edd;i thu&#xea;"/>
+                                      </StringArray>
+                                    </Property>
+                                  </Properties>
+                                  <AuxValues>
+                                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                  </AuxValues>
+                                </Component>
                               </SubComponents>
                             </Container>
                             <Container class="javax.swing.JScrollPane" name="jScrollPane7">
@@ -1219,6 +1234,10 @@
                                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_banghopdongMouseClicked"/>
+                                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_banghopdongMouseEntered"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -1303,6 +1322,14 @@
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_timkiemActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="btn_capnhat">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Cap nhat"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_capnhatActionPerformed"/>
                               </Events>
                             </Component>
                           </SubComponents>

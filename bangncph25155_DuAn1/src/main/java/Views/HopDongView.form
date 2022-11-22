@@ -105,12 +105,12 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txt_chunhahopdong" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txt_chunhahopdong" alignment="0" pref="167" max="32767" attributes="0"/>
                       <Component id="txt_nguoithuehopdong" alignment="0" max="32767" attributes="0"/>
                       <Component id="txt_phonghopdong" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txt_trangthaihopdong" alignment="0" pref="167" max="32767" attributes="0"/>
                       <Component id="txt_noithathopdong" max="32767" attributes="0"/>
                       <Component id="txt_hientranghopdong" max="32767" attributes="0"/>
+                      <Component id="cb_trangthai" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -176,7 +176,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txt_trangthaihopdong" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cb_trangthai" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
@@ -233,8 +233,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_phonghopdong">
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_trangthaihopdong">
-        </Component>
         <Component class="javax.swing.JTextField" name="txt_ngaybatdauhopdong">
         </Component>
         <Component class="javax.swing.JTextField" name="txt_ngayhethanhopdong">
@@ -283,6 +281,19 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_soxehopdong">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cb_trangthai">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="Ph&#xf2;ng tr&#x1ed1;ng"/>
+                <StringItem index="1" value="&#x110;&#xe3; c&#xf3; ng&#x1b0;&#x1edd;i thu&#xea;"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -379,6 +390,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_banghopdongMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

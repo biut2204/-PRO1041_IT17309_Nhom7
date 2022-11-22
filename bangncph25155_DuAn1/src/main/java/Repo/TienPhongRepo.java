@@ -18,6 +18,7 @@ import org.hibernate.Transaction;
  * @author MSI
  */
 public class TienPhongRepo {
+
     public List<TienPhong> getAllData() {
         List<TienPhong> list = new ArrayList<>();
         Transaction t = null;
@@ -49,7 +50,7 @@ public class TienPhongRepo {
             s.close();
         }
     }
-    
+
     public void update(TienPhong tienPhong) {
         Transaction t = null;
         Session s = HibernateUtils.getFACTORY().openSession();
@@ -65,7 +66,7 @@ public class TienPhongRepo {
             s.close();
         }
     }
-    
+
     public UUID findByIdPhong(String ten) {
         UUID uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -77,21 +78,43 @@ public class TienPhongRepo {
         return uuid;
     }
     
-    public Integer findTienPhong(String ten) {
-        Integer uuid;
+    public UUID findByIdTienPhong(String ten) {
+        UUID uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
-            String statement = "select p.giaPhong from Phong p where p.tenPhong = :tenPhong ";
-            TypedQuery<Integer> query = session.createQuery(statement, Integer.class);
+            String statement = "select p.id from TienPhong p where p.ma = :ma";
+            TypedQuery<UUID> query = session.createQuery(statement, UUID.class);
+            query.setParameter("ma", ten);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+
+    public Long findTienPhong(String ten) {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select Sum(p.giaPhong)/COUNT(p.giaPhong) from HopDong p where p.phong.tenPhong = :tenPhong ";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
             query.setParameter("tenPhong", ten);
             uuid = query.getSingleResult();
         }
         return uuid;
     }
-    
+
+    public String findTenPhong(String ten) {
+        String uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select p.phong.tenPhong from HopDong p where p.nguoiThue.ma = :ma";
+            TypedQuery<String> query = session.createQuery(statement, String.class);
+            query.setParameter("ma", ten);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+
     public static void main(String[] args) {
         TienPhongRepo tp = new TienPhongRepo();
-        String  tenPhong= "P101";
-        int a = tp.findTienPhong(tenPhong);
+        String tenPhong = "bang1";
+        String a = tp.findTenPhong(tenPhong);
         System.out.println(a);
     }
 }

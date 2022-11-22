@@ -33,8 +33,18 @@ public class TienPhongImpl implements IsvTienPhongImpl{
     }
     
     @Override
-    public Integer findTienPhong(String ten) {
+    public UUID findByIdTienPhong(String ten) {
+        return tpR.findByIdTienPhong(ten);
+    }
+    
+    @Override
+    public Long findTienPhong(String ten) {
         return tpR.findTienPhong(ten);
+    }
+    
+    @Override
+    public String findTenPhong(String ten) {
+        return tpR.findTenPhong(ten);
     }
     
     @Override

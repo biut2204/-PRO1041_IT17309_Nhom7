@@ -19,7 +19,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="qlPhong">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Quan ly phong"/>
+                <Property name="text" type="java.lang.String" value="Quan ly tien phong"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="qlPhongActionPerformed"/>

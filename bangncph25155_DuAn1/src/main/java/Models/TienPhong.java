@@ -31,29 +31,6 @@ public class TienPhong implements Serializable {
     @Column(name = "Id", columnDefinition = "UNIQUEIDENTIFIER")
     @GeneratedValue
     private UUID id;
-    
-    @ManyToOne
-    @JoinColumn(name = "PhongID")
-    private Phong phong;
-    
-    @Column(name = "Ma")
-    private String ma;
-    
-    @Column(name = "HinhThucThanhToan")
-    private String hinhThucThanhToan;
-    
-    @Column(name = "NgayThanhToan")
-    private Date ngayThanhToan;
-    
-    @Column(name = "TrangThai")
-    private String trangThai;
-    
-    @Column(name = "GhiChu")
-    private String ghiChu;
-
-    public TienPhong() {
-        
-    }
 
     public UUID getId() {
         return id;
@@ -85,6 +62,14 @@ public class TienPhong implements Serializable {
 
     public void setHinhThucThanhToan(String hinhThucThanhToan) {
         this.hinhThucThanhToan = hinhThucThanhToan;
+    }
+
+    public Date getNgayTao() {
+        return ngayTao;
+    }
+
+    public void setNgayTao(Date ngayTao) {
+        this.ngayTao = ngayTao;
     }
 
     public Date getNgayThanhToan() {
@@ -119,25 +104,42 @@ public class TienPhong implements Serializable {
         this.chiTietTienPhongs = chiTietTienPhongs;
     }
 
-    public TienPhong(UUID id, Phong phong, String ma, String hinhThucThanhToan, Date ngayThanhToan, String trangThai, String ghiChu, List<ChiTietTienPhong> chiTietTienPhongs) {
+    public TienPhong(UUID id, Phong phong, String ma, String hinhThucThanhToan, Date ngayTao, Date ngayThanhToan, String trangThai, String ghiChu, List<ChiTietTienPhong> chiTietTienPhongs) {
         this.id = id;
         this.phong = phong;
         this.ma = ma;
         this.hinhThucThanhToan = hinhThucThanhToan;
+        this.ngayTao = ngayTao;
         this.ngayThanhToan = ngayThanhToan;
         this.trangThai = trangThai;
         this.ghiChu = ghiChu;
         this.chiTietTienPhongs = chiTietTienPhongs;
     }
+    
+    @ManyToOne
+    @JoinColumn(name = "PhongID")
+    private Phong phong;
+    
+    @Column(name = "Ma")
+    private String ma;
+    
+    @Column(name = "HinhThucThanhToan")
+    private String hinhThucThanhToan;
+    
+    @Column(name = "NgayTao")
+    private Date ngayTao;
+    
+    @Column(name = "NgayThanhToan")
+    private Date ngayThanhToan;
+    
+    @Column(name = "TrangThai")
+    private String trangThai;
+    
+    @Column(name = "GhiChu")
+    private String ghiChu;
 
-    public TienPhong(UUID id, Phong phong, String ma, String hinhThucThanhToan, Date ngayThanhToan, String trangThai, String ghiChu) {
-        this.id = id;
-        this.phong = phong;
-        this.ma = ma;
-        this.hinhThucThanhToan = hinhThucThanhToan;
-        this.ngayThanhToan = ngayThanhToan;
-        this.trangThai = trangThai;
-        this.ghiChu = ghiChu;
+    public TienPhong() {
+        
     }
     
     @OneToMany(mappedBy = "tienPhong",
