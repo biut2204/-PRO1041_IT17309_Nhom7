@@ -30,7 +30,9 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 
 /**
@@ -57,6 +59,7 @@ public class HopDongView extends javax.swing.JFrame {
         txt_phonghopdong.setText(tenphong);
         LoadHopDong(hdR.getAllData());
         LoadDichVu(dvR.getAllData());
+        LoadDichVuPhong(dvpR.getAllData());
     }
     
     private void LoadHopDong(List<HopDong> list) {
@@ -156,6 +159,12 @@ public class HopDongView extends javax.swing.JFrame {
         jLabel28.setText("Trang thai :");
 
         jLabel29.setText("Noi dung :");
+
+        txt_phonghopdong.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_phonghopdongKeyReleased(evt);
+            }
+        });
 
         txt_noidunghopdong.setColumns(20);
         txt_noidunghopdong.setRows(5);
@@ -536,9 +545,9 @@ public class HopDongView extends javax.swing.JFrame {
             String tendichvu = tb_bangdichvu.getValueAt(row, 0).toString();
             int dongia = Integer.parseInt(tb_bangdichvu.getValueAt(row, 1).toString());
             Date ngaybatdau = sdf.parse(JOptionPane.showInputDialog("Ngay bat dau :"));
-            Date ngayketthuc = sdf.parse(JOptionPane.showInputDialog("Ngay bat dau :"));
-            int index = tb_bangdichvuphong.getRowCount() + 1;
-            String ma = "DVP" + String.valueOf(index);
+            Date ngayketthuc = sdf.parse(JOptionPane.showInputDialog("Ngay ket thuc :"));
+            
+            String ma = JOptionPane.showInputDialog("Ma dich vu phong de dang ki :");
             
             UUID idp = tpR.findByIdPhong(tenphong);
             p.setId(idp);
@@ -579,6 +588,19 @@ public class HopDongView extends javax.swing.JFrame {
         txt_ngaysuahopdong.setText(String.valueOf(hd.getNgaySua()));
         cb_trangthai.setSelectedItem(hd.getTrangThai());
     }//GEN-LAST:event_tb_banghopdongMouseClicked
+
+    private void txt_phonghopdongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_phonghopdongKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dmt = (DefaultTableModel) tb_banghopdong.getModel();
+        DefaultTableModel dmt1 = (DefaultTableModel) tb_bangdichvuphong.getModel();
+        String search = txt_phonghopdong.getText().toString();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+        TableRowSorter<DefaultTableModel> tr1 = new TableRowSorter<DefaultTableModel>(dmt1);
+        tb_banghopdong.setRowSorter(tr);
+        tb_bangdichvuphong.setRowSorter(tr1);
+        tr.setRowFilter(RowFilter.regexFilter(search));
+        tr1.setRowFilter(RowFilter.regexFilter(search));
+    }//GEN-LAST:event_txt_phonghopdongKeyReleased
 
     /**
      * @param args the command line arguments

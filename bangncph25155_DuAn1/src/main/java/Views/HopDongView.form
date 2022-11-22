@@ -232,6 +232,9 @@
         <Component class="javax.swing.JTextField" name="txt_nguoithuehopdong">
         </Component>
         <Component class="javax.swing.JTextField" name="txt_phonghopdong">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_phonghopdongKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_ngaybatdauhopdong">
         </Component>

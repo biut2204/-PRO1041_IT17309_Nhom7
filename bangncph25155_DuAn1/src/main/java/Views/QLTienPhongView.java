@@ -26,6 +26,7 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -38,7 +39,7 @@ import javax.swing.table.TableRowSorter;
  * @author MSI
  */
 public class QLTienPhongView extends javax.swing.JFrame {
-
+    ButtonGroup buttonGroup = new ButtonGroup();
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     private DefaultTableModel dtm;
     private IsvTienPhongImpl tpR = new TienPhongImpl();
@@ -53,8 +54,16 @@ public class QLTienPhongView extends javax.swing.JFrame {
         LoadTienPhong(tpR.getAllData());
         LoadDichVuPhong(dvpR.getAllData());
         LoadChiTietTienPhong(cttpR.getAllData());
+        rdTinhTrang();
     }
-
+    
+    void rdTinhTrang() {
+        buttonGroup = new ButtonGroup();
+        buttonGroup.add(rd_tatca);
+        buttonGroup.add(rd_daongtien);
+        buttonGroup.add(rd_chuadongtien);
+    }
+    
     private void LoadTienPhong(List<TienPhong> list) {
         dtm = (DefaultTableModel) tb_tienphong.getModel();
         dtm.setRowCount(0);
@@ -174,6 +183,11 @@ public class QLTienPhongView extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tb_tienphong);
 
         rd_tatca.setText("Tat ca");
+        rd_tatca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rd_tatcaActionPerformed(evt);
+            }
+        });
 
         rd_chuadongtien.setText("Chua dong tien");
         rd_chuadongtien.addActionListener(new java.awt.event.ActionListener() {
@@ -599,14 +613,14 @@ public class QLTienPhongView extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1305, Short.MAX_VALUE)
+            .addGap(0, 1319, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 686, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Danh sach tien phong", jPanel2);
+        jTabbedPane1.addTab("Quan ly tien phong", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -635,6 +649,13 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
     private void rd_chuadongtienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd_chuadongtienActionPerformed
         // TODO add your handling code here:
+        if (rd_chuadongtien.isSelected()) {
+            DefaultTableModel dmt = (DefaultTableModel) tb_tienphong.getModel();
+            String search = "chua thanh toan";
+            TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+            tb_tienphong.setRowSorter(tr);
+            tr.setRowFilter(RowFilter.regexFilter(search));
+        }
     }//GEN-LAST:event_rd_chuadongtienActionPerformed
 
     private void txt_dongiadienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dongiadienActionPerformed
@@ -673,6 +694,13 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
     private void rd_daongtienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd_daongtienActionPerformed
         // TODO add your handling code here:
+        if (rd_daongtien.isSelected()) {
+            DefaultTableModel dmt = (DefaultTableModel) tb_tienphong.getModel();
+            String search = "Da dong tien";
+            TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+            tb_tienphong.setRowSorter(tr);
+            tr.setRowFilter(RowFilter.regexFilter(search));
+        }
     }//GEN-LAST:event_rd_daongtienActionPerformed
 
     String hinhdien = null;
@@ -827,12 +855,12 @@ public class QLTienPhongView extends javax.swing.JFrame {
         tb_tienphong.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_jButton1ActionPerformed
-    
+
     public void fillSinhVienLenForm(ChiTietTienPhong sv) {
         ImageIcon imgIcon = new ImageIcon("E:/GitHub/PRO1041_IT17309_NHom8/Da1_Nhom7/src/main/java/images/" + sv.getHinhAnhDien());
         Image img = imgIcon.getImage();
         lbl_anhsodien.setIcon(new ImageIcon(img.getScaledInstance(lbl_anhsodien.getWidth(), lbl_anhsodien.getHeight(), 0)));
-        
+
         ImageIcon imgIcon1 = new ImageIcon("E:/GitHub/PRO1041_IT17309_NHom8/Da1_Nhom7/src/main/java/images/" + sv.getHinhAnhNuoc());
         Image img1 = imgIcon.getImage();
         lbl_anhsonuoc.setIcon(new ImageIcon(img1.getScaledInstance(lbl_anhsonuoc.getWidth(), lbl_anhsonuoc.getHeight(), 0)));
@@ -846,7 +874,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
         }
         return null;
     }
-    
+
     private void tb_chitiettienphongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_chitiettienphongMouseClicked
         // TODO add your handling code here:
         int row = tb_chitiettienphong.getSelectedRow();
@@ -874,7 +902,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
             int index = tb_chitiettienphong.getSelectedRow();
             ChiTietTienPhong cttp = cttpR.getAllData().get(index);
             TienPhong tp = new TienPhong();
-            
+
             String ma = txt_matienphong.getText().toString();
             int sodien = Integer.parseInt(txt_sodien.getText().toString());
             int sonuoc = Integer.parseInt(txt_sonuoc.getText().toString());
@@ -885,10 +913,10 @@ public class QLTienPhongView extends javax.swing.JFrame {
             Date ngayhethan = sdf.parse(txt_thoigianbatdau.getText().trim());
             int tienphong = Integer.parseInt(txt_tienphong.getText().toString());
             int tongtien = Integer.parseInt(txt_tongtien.getText().toString());
-            
+
             UUID idtienphong = tpR.findByIdTienPhong(ma);
             tp.setId(idtienphong);
-            
+
             cttp.setTienPhong(tp);
             cttp.setBangKeDien(sodien);
             cttp.setBangKeNuoc(sonuoc);
@@ -907,6 +935,13 @@ public class QLTienPhongView extends javax.swing.JFrame {
             Logger.getLogger(QLTienPhongView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_suatienphongActionPerformed
+
+    private void rd_tatcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd_tatcaActionPerformed
+        // TODO add your handling code here:
+        if (rd_tatca.isSelected()) {
+            LoadTienPhong(tpR.getAllData());
+        }
+    }//GEN-LAST:event_rd_tatcaActionPerformed
 
     /**
      * @param args the command line arguments

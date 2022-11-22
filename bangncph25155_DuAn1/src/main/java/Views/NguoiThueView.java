@@ -64,7 +64,9 @@ public class NguoiThueView extends javax.swing.JFrame {
         LoadDichVuPhong(dvpR.getAllData());
         shotDichVu(tpR.findTenPhong(dataNguoiThue));
         shotCttp(tpR.findTenPhong(dataNguoiThue));
+        
         LoadSuCoKH(sckhR.getAllData());
+        shotSuCoKH(tpR.findTenPhong(dataNguoiThue));
     }
 
     private NguoiThueView() {
@@ -86,7 +88,16 @@ public class NguoiThueView extends javax.swing.JFrame {
         tb_chitiettienphong.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
     }
-
+    
+    private void shotSuCoKH(String ten) {
+        DefaultTableModel dmt = (DefaultTableModel) tb_SuCoKH.getModel();
+        String search = ten;
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+        tb_SuCoKH.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(search));
+    }
+    
+    
     private void LoadChiTietTienPhong(List<ChiTietTienPhong> list) {
         dtm = (DefaultTableModel) tb_chitiettienphong.getModel();
         dtm.setRowCount(0);
@@ -113,7 +124,7 @@ public class NguoiThueView extends javax.swing.JFrame {
         dtm.setRowCount(0);
         for (SuCoKH sckh : list) {
             dtm.addRow(new Object[]{
-                sckh.getMa(), sckh.getTenSuCo(), sckh.getThoiGianThongBao(), sckh.getMoTa(), sckh.getTrangThai()});
+                sckh.getMa(), sckh.getTenSuCo(), sckh.getThoiGianThongBao(), sckh.getMoTa(), sckh.getTrangThai(), sckh.getPhong().getTenPhong()});
         }
     }
 
@@ -221,7 +232,7 @@ public class NguoiThueView extends javax.swing.JFrame {
         lbl_anhsonuoc = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         txt_matienphong = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
+        txt_timkiem = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -356,7 +367,7 @@ public class NguoiThueView extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Sua xong");
+        jButton2.setText("Sua");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -365,15 +376,20 @@ public class NguoiThueView extends javax.swing.JFrame {
 
         tb_SuCoKH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã", "Tên sự cố", "Thời gian thông báo", "Mô tả", "Trạng thái"
+                "Mã", "Tên sự cố", "Thời gian thông báo", "Mô tả", "Trạng thái", "Phòng"
             }
         ));
+        tb_SuCoKH.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_SuCoKHMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_SuCoKH);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -699,6 +715,12 @@ public class NguoiThueView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        txt_timkiem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_timkiemKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -709,7 +731,7 @@ public class NguoiThueView extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -723,7 +745,7 @@ public class NguoiThueView extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -880,6 +902,19 @@ public class NguoiThueView extends javax.swing.JFrame {
         LoadSuCoKH(sckhR.getAllData());
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void tb_SuCoKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_SuCoKHMouseClicked
+        
+    }//GEN-LAST:event_tb_SuCoKHMouseClicked
+
+    private void txt_timkiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_timkiemKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dmt = (DefaultTableModel) tb_chitiettienphong.getModel();
+        String search = txt_timkiem.getText().toString();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+        tb_chitiettienphong.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(search));
+    }//GEN-LAST:event_txt_timkiemKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -912,7 +947,7 @@ public class NguoiThueView extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
+            
             public void run() {
                 new NguoiThueView().setVisible(true);
             }
@@ -964,7 +999,6 @@ public class NguoiThueView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JLabel lbl_anhsodien;
     private javax.swing.JLabel lbl_anhsonuoc;
     private javax.swing.JTable tb_SuCoKH;
@@ -995,6 +1029,7 @@ public class NguoiThueView extends javax.swing.JFrame {
     private javax.swing.JTextField txt_tenphong;
     private javax.swing.JTextField txt_thoigianbatdau;
     private javax.swing.JTextField txt_thoigianketthuc;
+    private javax.swing.JTextField txt_timkiem;
     private javax.swing.JTextField txt_tongtien;
     private javax.swing.JTextField txt_trangthai;
     // End of variables declaration//GEN-END:variables

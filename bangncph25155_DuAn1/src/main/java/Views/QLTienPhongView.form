@@ -246,6 +246,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Tat ca"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rd_tatcaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rd_chuadongtien">
                   <Properties>
@@ -805,8 +808,8 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Danh sach tien phong">
-                <Property name="tabTitle" type="java.lang.String" value="Danh sach tien phong"/>
+              <JTabbedPaneConstraints tabName="Quan ly tien phong">
+                <Property name="tabTitle" type="java.lang.String" value="Quan ly tien phong"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -814,7 +817,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1305" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1319" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">

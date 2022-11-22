@@ -21,6 +21,8 @@ public interface IsvTaiKhoanImpl {
     public String findByIdNguoiThue(String tenTaiKhoan, String matKhau);
 
     public String check(String tenTaiKhoan);
+    
+    public Long findSuCoNT(String tenTaiKhoan);
 
     public List<TaiKhoan> getAllData();
 
