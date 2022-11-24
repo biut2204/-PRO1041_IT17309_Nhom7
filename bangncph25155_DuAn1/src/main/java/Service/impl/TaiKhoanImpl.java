@@ -43,6 +43,11 @@ public class TaiKhoanImpl implements IsvTaiKhoanImpl{
     }
     
     @Override
+    public Long findSuCoNT(String tenTaiKhoan) {
+        return tkR.findSuCoNT(tenTaiKhoan);
+    }
+    
+    @Override
     public void save(TaiKhoan tk) {
         tkR.save(tk);
     }

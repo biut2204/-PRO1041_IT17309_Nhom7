@@ -64,7 +64,18 @@ public class TaiKhoanRepo {
         }
         return uuid;
     }
-
+    
+    public Long findSuCoNT(String ten) {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select Count(p.trangThai) from SuCoNhaTro p where p.trangThai = :trangThai";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            query.setParameter("trangThai", ten);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
     public List<TaiKhoan> getAllData() {
         List<TaiKhoan> list = new ArrayList<>();
         Transaction t = null;
@@ -112,5 +123,9 @@ public class TaiKhoanRepo {
             s.close();
         }
     }
-
+    public static void main(String[] args) {
+        TaiKhoanRepo tkR = new TaiKhoanRepo();
+        String a = "đang sửa";
+        System.out.println(tkR.findSuCoNT(a));
+    }
 }
