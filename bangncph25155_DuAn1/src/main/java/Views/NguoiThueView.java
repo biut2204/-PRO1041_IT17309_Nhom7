@@ -64,8 +64,9 @@ public class NguoiThueView extends javax.swing.JFrame {
         LoadDichVuPhong(dvpR.getAllData());
         shotDichVu(tpR.findTenPhong(dataNguoiThue));
         shotCttp(tpR.findTenPhong(dataNguoiThue));
-        shotSuCoKH(tpR.findTenPhong(dataNguoiThue));
+        
         LoadSuCoKH(sckhR.getAllData());
+        shotSuCoKH(tpR.findTenPhong(dataNguoiThue));
     }
 
     private NguoiThueView() {
@@ -123,7 +124,7 @@ public class NguoiThueView extends javax.swing.JFrame {
         dtm.setRowCount(0);
         for (SuCoKH sckh : list) {
             dtm.addRow(new Object[]{
-                sckh.getMa(), sckh.getTenSuCo(), sckh.getThoiGianThongBao(), sckh.getMoTa(), sckh.getTrangThai()});
+                sckh.getMa(), sckh.getTenSuCo(), sckh.getThoiGianThongBao(), sckh.getMoTa(), sckh.getTrangThai(), sckh.getPhong().getTenPhong()});
         }
     }
 
@@ -366,7 +367,7 @@ public class NguoiThueView extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Sua xong");
+        jButton2.setText("Sua");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -375,13 +376,13 @@ public class NguoiThueView extends javax.swing.JFrame {
 
         tb_SuCoKH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã", "Tên sự cố", "Thời gian thông báo", "Mô tả", "Trạng thái"
+                "Mã", "Tên sự cố", "Thời gian thông báo", "Mô tả", "Trạng thái", "Phòng"
             }
         ));
         tb_SuCoKH.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -839,9 +840,9 @@ public class NguoiThueView extends javax.swing.JFrame {
         txt_thoigianbatdau.setText(tb_chitiettienphong.getValueAt(row, 7).toString());
         txt_thoigianketthuc.setText(tb_chitiettienphong.getValueAt(row, 8).toString());
         txt_tongtien.setText(tb_chitiettienphong.getValueAt(row, 9).toString());
-        txt_hinhthucthanhtoan.setText(tb_chitiettienphong.getValueAt(row, 10).toString());
-        txt_ngaythanhtoan.setText(tb_chitiettienphong.getValueAt(row, 11).toString());
-        txt_trangthai.setText(tb_chitiettienphong.getValueAt(row, 12).toString());
+        txt_hinhthucthanhtoan.setText(tb_chitiettienphong.getValueAt(row, 12).toString());
+        txt_ngaythanhtoan.setText(tb_chitiettienphong.getValueAt(row, 13).toString());
+        txt_trangthai.setText(tb_chitiettienphong.getValueAt(row, 14).toString());
         txt_matienphong.setText(tb_chitiettienphong.getValueAt(row, 15).toString());
         int id = tb_chitiettienphong.rowAtPoint(evt.getPoint());
         String masv = tb_chitiettienphong.getValueAt(id, 15).toString();

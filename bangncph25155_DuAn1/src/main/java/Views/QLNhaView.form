@@ -184,10 +184,17 @@
                                               <Component id="jPanel7" max="32767" attributes="0"/>
                                               <Group type="102" attributes="0">
                                                   <Component id="cb_loaiphong" min="-2" pref="151" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                                  <Component id="jComboBox2" min="-2" pref="147" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="jLabel9" min="-2" pref="60" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="txt_min" min="-2" pref="84" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="jLabel10" min="-2" pref="59" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="txt_max" max="32767" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="btn_timkiemphong" min="-2" pref="83" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
                                           </Group>
@@ -215,8 +222,11 @@
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="cb_loaiphong" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btn_timkiemphong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_min" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_max" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -326,24 +336,11 @@
                         <Component class="javax.swing.JComboBox" name="cb_loaiphong">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="2">
-                                <StringItem index="0" value="Ph&#xf2;ng tr&#x1ed1;ng"/>
-                                <StringItem index="1" value="&#x110;&#xe3; c&#xf3; ng&#x1b0;&#x1edd;i thu&#xea;"/>
-                              </StringArray>
-                            </Property>
-                          </Properties>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                          </AuxValues>
-                        </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox2">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="4">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
+                                <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
+                                <StringItem index="1" value="Ph&#xf2;ng tr&#x1ed1;ng"/>
+                                <StringItem index="2" value="&#x110;&#xe3; c&#xf3; ng&#x1b0;&#x1edd;i thu&#xea;"/>
+                                <StringItem index="3" value=" "/>
                               </StringArray>
                             </Property>
                           </Properties>
@@ -478,6 +475,20 @@
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_lamhopdongActionPerformed"/>
                           </Events>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel9">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Min :"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txt_min">
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel10">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Max :"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txt_max">
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1203,9 +1214,7 @@
                                               <Component id="btn_suahopdong" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                                               <Component id="btn_clearhopdong" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                                              <Component id="btn_capnhat" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1233,7 +1242,6 @@
                                                   <Component id="btn_clearhopdong" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="txt_timkiem" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="btn_timkiem" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="btn_capnhat" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="jScrollPane7" min="-2" pref="157" max="-2" attributes="0"/>
@@ -1451,8 +1459,8 @@
                                   <Properties>
                                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                       <StringArray count="2">
-                                        <StringItem index="0" value="Ph&#xf2;ng tr&#x1ed1;ng"/>
-                                        <StringItem index="1" value="&#x110;&#xe3; c&#xf3; ng&#x1b0;&#x1edd;i thu&#xea;"/>
+                                        <StringItem index="0" value="&#x110;ang &#x1edf;"/>
+                                        <StringItem index="1" value="&#x110;&#xe3; d&#x1ecd;n &#x111;i"/>
                                       </StringArray>
                                     </Property>
                                   </Properties>
@@ -1579,14 +1587,6 @@
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_timkiemActionPerformed"/>
-                              </Events>
-                            </Component>
-                            <Component class="javax.swing.JButton" name="btn_capnhat">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Cap nhat"/>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_capnhatActionPerformed"/>
                               </Events>
                             </Component>
                           </SubComponents>

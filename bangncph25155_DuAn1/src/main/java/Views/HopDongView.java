@@ -30,7 +30,9 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 
 /**
@@ -57,6 +59,8 @@ public class HopDongView extends javax.swing.JFrame {
         txt_phonghopdong.setText(tenphong);
         LoadHopDong(hdR.getAllData());
         LoadDichVu(dvR.getAllData());
+        LoadDichVuPhong(dvpR.getAllData());
+        loc();
     }
     
     private void LoadHopDong(List<HopDong> list) {
@@ -85,6 +89,18 @@ public class HopDongView extends javax.swing.JFrame {
             dtm.addRow(new Object[]{
                 dvp.getPhong().getTenPhong(), dvp.getDichVu().getTenDichVu(), dvp.getDonGia(), dvp.getNgayBatdau(), dvp.getNgayHetHan()});
         }
+    }
+    
+    private void loc(){
+        DefaultTableModel dmt = (DefaultTableModel) tb_banghopdong.getModel();
+        DefaultTableModel dmt1 = (DefaultTableModel) tb_bangdichvuphong.getModel();
+        String search = tenphong;
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+        TableRowSorter<DefaultTableModel> tr1 = new TableRowSorter<DefaultTableModel>(dmt1);
+        tb_banghopdong.setRowSorter(tr);
+        tb_bangdichvuphong.setRowSorter(tr1);
+        tr.setRowFilter(RowFilter.regexFilter(search));
+        tr1.setRowFilter(RowFilter.regexFilter(search));
     }
     private HopDongView() {
        
@@ -156,6 +172,12 @@ public class HopDongView extends javax.swing.JFrame {
         jLabel28.setText("Trang thai :");
 
         jLabel29.setText("Noi dung :");
+
+        txt_phonghopdong.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_phonghopdongKeyReleased(evt);
+            }
+        });
 
         txt_noidunghopdong.setColumns(20);
         txt_noidunghopdong.setRows(5);
@@ -579,6 +601,10 @@ public class HopDongView extends javax.swing.JFrame {
         txt_ngaysuahopdong.setText(String.valueOf(hd.getNgaySua()));
         cb_trangthai.setSelectedItem(hd.getTrangThai());
     }//GEN-LAST:event_tb_banghopdongMouseClicked
+
+    private void txt_phonghopdongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_phonghopdongKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_phonghopdongKeyReleased
 
     /**
      * @param args the command line arguments

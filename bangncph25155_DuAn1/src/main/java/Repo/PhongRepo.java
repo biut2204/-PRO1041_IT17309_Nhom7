@@ -12,6 +12,7 @@ import java.util.UUID;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -109,6 +110,19 @@ public class PhongRepo {
             uuid = query.getSingleResult();
         }
         return uuid;
+    }
+    
+    public List<Phong> test(float ten, float diXe) {
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String hql = "FROM Phong E WHERE E.dienTich >= :ten and E.dienTich <= :diXe";
+            
+            Query query = session.createQuery(hql);
+            query.setParameter("ten", ten);
+            query.setParameter("diXe", diXe);
+
+            List results = query.list();
+            return results;
+        }
     }
     
     public static void main(String[] args) {
