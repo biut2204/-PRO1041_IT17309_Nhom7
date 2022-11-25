@@ -33,6 +33,22 @@ public class NguoiThue {
     @OneToMany(mappedBy = "nguoiThue",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TaiKhoan> taiKhoans;
+    
+    @OneToMany(mappedBy = "nguoiThue",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HopDong> hopDongs;
+    
+    @Column(name = "Ma")
+    private String ma;
+    
+    @Column(name = "HoTen")
+    private String hoTen;
+
+    @Column(name = "NgaySinh")
+    private Date ngaySinh;
+
+    @Column(name = "Cmtnd")
+    private String cmtnd;
 
     public UUID getId() {
         return id;
@@ -80,6 +96,14 @@ public class NguoiThue {
 
     public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
+    }
+
+    public String getCmtnd() {
+        return cmtnd;
+    }
+
+    public void setCmtnd(String cmtnd) {
+        this.cmtnd = cmtnd;
     }
 
     public String getGioiTinh() {
@@ -130,13 +154,14 @@ public class NguoiThue {
         this.trangThai = trangThai;
     }
 
-    public NguoiThue(UUID id, List<TaiKhoan> taiKhoans, List<HopDong> hopDongs, String ma, String hoTen, Date ngaySinh, String gioiTinh, String sdt, String email, String diaChi, String diXe, String trangThai) {
+    public NguoiThue(UUID id, List<TaiKhoan> taiKhoans, List<HopDong> hopDongs, String ma, String hoTen, Date ngaySinh, String cmtnd, String gioiTinh, String sdt, String email, String diaChi, String diXe, String trangThai) {
         this.id = id;
         this.taiKhoans = taiKhoans;
         this.hopDongs = hopDongs;
         this.ma = ma;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
+        this.cmtnd = cmtnd;
         this.gioiTinh = gioiTinh;
         this.sdt = sdt;
         this.email = email;
@@ -145,19 +170,6 @@ public class NguoiThue {
         this.trangThai = trangThai;
     }
     
-    @OneToMany(mappedBy = "nguoiThue",
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<HopDong> hopDongs;
-    
-    @Column(name = "Ma")
-    private String ma;
-    
-    @Column(name = "HoTen")
-    private String hoTen;
-
-    @Column(name = "NgaySinh")
-    private Date ngaySinh;
-
     @Column(name = "GioiTinh")
     private String gioiTinh;
 

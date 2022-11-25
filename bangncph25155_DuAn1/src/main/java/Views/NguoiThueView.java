@@ -64,11 +64,12 @@ public class NguoiThueView extends javax.swing.JFrame {
         LoadDichVuPhong(dvpR.getAllData());
         shotDichVu(tpR.findTenPhong(dataNguoiThue));
         shotCttp(tpR.findTenPhong(dataNguoiThue));
-        
+
         LoadSuCoKH(sckhR.getAllData());
         shotSuCoKH(tpR.findTenPhong(dataNguoiThue));
+        txtPhongSCKH.setText(tpR.findTenPhong(dataNguoiThue));
     }
-
+    
     private NguoiThueView() {
 
     }
@@ -88,7 +89,7 @@ public class NguoiThueView extends javax.swing.JFrame {
         tb_chitiettienphong.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
     }
-    
+
     private void shotSuCoKH(String ten) {
         DefaultTableModel dmt = (DefaultTableModel) tb_SuCoKH.getModel();
         String search = ten;
@@ -96,8 +97,7 @@ public class NguoiThueView extends javax.swing.JFrame {
         tb_SuCoKH.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
     }
-    
-    
+
     private void LoadChiTietTienPhong(List<ChiTietTienPhong> list) {
         dtm = (DefaultTableModel) tb_chitiettienphong.getModel();
         dtm.setRowCount(0);
@@ -859,8 +859,8 @@ public class NguoiThueView extends javax.swing.JFrame {
             Phong p = new Phong();
             ChuNha cn = new ChuNha();
 
-            int index = tb_SuCoKH.getRowCount() + 1;
-            String ma = "SuCo" + String.valueOf(index);
+            
+            String ma = "SCKH " + ntR.findSo();
             String tenphong = txtPhongSCKH.getText().trim();
             Date ngay = sdf.parse(txtTimeSuCo.getText().trim());
             String mota = txtMoTaSuCo.getText().trim();
@@ -868,12 +868,12 @@ public class NguoiThueView extends javax.swing.JFrame {
             String trangthai = "đang sửa";
             String tenchunha = "admin";
 
-                UUID idphong = sckhR.findByIdPhong(tenphong);
-                p.setId(idphong);
+            UUID idphong = sckhR.findByIdPhong(tenphong);
+            p.setId(idphong);
 
             UUID idchunha = nR.findByIdCN(tenchunha);
             cn.setId(idchunha);
-            
+
             sckh.setMa(ma);
             sckh.setPhong(p);
             sckh.setChuNha(cn);
@@ -903,7 +903,7 @@ public class NguoiThueView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tb_SuCoKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_SuCoKHMouseClicked
-        
+
     }//GEN-LAST:event_tb_SuCoKHMouseClicked
 
     private void txt_timkiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_timkiemKeyReleased
@@ -947,7 +947,7 @@ public class NguoiThueView extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
                 new NguoiThueView().setVisible(true);
             }

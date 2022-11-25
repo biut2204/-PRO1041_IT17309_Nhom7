@@ -48,6 +48,11 @@ public class NguoiThueImpl implements IsvNguoiThueImpl{
     public String findDiXe(String id) {
         return ntR.findDiXe(id);
     }
+    
+    @Override
+    public Long findSo() {
+        return ntR.findSo();
+    }
 
     @Override
     public String findTrangThai(String id) {
