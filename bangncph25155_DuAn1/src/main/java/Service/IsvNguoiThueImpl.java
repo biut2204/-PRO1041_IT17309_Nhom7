@@ -20,6 +20,8 @@ public interface IsvNguoiThueImpl {
     
     public String findGioiTinh(String id);
     
+    public Long findSo();
+    
     public String findSdt(String id);
     
     public String findDiaChi(String id);

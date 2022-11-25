@@ -144,4 +144,19 @@ public class NguoiThueRepo {
             s.close();
         }
     }
+    
+    public Long findSo() {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select Count(p.ma) from SuCoKH p ";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public static void main(String[] args) {
+        NguoiThueRepo ntR = new NguoiThueRepo();
+        System.out.println(ntR.findSo());
+    }
 }
