@@ -482,6 +482,9 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="txt_min">
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_minActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel10">
                           <Properties>
@@ -489,6 +492,9 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="txt_max">
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_maxActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1433,6 +1439,9 @@
                                 <Component class="javax.swing.JTextField" name="txt_chunhahopdong">
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txt_nguoithuehopdong">
+                                  <Events>
+                                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_nguoithuehopdongKeyReleased"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txt_phonghopdong">
                                 </Component>
@@ -1524,7 +1533,7 @@
                                 <Component class="javax.swing.JTable" name="tb_banghopdong">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="12" rowCount="4">
+                                      <Table columnCount="13" rowCount="4">
                                         <Column editable="true" title="Chu nha" type="java.lang.Object"/>
                                         <Column editable="true" title="Nguoi thue" type="java.lang.Object"/>
                                         <Column editable="true" title="Phong" type="java.lang.Object"/>
@@ -1537,6 +1546,7 @@
                                         <Column editable="true" title="Ngay het han" type="java.lang.Object"/>
                                         <Column editable="true" title="Ngay sua" type="java.lang.Object"/>
                                         <Column editable="true" title="Trang thai" type="java.lang.Object"/>
+                                        <Column editable="true" title="cmt" type="java.lang.Object"/>
                                       </Table>
                                     </Property>
                                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -1602,6 +1612,9 @@
                                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                         </Property>
                                       </Properties>
+                                      <Events>
+                                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_bangdichvuphongMouseClicked"/>
+                                      </Events>
                                     </Component>
                                   </SubComponents>
                                 </Container>

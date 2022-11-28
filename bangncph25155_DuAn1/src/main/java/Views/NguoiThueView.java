@@ -859,8 +859,8 @@ public class NguoiThueView extends javax.swing.JFrame {
             Phong p = new Phong();
             ChuNha cn = new ChuNha();
 
-            
             String ma = "SCKH " + ntR.findSo();
+
             String tenphong = txtPhongSCKH.getText().trim();
             Date ngay = sdf.parse(txtTimeSuCo.getText().trim());
             String mota = txtMoTaSuCo.getText().trim();

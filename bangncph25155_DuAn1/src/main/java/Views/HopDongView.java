@@ -52,6 +52,7 @@ public class HopDongView extends javax.swing.JFrame {
     /**
      * Creates new form HopDongView
      */
+    
     private String tenphong;
     public HopDongView(String tenphong) {
         initComponents();
@@ -141,6 +142,8 @@ public class HopDongView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txt_soxehopdong = new javax.swing.JTextField();
         cb_trangthai = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        txt_TienCoc = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         tb_banghopdong = new javax.swing.JTable();
         btn_themhopdong = new javax.swing.JButton();
@@ -193,19 +196,23 @@ public class HopDongView extends javax.swing.JFrame {
 
         cb_trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Phòng trống", "Đã có người thuê" }));
 
+        jLabel5.setText("Tien coc");
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                        .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txt_chunhahopdong, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
@@ -213,7 +220,8 @@ public class HopDongView extends javax.swing.JFrame {
                     .addComponent(txt_phonghopdong)
                     .addComponent(txt_noithathopdong)
                     .addComponent(txt_hientranghopdong)
-                    .addComponent(cb_trangthai, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cb_trangthai, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_TienCoc))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -267,9 +275,14 @@ public class HopDongView extends javax.swing.JFrame {
                     .addComponent(txt_ngaysuahopdong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel28)
-                        .addComponent(cb_trangthai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel28)
+                            .addComponent(cb_trangthai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(txt_TienCoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel29))
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -456,7 +469,8 @@ public class HopDongView extends javax.swing.JFrame {
             Date ngaysua = java.util.Calendar.getInstance().getTime();
             String noidung = txt_noidunghopdong.getText().trim();
             String trangthai = cb_trangthai.getSelectedItem().toString();
-
+            int tiencoc = Integer.parseInt(txt_TienCoc.getText().trim());
+            
             UUID idcn = ntR.findByIdCN(tencn);
             cn.setId(idcn);
 
@@ -479,9 +493,11 @@ public class HopDongView extends javax.swing.JFrame {
             hd.setNgaySua(ngaysua);
             hd.setNoiDung(noidung);
             hd.setTrangThai(trangthai);
+            hd.setTienCoc(tiencoc);
             hdR.save(hd);
             JOptionPane.showMessageDialog(this, "thanh cong");
             LoadHopDong(hdR.getAllData());
+            clear();
         } catch (ParseException ex) {
             Logger.getLogger(HopDongView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -504,6 +520,7 @@ public class HopDongView extends javax.swing.JFrame {
             Date ngaysua = java.util.Calendar.getInstance().getTime();
             String noidung = txt_noidunghopdong.getText().trim();
             String trangthai = cb_trangthai.getSelectedItem().toString();
+            int tiencoc = Integer.parseInt(txt_TienCoc.getText().trim());
 
             UUID idcn = ntR.findByIdCN(tencn);
             cn.setId(idcn);
@@ -522,16 +539,21 @@ public class HopDongView extends javax.swing.JFrame {
             hd.setNgaySua(ngaysua);
             hd.setNoiDung(noidung);
             hd.setTrangThai(trangthai);
+            hd.setTienCoc(tiencoc);
             hdR.update(hd);
             JOptionPane.showMessageDialog(this, "thanh cong");
             LoadHopDong(hdR.getAllData());
+            clear();
         } catch (ParseException ex) {
             Logger.getLogger(HopDongView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_suahopdongActionPerformed
 
     private void btn_clearhopdongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearhopdongActionPerformed
-        // TODO add your handling code here:
+        clear();
+        
+    }//GEN-LAST:event_btn_clearhopdongActionPerformed
+    private void clear(){
         txt_chunhahopdong.setText("");
         txt_nguoithuehopdong.setText("");
         txt_phonghopdong.setText("");
@@ -540,8 +562,7 @@ public class HopDongView extends javax.swing.JFrame {
         txt_ngaysuahopdong.setText("");
         txt_noidunghopdong.setText("");
         cb_trangthai.setSelectedItem(0);
-    }//GEN-LAST:event_btn_clearhopdongActionPerformed
-
+    }
     private void tb_bangdichvuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_bangdichvuMouseClicked
         try {
             // TODO add your handling code here:
@@ -600,6 +621,7 @@ public class HopDongView extends javax.swing.JFrame {
         txt_ngayhethanhopdong.setText(String.valueOf(hd.getNgayHetHan()));
         txt_ngaysuahopdong.setText(String.valueOf(hd.getNgaySua()));
         cb_trangthai.setSelectedItem(hd.getTrangThai());
+        txt_TienCoc.setText(String.valueOf(hd.getTienCoc()));
     }//GEN-LAST:event_tb_banghopdongMouseClicked
 
     private void txt_phonghopdongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_phonghopdongKeyReleased
@@ -658,6 +680,7 @@ public class HopDongView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
@@ -668,6 +691,7 @@ public class HopDongView extends javax.swing.JFrame {
     private javax.swing.JTable tb_bangdichvu;
     private javax.swing.JTable tb_bangdichvuphong;
     private javax.swing.JTable tb_banghopdong;
+    private javax.swing.JTextField txt_TienCoc;
     private javax.swing.JTextField txt_chunhahopdong;
     private javax.swing.JTextField txt_giaphonghopdong;
     private javax.swing.JTextField txt_hientranghopdong;
