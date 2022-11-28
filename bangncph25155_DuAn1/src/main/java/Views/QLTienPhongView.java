@@ -9,18 +9,22 @@ import Models.DichVu;
 import Models.DichVuPhong;
 import Models.Phong;
 import Models.TienPhong;
+import Repo.TienPhongRepo;
 import Service.IsvCttpImpl;
 import Service.IsvDichVuPhongImpl;
 import Service.IsvTienPhongImpl;
 import Service.impl.CttpImpl;
 import Service.impl.DichVuPhongImpl;
 import Service.impl.TienPhongImpl;
+import com.sun.xml.bind.v2.schemagen.Util;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -47,6 +51,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
     private IsvTienPhongImpl tpR = new TienPhongImpl();
     private IsvCttpImpl cttpR = new CttpImpl();
     private IsvDichVuPhongImpl dvpR = new DichVuPhongImpl();
+    private TienPhongRepo tprepo = new TienPhongRepo();
 
     /**
      * Creates new form QLPhongView
@@ -60,7 +65,8 @@ public class QLTienPhongView extends javax.swing.JFrame {
         tongthongke();
         rdTinhTrang();
     }
-        void rdTinhTrang() {
+
+    void rdTinhTrang() {
         buttonGroup = new ButtonGroup();
         buttonGroup.add(rd_tatca);
         buttonGroup.add(rd_daongtien);
@@ -761,7 +767,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
         tb_chitiettienphong.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
-        
+
         DefaultTableModel dmt1 = (DefaultTableModel) tb_bangdichvuphong.getModel();
         String search1 = tb_tienphong.getValueAt(row, 1).toString();
         TableRowSorter<DefaultTableModel> tr1 = new TableRowSorter<DefaultTableModel>(dmt1);
@@ -771,7 +777,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
     private void rd_chuadongtienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd_chuadongtienActionPerformed
         // TODO add your handling code here:
-                if (rd_chuadongtien.isSelected()) {
+        if (rd_chuadongtien.isSelected()) {
             DefaultTableModel dmt = (DefaultTableModel) tb_tienphong.getModel();
             String search = "chua thanh toan";
             TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
@@ -786,37 +792,60 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
     private void btn_tao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tao1ActionPerformed
         // TODO add your handling code here:
-        TienPhong tp = new TienPhong();
-        Phong p = new Phong();
+        try {
+            TienPhong tp = new TienPhong();
+            Phong p = new Phong();
 
-        int index = tb_tienphong.getRowCount() + 1;
-        String ma = "HD" + String.valueOf(index);
-        String tenphong = JOptionPane.showInputDialog("Nhap ten phong :");
-        String trangthai = "chua thanh toan";
-        Date ngaytao = java.util.Calendar.getInstance().getTime();
+            int index = tb_tienphong.getRowCount() + 1;
+            String ma = "HD" + String.valueOf(index);
+            String tenphong = JOptionPane.showInputDialog("Nhap ten phong :");
+            String trangthai = "chua thanh toan";
+            Date ngaytao = sdf.parse(JOptionPane.showInputDialog("Ngay tao :"));
 
-        UUID idp = tpR.findByIdPhong(tenphong);
-        p.setId(idp);
+            UUID idp = tpR.findByIdPhong(tenphong);
+            p.setId(idp);
 
-        tp.setMa(ma);
-        tp.setPhong(p);
-        tp.setNgayTao(ngaytao);
-        tp.setTrangThai(trangthai);
-        tpR.save(tp);
-        LoadTienPhong(tpR.getAllData());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM");
+            String a = dateFormat.format(ngaytao);
+            int a1 = Integer.parseInt(a);
+            
+            SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy");
+            String b = dateFormat1.format(ngaytao);
+            int b1 = Integer.parseInt(b);
+            try {
+                int test = tpR.checkTienThang(tenphong, a1);
+                int test1 = tprepo.checkNam(tenphong, b1);
+                if (a1 == test && b1 == test1) {
+                    JOptionPane.showMessageDialog(this, "tháng - "+a1+" năm -  " +b1+" phòng - " + tenphong + " đã có hóa đơn ");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
 
-        DefaultTableModel dmt = (DefaultTableModel) tb_bangdichvuphong.getModel();
-        String search = tenphong;
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
-        tb_bangdichvuphong.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(search));
+                JOptionPane.showMessageDialog(this, "thanh cong");
+                tp.setNgayTao(ngaytao);
+                tp.setMa(ma);
+                tp.setPhong(p);
+                tp.setTrangThai(trangthai);
+                tpR.save(tp);
+                LoadTienPhong(tpR.getAllData());
 
-        LoadDichVuPhong(dvpR.getAllData());
+                DefaultTableModel dmt = (DefaultTableModel) tb_bangdichvuphong.getModel();
+                String search = tenphong;
+                TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+                tb_bangdichvuphong.setRowSorter(tr);
+                tr.setRowFilter(RowFilter.regexFilter(search));
+
+                LoadDichVuPhong(dvpR.getAllData());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btn_tao1ActionPerformed
 
     private void rd_daongtienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd_daongtienActionPerformed
         // TODO add your handling code here:
-                if (rd_daongtien.isSelected()) {
+        if (rd_daongtien.isSelected()) {
             DefaultTableModel dmt = (DefaultTableModel) tb_tienphong.getModel();
             String search = "Da thanh toan";
             TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
@@ -829,7 +858,8 @@ public class QLTienPhongView extends javax.swing.JFrame {
     String hinhnuoc = null;
 
     private void btn_taotienphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_taotienphongActionPerformed
-         try {
+
+        try {
             // TODO add your handling code here:
             ChiTietTienPhong cttp = new ChiTietTienPhong();
             TienPhong tp = new TienPhong();
@@ -876,7 +906,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txt_tienphongKeyReleased
     private void TongTien() {
-       int tienphong = Integer.parseInt(txt_tienphong.getText().toString());
+        int tienphong = Integer.parseInt(txt_tienphong.getText().toString());
         String sodien = txt_sodien.getText().toString();
         String sonuoc = txt_sonuoc.getText().toString();
         String dongiadien = txt_dongiadien.getText().toString();
@@ -919,7 +949,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
     private void lbl_anhsodienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_anhsodienMouseClicked
         // TODO add your handling code here:
-     try {
+        try {
             JFileChooser jfc = new JFileChooser("E:\\GitHub\\PRO1041_IT17309_NHom8\\Da1_Nhom7");
             jfc.showOpenDialog(null);
             File file = jfc.getSelectedFile();
@@ -955,7 +985,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
     private void tb_bangdichvuphongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_bangdichvuphongMouseClicked
         // TODO add your handling code here:
-       int row = tb_bangdichvuphong.getSelectedRow();
+        int row = tb_bangdichvuphong.getSelectedRow();
         if (row == -1) {
             return;
         }
@@ -971,7 +1001,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       DefaultTableModel dmt = (DefaultTableModel) tb_tienphong.getModel();
+        DefaultTableModel dmt = (DefaultTableModel) tb_tienphong.getModel();
         String search = txt_timkiem.getText().toString();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
         tb_tienphong.setRowSorter(tr);
@@ -979,7 +1009,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void fillSinhVienLenForm(ChiTietTienPhong sv) {
- ImageIcon imgIcon = new ImageIcon("E:/GitHub/PRO1041_IT17309_NHom8/Da1_Nhom7/src/main/java/images/" + sv.getHinhAnhDien());
+        ImageIcon imgIcon = new ImageIcon("E:/GitHub/PRO1041_IT17309_NHom8/Da1_Nhom7/src/main/java/images/" + sv.getHinhAnhDien());
         Image img = imgIcon.getImage();
         lbl_anhsodien.setIcon(new ImageIcon(img.getScaledInstance(lbl_anhsodien.getWidth(), lbl_anhsodien.getHeight(), 0)));
 
@@ -1070,7 +1100,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
     private void rd_tatcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd_tatcaActionPerformed
         // TODO add your handling code here:
-         if (rd_tatca.isSelected()) {
+        if (rd_tatca.isSelected()) {
             DefaultTableModel dmt = (DefaultTableModel) tb_tienphong.getModel();
             String search = "HD";
             TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);

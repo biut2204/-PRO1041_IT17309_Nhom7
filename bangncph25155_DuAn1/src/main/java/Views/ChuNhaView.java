@@ -9,6 +9,7 @@ import Service.IsvChuNhaImpl;
 import Service.impl.ChuNhaImpl;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -180,6 +181,16 @@ public class ChuNhaView extends javax.swing.JFrame {
         mn_menu.add(aaaa);
 
         jMenu3.setText("Thoat");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
         mn_menu.add(jMenu3);
 
         setJMenuBar(mn_menu);
@@ -218,6 +229,20 @@ public class ChuNhaView extends javax.swing.JFrame {
         f.setVisible(true);
         this.mn_menu.add(f);
     }//GEN-LAST:event_dkthongtinActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        // TODO add your handling code here:
+        int a = JOptionPane.showConfirmDialog(this,"Xác nhận đăng xuất");
+        if(a != JOptionPane.YES_OPTION){
+            return;
+        }
+        System.exit(0);
+    }//GEN-LAST:event_jMenu3MouseClicked
 
     /**
      * @param args the command line arguments

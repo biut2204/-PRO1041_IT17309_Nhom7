@@ -7,6 +7,7 @@ package Views;
 import Models.TaiKhoan;
 import Service.IsvTaiKhoanImpl;
 import Service.impl.TaiKhoanImpl;
+import java.awt.Color;
 import java.text.ParseException;
 import java.util.List;
 import java.util.UUID;
@@ -14,7 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,6 +37,20 @@ public class DangNhapView extends javax.swing.JFrame {
         Icon icon = new ImageIcon("obama.png");
         this.lbl_anh.setIcon(icon);
         Loadthongbao();
+        setLocationRelativeTo(null);
+    }
+
+    private Boolean checkEmpty(JTextField txt, JLabel lbl) {
+        if (txt.getText().isEmpty()) {
+            txt.setBackground(Color.YELLOW);
+            lbl.setText("*");
+            return false;
+        } else {
+            txt.setBackground(Color.WHITE);
+            lbl.setText(null);
+            return true;
+        }
+
     }
 
     /*    public void Load(List<TaiKhoan> list) {
@@ -46,16 +63,16 @@ public class DangNhapView extends javax.swing.JFrame {
 
     }
      */
-    
-    private void Loadthongbao(){
+    private void Loadthongbao() {
         String a = "đang sửa";
         Long b = tkR.findSuCoNT(a);
-        if(b == 0){
+        if (b == 0) {
             lbl_thongbao.setText("Hello many to one");
-        }else{
+        } else {
             lbl_thongbao.setText("nha tro dang co su co");
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,6 +90,8 @@ public class DangNhapView extends javax.swing.JFrame {
         btn_dangnhap = new javax.swing.JButton();
         txt_matkhau = new javax.swing.JPasswordField();
         btn_quenmatkhau = new javax.swing.JButton();
+        lblCheckTK = new javax.swing.JLabel();
+        lblCheckMK = new javax.swing.JLabel();
         lbl_anh = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lbl_thongbao = new javax.swing.JLabel();
@@ -115,7 +134,11 @@ public class DangNhapView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txt_taikhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                     .addComponent(txt_matkhau))
-                .addGap(41, 41, 41))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCheckTK, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCheckMK, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -129,11 +152,13 @@ public class DangNhapView extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txt_taikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_taikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCheckTK))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txt_matkhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_matkhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCheckMK))
                 .addGap(18, 18, 18)
                 .addComponent(btn_dangnhap)
                 .addGap(18, 18, 18)
@@ -204,7 +229,7 @@ public class DangNhapView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(anh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,22 +244,20 @@ public class DangNhapView extends javax.swing.JFrame {
 
     private void btn_dangnhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangnhapActionPerformed
         // TODO add your handling code here:
-
         try {
-            TaiKhoan taiKhoan = new TaiKhoan();
-            String ten = txt_taikhoan.getText().trim();
-            String mk = txt_matkhau.getText().trim();
-            String vaitro = tkR.findById(ten, mk);
-            if (ten.length() == 0) {
-                JOptionPane.showMessageDialog(this, "Khong duoc de trong");
-            } else if (mk.length() == 0) {
-                JOptionPane.showMessageDialog(this, "Khong duoc de trong");
+            Boolean check = true;
+            if (checkEmpty(txt_taikhoan, lblCheckTK) == false || checkEmpty(txt_matkhau, lblCheckMK) == false) {
+                check = false;
+                JOptionPane.showMessageDialog(this, "Không được để trống tài khoản hoặc mật khẩu");
             } else {
+                TaiKhoan taiKhoan = new TaiKhoan();
+                String ten = txt_taikhoan.getText().trim();
+                String mk = txt_matkhau.getText().trim();
+                String vaitro = tkR.findById(ten, mk);
                 if (vaitro.equals("chu nha")) {
                     ChuNhaView f = new ChuNhaView();
                     f.setVisible(true);
                     f.setLocationRelativeTo(null);
-
                 } else if (vaitro.equals("nguoi thue")) {
                     try {
                         String mant = tkR.findByIdNguoiThue(ten, mk);
@@ -242,14 +265,15 @@ public class DangNhapView extends javax.swing.JFrame {
                         f.setVisible(true);
                         f.setLocationRelativeTo(null);
                     } catch (ParseException ex) {
+
                         Logger.getLogger(DangNhapView.class.getName()).log(Level.SEVERE, null, ex);
                     }
+
                 }
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "tai khoan mat khau khong dung");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Tài khoản hoặc mật khẩu sai");
         }
     }//GEN-LAST:event_btn_dangnhapActionPerformed
 
@@ -306,6 +330,8 @@ public class DangNhapView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblCheckMK;
+    private javax.swing.JLabel lblCheckTK;
     private javax.swing.JLabel lbl_anh;
     private javax.swing.JLabel lbl_thongbao;
     private javax.swing.JPasswordField txt_matkhau;

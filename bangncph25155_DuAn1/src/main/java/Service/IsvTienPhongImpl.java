@@ -5,6 +5,7 @@
 package Service;
 
 import Models.TienPhong;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,4 +27,7 @@ public interface IsvTienPhongImpl {
     public void save(TienPhong tienPhong);
 
     public void update(TienPhong tienPhong);
+    
+    public int checkTienThang(String ten,int ngayTao);
+
 }
