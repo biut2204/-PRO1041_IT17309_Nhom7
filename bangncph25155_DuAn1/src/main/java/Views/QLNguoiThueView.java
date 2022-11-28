@@ -562,8 +562,12 @@ public class QLNguoiThueView extends javax.swing.JFrame {
         txt_diachi.setText(String.valueOf(nt.getDiaChi()));
         cbb_dixe.setSelectedItem(nt.getDiXe());
         txt_trangthai.setText(nt.getTrangThai());
+
         txt_chungminhthu.setText(String.valueOf(nt.getCmtnd()));
         if (nt.getGioiTinh().equalsIgnoreCase("Nam")) {
+
+
+
             rd_nam.setSelected(true);
         } else {
             rd_nu.setSelected(true);

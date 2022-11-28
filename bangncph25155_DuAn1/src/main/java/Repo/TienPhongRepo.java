@@ -7,6 +7,7 @@ package Repo;
 import HibernateUntils.HibernateUtils;
 import Models.TienPhong;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.TypedQuery;
@@ -110,9 +111,32 @@ public class TienPhongRepo {
         }
         return uuid;
     }
+    public Integer checkTienThang(String ten,int ngayTao) {
+        Integer uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select month(p.ngayTao) from TienPhong p where month(p.ngayTao)= :ngayTao and p.phong.tenPhong = :tenPhong";
+            TypedQuery<Integer> query = session.createQuery(statement, Integer.class);
+            query.setParameter("tenPhong", ten);
+            query.setParameter("ngayTao", ngayTao);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+        public Integer checkNam(String ten,int ngayTao) {
+        Integer uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select year(p.ngayTao) from TienPhong p where year(p.ngayTao)= :ngayTao and p.phong.tenPhong = :tenPhong";
+            TypedQuery<Integer> query = session.createQuery(statement, Integer.class);
+            query.setParameter("tenPhong", ten);
+            query.setParameter("ngayTao", ngayTao);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
 
     public static void main(String[] args) {
         TienPhongRepo tp = new TienPhongRepo();
+
         String tenPhong = "bang1";
         String test;
         String a = tp.findTenPhong(tenPhong);
