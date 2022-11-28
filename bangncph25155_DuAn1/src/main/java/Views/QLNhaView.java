@@ -80,8 +80,38 @@ public class QLNhaView extends javax.swing.JFrame {
         LoadDichVuPhong(dvpR.getAllData());
         LoadSuCoNhaTro(scntR.getAllData());
         LoadSuCoKH(sckhR.getAllData());
+        Icon();
     }
-
+    private void Icon(){
+        Icon icon = new ImageIcon("timkiem.png");
+        this.btn_timkiemphong.setIcon(icon);
+        Icon icon1 = new ImageIcon("new.png");
+        this.btn_themphong.setIcon(icon1);
+        Icon icon2 = new ImageIcon("save_1.png");
+        this.btn_suaphong.setIcon(icon2);
+        Icon icon3 = new ImageIcon("delete.png");
+        this.btn_clearphong.setIcon(icon3);
+        Icon icon4 = new ImageIcon("update2.png");
+        this.btn_lamhopdong.setIcon(icon4);
+        Icon icon5 = new ImageIcon("new.png");
+        this.btn_themdichvu.setIcon(icon5);
+        Icon icon6 = new ImageIcon("save_1.png");
+        this.btn_updatedichvu.setIcon(icon6);
+        Icon icon7 = new ImageIcon("delete.png");
+        this.btn_cleardichvu.setIcon(icon7);
+        Icon icon8 = new ImageIcon("thongbao.png");
+        this.btn_thongbao.setIcon(icon8);
+        Icon icon9 = new ImageIcon("suachuaxong.png");
+        this.btn_suachuaxong.setIcon(icon8);
+        Icon icon10 = new ImageIcon("clear1.png");
+        this.btn_clearsuco.setIcon(icon10);
+        this.btnSua.setIcon(icon4);
+        this.btnClear.setIcon(icon3);
+        this.btn_timkiem.setIcon(icon);
+        this.btn_suahopdong.setIcon(icon2);
+        this.btn_clearhopdong.setIcon(icon3);
+    }
+    
     private void LoadPhong(List<Phong> list) {
         dtm = (DefaultTableModel) tb_bangphong.getModel();
         dtm.setRowCount(0);
@@ -189,7 +219,7 @@ public class QLNhaView extends javax.swing.JFrame {
         tb_bangdichvu = new javax.swing.JTable();
         btn_themdichvu = new javax.swing.JButton();
         btn_updatedichvu = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btn_cleardichvu = new javax.swing.JButton();
         pa_suconhatro = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -222,7 +252,7 @@ public class QLNhaView extends javax.swing.JFrame {
         txtPhongSCKH = new javax.swing.JTextField();
         txtTenSuCo = new javax.swing.JTextField();
         btnSua = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tb_SuCoKH = new javax.swing.JTable();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -452,34 +482,32 @@ public class QLNhaView extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(cb_loaiphong, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txt_max)
+                            .addGap(18, 18, 18)
+                            .addComponent(btn_timkiemphong, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(27, 27, 27))
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(cb_loaiphong, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_max)
-                                .addGap(18, 18, 18)
-                                .addComponent(btn_timkiemphong, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74))
-                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(btn_themphong)
-                        .addGap(86, 86, 86)
-                        .addComponent(btn_suaphong)
-                        .addGap(99, 99, 99)
-                        .addComponent(btn_clearphong)
-                        .addGap(78, 78, 78)
-                        .addComponent(btn_lamhopdong, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_themphong, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(btn_suaphong, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(btn_clearphong, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btn_lamhopdong, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
                 .addComponent(lbl_anhphong, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(253, Short.MAX_VALUE))
@@ -575,10 +603,10 @@ public class QLNhaView extends javax.swing.JFrame {
 
         btn_updatedichvu.setText("Update");
 
-        jButton6.setText("Clear");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btn_cleardichvu.setText("Clear");
+        btn_cleardichvu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btn_cleardichvuActionPerformed(evt);
             }
         });
 
@@ -588,11 +616,11 @@ public class QLNhaView extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(129, 129, 129)
-                .addComponent(btn_themdichvu)
-                .addGap(140, 140, 140)
-                .addComponent(btn_updatedichvu)
-                .addGap(112, 112, 112)
-                .addComponent(jButton6)
+                .addComponent(btn_themdichvu, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(109, 109, 109)
+                .addComponent(btn_updatedichvu, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82)
+                .addComponent(btn_cleardichvu, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addGap(93, 93, 93)
@@ -609,7 +637,7 @@ public class QLNhaView extends javax.swing.JFrame {
                 .addGap(62, 62, 62)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_themdichvu)
-                    .addComponent(jButton6)
+                    .addComponent(btn_cleardichvu)
                     .addComponent(btn_updatedichvu))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -653,7 +681,7 @@ public class QLNhaView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_tensuco)
-                    .addComponent(txt_motasuco, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                    .addComponent(txt_motasuco, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel11Layout.createSequentialGroup()
@@ -729,21 +757,20 @@ public class QLNhaView extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(201, 201, 201)
-                .addComponent(btn_thongbao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110)
-                .addComponent(btn_suachuaxong)
-                .addGap(100, 100, 100)
-                .addComponent(btn_clearsuco, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_thongbao, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(btn_suachuaxong, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(btn_clearsuco, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(146, 146, 146)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4)
-                        .addContainerGap())
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(486, 486, 486))))
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 371, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -848,10 +875,10 @@ public class QLNhaView extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Clear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnClearActionPerformed(evt);
             }
         });
 
@@ -891,7 +918,7 @@ public class QLNhaView extends javax.swing.JFrame {
                         .addGap(241, 241, 241)
                         .addComponent(btnSua)
                         .addGap(301, 301, 301)
-                        .addComponent(jButton1))
+                        .addComponent(btnClear))
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -908,7 +935,7 @@ public class QLNhaView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSua)
-                    .addComponent(jButton1))
+                    .addComponent(btnClear))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -1149,16 +1176,16 @@ public class QLNhaView extends javax.swing.JFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                    .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(btn_suahopdong, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_suahopdong)
-                        .addGap(65, 65, 65)
-                        .addComponent(btn_clearhopdong)
-                        .addGap(237, 237, 237))
+                        .addComponent(btn_clearhopdong, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(166, 166, 166))
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1249,8 +1276,7 @@ public class QLNhaView extends javax.swing.JFrame {
         Phong phong = new Phong();
         NhaTro nhatro = new NhaTro();
 
-        int index = tb_bangphong.getRowCount() + 1;
-        String ma = "Ma" + String.valueOf(index);
+        String ma = "Ma" + String.valueOf(ntR.DemPhong() +1);
         String tennha = "Nhom 7";
         String tenphong = txt_tenphong.getText().trim();
         String tinhtrang = cb_tinhtrang.getSelectedItem().toString();
@@ -1344,8 +1370,7 @@ public class QLNhaView extends javax.swing.JFrame {
         String ten = txt_tendichvu.getText().trim();
         int dongia = Integer.parseInt(txt_dongiadichvu.getText().trim());
         String tennha = "Nhom 7";
-        int index = tb_bangdichvu.getRowCount() + 1;
-        String ma = "DichVu" + String.valueOf(index);
+        String ma = "DichVu" + String.valueOf(ntR.DemDichVu() +1);
 
         UUID idnha = pR.findByIdNhaTro(tennha);
         nt.setId(idnha);
@@ -1359,11 +1384,11 @@ public class QLNhaView extends javax.swing.JFrame {
         LoadDichVu(dvR.getAllData());
     }//GEN-LAST:event_btn_themdichvuActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btn_cleardichvuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cleardichvuActionPerformed
         // TODO add your handling code here:
         txt_tendichvu.setText("");
         txt_dongiadichvu.setText("");
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btn_cleardichvuActionPerformed
 
     private void tb_bangdichvuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_bangdichvuMouseClicked
         // TODO add your handling code here:
@@ -1593,9 +1618,9 @@ public class QLNhaView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMoTaSCActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         this.clear();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
@@ -1664,7 +1689,9 @@ public class QLNhaView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane Hello;
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnSua;
+    private javax.swing.JButton btn_cleardichvu;
     private javax.swing.JButton btn_clearhopdong;
     private javax.swing.JButton btn_clearphong;
     private javax.swing.JButton btn_clearsuco;
@@ -1681,8 +1708,6 @@ public class QLNhaView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_loaiphong;
     private javax.swing.JComboBox<String> cb_tinhtrang;
     private javax.swing.JComboBox<String> cb_trangthai;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton6;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

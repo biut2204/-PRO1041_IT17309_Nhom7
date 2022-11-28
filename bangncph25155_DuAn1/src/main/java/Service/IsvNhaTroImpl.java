@@ -17,6 +17,10 @@ public interface IsvNhaTroImpl {
 
     public UUID findByIdCN(String ten);
     
+    public Long DemPhong();
+    
+    public Long DemDichVu();
+    
     public void save(NhaTro nhaTro);
 
     public void update(NhaTro nhaTro);

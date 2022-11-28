@@ -37,6 +37,11 @@ public class DichVuPhongImpl implements IsvDichVuPhongImpl{
         return dvpR.findByIdDichVu(ten);
         
     }
+
+    @Override
+    public Long DemDichVuPhong() {
+        return dvpR.DemDichVuPhong();
+    }
     
     
 }

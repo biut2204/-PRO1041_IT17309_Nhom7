@@ -78,7 +78,7 @@ public class TienPhongRepo {
         }
         return uuid;
     }
-    
+
     public UUID findByIdTienPhong(String ten) {
         UUID uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -111,7 +111,41 @@ public class TienPhongRepo {
         }
         return uuid;
     }
-    public Integer checkTienThang(String ten,int ngayTao) {
+    
+    public Long TongDichVu(String ten) {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select sum(p.donGia) from DichVuPhong p where p.phong.tenPhong = :ten";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            query.setParameter("ten", ten);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public Long Dien( String tenDichVu) {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select sum(p.donGia) from DichVu p where p.tenDichVu = :tenDichVu";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            query.setParameter("tenDichVu", tenDichVu);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public Long Nuoc( String tenDichVu) {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select sum(p.donGia) from DichVu p where p.tenDichVu = :tenDichVu";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            query.setParameter("tenDichVu", tenDichVu);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+
+    public Integer checkTienThang(String ten, int ngayTao) {
         Integer uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
             String statement = "select month(p.ngayTao) from TienPhong p where month(p.ngayTao)= :ngayTao and p.phong.tenPhong = :tenPhong";
@@ -122,7 +156,8 @@ public class TienPhongRepo {
         }
         return uuid;
     }
-        public Integer checkNam(String ten,int ngayTao) {
+
+    public Integer checkNam(String ten, int ngayTao) {
         Integer uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
             String statement = "select year(p.ngayTao) from TienPhong p where year(p.ngayTao)= :ngayTao and p.phong.tenPhong = :tenPhong";
@@ -134,12 +169,21 @@ public class TienPhongRepo {
         return uuid;
     }
 
+    public Long DemTienPhong() {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select Count(p.ma) from TienPhong p";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+
     public static void main(String[] args) {
         TienPhongRepo tp = new TienPhongRepo();
 
-        String tenPhong = "bang1";
-        String test;
-        String a = tp.findTenPhong(tenPhong);
-        System.out.println(a);
+        String tenPhong = "Tien dien";
+        
+        System.out.println(tp.Dien(tenPhong));
     }
 }

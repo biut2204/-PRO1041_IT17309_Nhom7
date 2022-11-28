@@ -760,7 +760,12 @@ public class QLTienPhongView extends javax.swing.JFrame {
         }
         txt_matienphong.setText(tb_tienphong.getValueAt(row, 0).toString());
         String phong = tb_tienphong.getValueAt(row, 1).toString();
+        String dien = "Tien dien";
+        String nuoc = "Tien nuoc";
         txt_tienphong.setText(String.valueOf(tpR.findTienPhong(phong)));
+        txt_dongiadichvu.setText(String.valueOf(tpR.TongDichVu(phong) - tpR.Dien(dien) - tpR.Nuoc(nuoc)));
+        txt_dongiadien.setText(String.valueOf(tpR.Dien(dien)));
+        txt_dongianuoc.setText(String.valueOf(tpR.Nuoc(nuoc)));
 
         DefaultTableModel dmt = (DefaultTableModel) tb_chitiettienphong.getModel();
         String search = tb_tienphong.getValueAt(row, 0).toString();
@@ -796,8 +801,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
             TienPhong tp = new TienPhong();
             Phong p = new Phong();
 
-            int index = tb_tienphong.getRowCount() + 1;
-            String ma = "HD" + String.valueOf(index);
+            String ma = "HD" + String.valueOf(tpR.DemTienPhong() + 1);
             String tenphong = JOptionPane.showInputDialog("Nhap ten phong :");
             String trangthai = "chua thanh toan";
             Date ngaytao = sdf.parse(JOptionPane.showInputDialog("Ngay tao :"));

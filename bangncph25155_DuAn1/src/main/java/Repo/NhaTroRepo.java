@@ -76,4 +76,24 @@ public class NhaTroRepo {
         }
         return uuid;
     }
+    
+    public Long DemPhong() {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select Count(p.tenPhong) from Phong p";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public Long DemDichVu() {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select Count(tenDichVu) from DichVu p";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
 }
