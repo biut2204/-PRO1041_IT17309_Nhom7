@@ -15,25 +15,35 @@ import java.util.UUID;
  * @author MSI
  */
 public class NhaTroImpl implements IsvNhaTroImpl{
-    private NhaTroRepo pR = new NhaTroRepo();
+    private NhaTroRepo ntR = new NhaTroRepo();
     
     @Override
     public List<NhaTro> getAllData() {
-        return pR.getAllData();
+        return ntR.getAllData();
     }
     
     @Override
     public void save(NhaTro nhaTro) {
-        pR.save(nhaTro);
+        ntR.save(nhaTro);
     }
     
     @Override
     public void update(NhaTro nhaTro) {
-        pR.update(nhaTro);
+        ntR.update(nhaTro);
     }
     
     @Override
     public UUID findByIdCN(String ten) {
-        return pR.findByIdCN(ten);
+        return ntR.findByIdCN(ten);
+    }
+
+    @Override
+    public Long DemPhong() {
+        return ntR.DemPhong();
+    }
+
+    @Override
+    public Long DemDichVu() {
+        return ntR.DemDichVu();
     }
 }

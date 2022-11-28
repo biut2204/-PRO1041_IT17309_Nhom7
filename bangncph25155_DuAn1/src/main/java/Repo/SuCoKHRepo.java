@@ -18,7 +18,8 @@ import org.hibernate.Transaction;
  * @author Thanh Giang
  */
 public class SuCoKHRepo {
-        public List<SuCoKH> getAllData() {
+
+    public List<SuCoKH> getAllData() {
         List<SuCoKH> list = new ArrayList<>();
         Transaction t = null;
         Session session = HibernateUtils.getFACTORY().openSession();
@@ -33,7 +34,8 @@ public class SuCoKHRepo {
         }
         return list;
     }
-            public void save(SuCoKH sucokh) {
+
+    public void save(SuCoKH sucokh) {
         Transaction t = null;
         Session s = HibernateUtils.getFACTORY().openSession();
         try {
@@ -48,7 +50,8 @@ public class SuCoKHRepo {
             s.close();
         }
     }
-                public UUID findByIdPhong(String ten) {
+
+    public UUID findByIdPhong(String ten) {
         UUID uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
             String statement = "select p.id from Phong p where p.tenPhong = :tenPhong";
@@ -58,7 +61,8 @@ public class SuCoKHRepo {
         }
         return uuid;
     }
-                    public void update(SuCoKH sucokh) {
+
+    public void update(SuCoKH sucokh) {
         Transaction t = null;
         Session s = HibernateUtils.getFACTORY().openSession();
         try {

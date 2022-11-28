@@ -19,6 +19,7 @@ import org.hibernate.Transaction;
  * @author MSI
  */
 public class NguoiThueRepo {
+
     public String findHoTen(String id) {
         String uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -29,7 +30,7 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-    
+
     public Date findNgaySinh(String id) {
         Date uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -40,7 +41,7 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-    
+
     public String findGioiTinh(String id) {
         String uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -51,7 +52,7 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-    
+
     public String findSdt(String id) {
         String uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -62,7 +63,7 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-    
+
     public String findDiaChi(String id) {
         String uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -73,7 +74,7 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-    
+
     public String findDiXe(String id) {
         String uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -84,7 +85,7 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-    
+
     public String findTrangThai(String id) {
         String uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -95,8 +96,7 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-    
-    
+
     public void save(NguoiThue nt) {
         Transaction t = null;
         Session s = HibernateUtils.getFACTORY().openSession();
@@ -112,7 +112,7 @@ public class NguoiThueRepo {
             s.close();
         }
     }
-    
+
     public List<NguoiThue> getAlldata() {
         List<NguoiThue> list = new ArrayList<>();
         Transaction t = null;
@@ -128,7 +128,7 @@ public class NguoiThueRepo {
         }
         return list;
     }
-    
+
     public void update(NguoiThue nt) {
         Transaction t = null;
         Session s = HibernateUtils.getFACTORY().openSession();
@@ -144,7 +144,7 @@ public class NguoiThueRepo {
             s.close();
         }
     }
-    
+
     public Long findSo() {
         Long uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -154,7 +154,8 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-        public Long findcmtnd() {
+
+    public Long findcmtnd() {
         Long uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
             String statement = "select cmtnd from NguoiThue nt where nt.ma = :ma ";
@@ -163,7 +164,7 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-    
+
     public static void main(String[] args) {
         NguoiThueRepo ntR = new NguoiThueRepo();
         System.out.println(ntR.findSo());

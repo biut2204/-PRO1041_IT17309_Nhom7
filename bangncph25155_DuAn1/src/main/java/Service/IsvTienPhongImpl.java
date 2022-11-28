@@ -22,6 +22,14 @@ public interface IsvTienPhongImpl {
     
     public Long findTienPhong(String ten);
     
+    public Long DemTienPhong();
+    
+    public Long TongDichVu(String ten);
+    
+    public Long Dien(String ten);
+    
+    public Long Nuoc(String ten);
+    
     public String findTenPhong(String ten);
     
     public void save(TienPhong tienPhong);

@@ -56,7 +56,26 @@ public class TienPhongImpl implements IsvTienPhongImpl{
     @Override
     public int checkTienThang(String ten, int ngayTao) {
         return tpR.checkTienThang(ten, ngayTao);
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Long DemTienPhong() {
+       return tpR.DemTienPhong();
+    }
+
+    @Override
+    public Long TongDichVu(String ten) {
+        return tpR.TongDichVu(ten);
+    }
+
+    @Override
+    public Long Dien(String ten) {
+        return tpR.Dien(ten);
+    }
+
+    @Override
+    public Long Nuoc(String ten) {
+        return tpR.Nuoc(ten);
     }
 
 

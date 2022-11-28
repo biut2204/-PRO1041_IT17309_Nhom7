@@ -34,12 +34,20 @@ public class DangNhapView extends javax.swing.JFrame {
      */
     public DangNhapView() {
         initComponents();
-        Icon icon = new ImageIcon("obama.png");
-        this.lbl_anh.setIcon(icon);
+        Icon();
         Loadthongbao();
         setLocationRelativeTo(null);
     }
-
+    
+    private void Icon(){
+        Icon icon = new ImageIcon("obama.png");
+        this.lbl_anh.setIcon(icon);
+        Icon icon1 = new ImageIcon("dangnhap.png");
+        this.btn_dangnhap.setIcon(icon1);
+        Icon icon2 = new ImageIcon("quenmk.png");
+        this.btn_quenmatkhau.setIcon(icon2);
+    }
+    
     private Boolean checkEmpty(JTextField txt, JLabel lbl) {
         if (txt.getText().isEmpty()) {
             txt.setBackground(Color.YELLOW);
@@ -97,6 +105,8 @@ public class DangNhapView extends javax.swing.JFrame {
         lbl_thongbao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        anh.setBackground(new java.awt.Color(204, 204, 204));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -163,7 +173,7 @@ public class DangNhapView extends javax.swing.JFrame {
                 .addComponent(btn_dangnhap)
                 .addGap(18, 18, 18)
                 .addComponent(btn_quenmatkhau)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -198,14 +208,14 @@ public class DangNhapView extends javax.swing.JFrame {
             anhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, anhLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(lbl_anh, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                .addComponent(lbl_anh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
             .addGroup(anhLayout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         anhLayout.setVerticalGroup(
             anhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,29 +224,23 @@ public class DangNhapView extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(anhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(anhLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(anhLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
-                        .addComponent(lbl_anh, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addComponent(lbl_anh, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(anhLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(anh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+            .addComponent(anh)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(anh)
-                .addGap(65, 65, 65))
+            .addComponent(anh)
         );
 
         pack();

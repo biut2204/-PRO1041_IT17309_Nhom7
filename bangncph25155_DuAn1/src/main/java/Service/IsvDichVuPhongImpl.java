@@ -20,4 +20,6 @@ public interface IsvDichVuPhongImpl {
     public void update(DichVuPhong dichVu);
     
     public UUID findByIdDichVu(String ten);
+    
+    public Long DemDichVuPhong();
 }

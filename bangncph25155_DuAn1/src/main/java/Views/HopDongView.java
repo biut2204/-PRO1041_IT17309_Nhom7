@@ -29,6 +29,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -62,6 +64,16 @@ public class HopDongView extends javax.swing.JFrame {
         LoadDichVu(dvR.getAllData());
         LoadDichVuPhong(dvpR.getAllData());
         loc();
+        Icon();
+    }
+    
+    private void Icon(){
+        Icon icon = new ImageIcon("save.png");
+        this.btn_themhopdong.setIcon(icon);
+        Icon icon1 = new ImageIcon("update.png");
+        this.btn_suahopdong.setIcon(icon1);
+        Icon icon2 = new ImageIcon("clear.png");
+        this.btn_clearhopdong.setIcon(icon2);
     }
     
     private void LoadHopDong(List<HopDong> list) {
@@ -581,7 +593,7 @@ public class HopDongView extends javax.swing.JFrame {
             Date ngaybatdau = sdf.parse(JOptionPane.showInputDialog("Ngay bat dau :"));
             Date ngayketthuc = sdf.parse(JOptionPane.showInputDialog("Ngay ket thuc :"));
             
-            String ma = JOptionPane.showInputDialog("Ma dich vu phong de dang ki :");
+            String ma = "DV" + String .valueOf(dvpR.DemDichVuPhong() + 1);
             
             UUID idp = tpR.findByIdPhong(tenphong);
             p.setId(idp);

@@ -92,6 +92,16 @@ public class DichVuPhongRepo {
         return uuid;
     }
 
+    public Long DemDichVuPhong() {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select Count(p.ma) from DichVuPhong p";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+
     public static void main(String[] args) {
         String tendv = "Tien dien";
         DichVuPhongRepo dvpR = new DichVuPhongRepo();
