@@ -116,7 +116,7 @@ public class QLNhaView extends javax.swing.JFrame {
         for (HopDong hd : list) {
             dtm.addRow(new Object[]{
                 hd.getChuNha().getHoTen(), hd.getNguoiThue().getHoTen(), hd.getPhong().getTenPhong(), hd.getGiaPhong(), hd.getNoiThatPhong(),
-                hd.getHienTrang(), hd.getSoXe(), hd.getNoiDung(), hd.getNgayBatDau(), hd.getNgayHetHan(), hd.getNgaySua(), hd.getTrangThai(), hd.getMa()});
+                hd.getHienTrang(), hd.getSoXe(), hd.getNoiDung(), hd.getNgayBatDau(), hd.getNgayHetHan(), hd.getNgaySua(), hd.getTrangThai(), hd.getNguoiThue().getCmtnd()});
         }
     }
 
@@ -433,7 +433,19 @@ public class QLNhaView extends javax.swing.JFrame {
 
         jLabel9.setText("Min :");
 
+        txt_min.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_minActionPerformed(evt);
+            }
+        });
+
         jLabel10.setText("Max :");
+
+        txt_max.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_maxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -924,6 +936,12 @@ public class QLNhaView extends javax.swing.JFrame {
 
         jLabel29.setText("Noi dung :");
 
+        txt_nguoithuehopdong.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_nguoithuehopdongKeyReleased(evt);
+            }
+        });
+
         txt_noidunghopdong.setColumns(20);
         txt_noidunghopdong.setRows(5);
         jScrollPane6.setViewportView(txt_noidunghopdong);
@@ -1047,13 +1065,13 @@ public class QLNhaView extends javax.swing.JFrame {
 
         tb_banghopdong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Chu nha", "Nguoi thue", "Phong", "Gia phong", "Noi that phong", "Hien trang", "So xe", "Noi dung", "Ngay bat dau", "Ngay het han", "Ngay sua", "Trang thai"
+                "Chu nha", "Nguoi thue", "Phong", "Gia phong", "Noi that phong", "Hien trang", "So xe", "Noi dung", "Ngay bat dau", "Ngay het han", "Ngay sua", "Trang thai", "cmt"
             }
         ));
         tb_banghopdong.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1079,6 +1097,11 @@ public class QLNhaView extends javax.swing.JFrame {
                 "Phong", "Ten dich vu", "Don gia", "Ngay bat dau", "Ngay ket thuc"
             }
         ));
+        tb_bangdichvuphong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_bangdichvuphongMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tb_bangdichvuphong);
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
@@ -1465,13 +1488,17 @@ public class QLNhaView extends javax.swing.JFrame {
             hdR.update(hd);
             JOptionPane.showMessageDialog(this, "thanh cong");
             LoadHopDong(hdR.getAllData());
+            xoaTrang();
         } catch (ParseException ex) {
             Logger.getLogger(HopDongView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_suahopdongActionPerformed
 
     private void btn_clearhopdongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearhopdongActionPerformed
-        // TODO add your handling code here:
+        
+        xoaTrang();
+    }//GEN-LAST:event_btn_clearhopdongActionPerformed
+    private void xoaTrang(){
         txt_chunhahopdong.setText("");
         txt_nguoithuehopdong.setText("");
         txt_phonghopdong.setText("");
@@ -1480,8 +1507,7 @@ public class QLNhaView extends javax.swing.JFrame {
         txt_ngaysuahopdong.setText("");
         txt_noidunghopdong.setText("");
         cb_trangthai.setSelectedItem(0);
-    }//GEN-LAST:event_btn_clearhopdongActionPerformed
-
+    }
     private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
         // TODO add your handling code here:
         DefaultTableModel dmt = (DefaultTableModel) tb_banghopdong.getModel();
@@ -1512,6 +1538,8 @@ public class QLNhaView extends javax.swing.JFrame {
         txt_ngayhethanhopdong.setText(String.valueOf(hd.getNgayHetHan()));
         txt_ngaysuahopdong.setText(String.valueOf(hd.getNgaySua()));
         cb_trangthai.setSelectedItem(hd.getTrangThai());
+        txt_chungminhthu.setText(hd.getNguoiThue().getCmtnd());
+        txt_tiencoc.setText(String.valueOf(hd.getTienCoc()));
     }//GEN-LAST:event_tb_banghopdongMouseClicked
 
     private void btn_timkiemphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemphongActionPerformed
@@ -1578,7 +1606,25 @@ public class QLNhaView extends javax.swing.JFrame {
         sckhR.update(sckh);
         JOptionPane.showMessageDialog(this, "thanh cong");
         LoadSuCoKH(sckhR.getAllData());
+        clear();
     }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void txt_minActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_minActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_minActionPerformed
+
+    private void txt_maxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_maxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_maxActionPerformed
+
+    private void tb_bangdichvuphongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_bangdichvuphongMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tb_bangdichvuphongMouseClicked
+
+    private void txt_nguoithuehopdongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nguoithuehopdongKeyReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txt_nguoithuehopdongKeyReleased
 
     /**
      * @param args the command line arguments

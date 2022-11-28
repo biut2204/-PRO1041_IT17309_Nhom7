@@ -154,6 +154,15 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
+        public Long findcmtnd() {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select cmtnd from NguoiThue nt where nt.ma = :ma ";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
     
     public static void main(String[] args) {
         NguoiThueRepo ntR = new NguoiThueRepo();
