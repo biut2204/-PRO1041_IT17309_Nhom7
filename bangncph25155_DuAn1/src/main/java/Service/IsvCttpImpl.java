@@ -20,4 +20,6 @@ public interface IsvCttpImpl {
     public void update(ChiTietTienPhong cttp);
     
     public UUID findByIdTienPhong(String ten);
+    
+    public Long DemCttp();
 }

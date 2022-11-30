@@ -153,6 +153,16 @@ public class Phong {
         this.dichVuPhongs = dichVuPhongs;
     }
 
+    public Phong(UUID id, NhaTro nhaTro, String ma, String tenPhong, float dienTich, String tinhTrang, String anhPhong) {
+        this.id = id;
+        this.nhaTro = nhaTro;
+        this.ma = ma;
+        this.tenPhong = tenPhong;
+        this.dienTich = dienTich;
+        this.tinhTrang = tinhTrang;
+        this.anhPhong = anhPhong;
+    }
+
     public Phong(UUID id, NhaTro nhaTro, String ma, String tenPhong, float dienTich, String tinhTrang, String anhPhong, List<TienPhong> tienPhongs, List<SuCoKH> suCoKHs, List<HopDong> hopDongs, List<DichVuPhong> dichVuPhongs) {
         this.id = id;
         this.nhaTro = nhaTro;
@@ -166,6 +176,8 @@ public class Phong {
         this.hopDongs = hopDongs;
         this.dichVuPhongs = dichVuPhongs;
     }
+
+    
 
     public Phong(){
     }   

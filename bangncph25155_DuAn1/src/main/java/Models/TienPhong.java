@@ -115,6 +115,17 @@ public class TienPhong implements Serializable {
         this.ghiChu = ghiChu;
         this.chiTietTienPhongs = chiTietTienPhongs;
     }
+
+    public TienPhong(UUID id, Phong phong, String ma, String hinhThucThanhToan, Date ngayTao, Date ngayThanhToan, String trangThai, String ghiChu) {
+        this.id = id;
+        this.phong = phong;
+        this.ma = ma;
+        this.hinhThucThanhToan = hinhThucThanhToan;
+        this.ngayTao = ngayTao;
+        this.ngayThanhToan = ngayThanhToan;
+        this.trangThai = trangThai;
+        this.ghiChu = ghiChu;
+    }
     
     @ManyToOne
     @JoinColumn(name = "PhongID")

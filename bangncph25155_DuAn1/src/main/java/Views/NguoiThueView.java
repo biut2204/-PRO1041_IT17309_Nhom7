@@ -30,6 +30,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -69,7 +71,7 @@ public class NguoiThueView extends javax.swing.JFrame {
         shotSuCoKH(tpR.findTenPhong(dataNguoiThue));
         txtPhongSCKH.setText(tpR.findTenPhong(dataNguoiThue));
     }
-    
+
     private NguoiThueView() {
 
     }
@@ -786,21 +788,39 @@ public class NguoiThueView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tb_bangdichvuphongMouseClicked
 
-    private void btn_thanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thanhtoanActionPerformed
-        // TODO add your handling code here:
-        int index = tb_chitiettienphong.getSelectedRow();
-        TienPhong tp = tpR.getAllData().get(index);
-
+    private TienPhong getTienPhong() throws ParseException {
+        Phong p = new Phong();
+        String ma = txt_matienphong.getText().toString();
+        String tenp = txt_tenphong.getText().toString();
         String hinhthucthanhtoan = txt_hinhthucthanhtoan.getText().trim();
         Date ngaythanhtoan = java.util.Calendar.getInstance().getTime();
+        Date ngaytao = sdf.parse(txt_ngaytao.getText().toString());
         String trangthai = "Da thanh toan";
+        String ghichu = "";
+        UUID id = tpR.findByIdTienPhong(ma);
 
-        tp.setHinhThucThanhToan(hinhthucthanhtoan);
-        tp.setNgayThanhToan(ngaythanhtoan);
-        tp.setTrangThai(trangthai);
-        tpR.update(tp);
-        JOptionPane.showMessageDialog(this, "thanh cong");
-        LoadChiTietTienPhong(cttpR.getAllData());
+        UUID idp = tpR.findByIdPhong(tenp);
+        p.setId(idp);
+        
+        TienPhong tienPhong = new TienPhong(id, p, ma, hinhthucthanhtoan, ngaytao, ngaythanhtoan, trangthai, ghichu);
+        return tienPhong;
+
+    }
+
+    private void btn_thanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thanhtoanActionPerformed
+        try {
+            // TODO add your handling code here:
+            TienPhong tp = getTienPhong();
+            
+            String ma = txt_matienphong.getText().toString();
+            tp.setId(tpR.findByIdTienPhong(ma));
+            
+            tpR.update(tp);
+            JOptionPane.showMessageDialog(this, "thanh cong");
+            LoadChiTietTienPhong(cttpR.getAllData());
+        } catch (ParseException ex) {
+            Logger.getLogger(NguoiThueView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_thanhtoanActionPerformed
 
     public void fillSinhVienLenForm(ChiTietTienPhong sv) {
@@ -840,15 +860,17 @@ public class NguoiThueView extends javax.swing.JFrame {
         txt_thoigianbatdau.setText(tb_chitiettienphong.getValueAt(row, 7).toString());
         txt_thoigianketthuc.setText(tb_chitiettienphong.getValueAt(row, 8).toString());
         txt_tongtien.setText(tb_chitiettienphong.getValueAt(row, 9).toString());
-        txt_hinhthucthanhtoan.setText(tb_chitiettienphong.getValueAt(row, 12).toString());
-        txt_ngaythanhtoan.setText(tb_chitiettienphong.getValueAt(row, 13).toString());
-        txt_trangthai.setText(tb_chitiettienphong.getValueAt(row, 14).toString());
         txt_matienphong.setText(tb_chitiettienphong.getValueAt(row, 15).toString());
         int id = tb_chitiettienphong.rowAtPoint(evt.getPoint());
         String masv = tb_chitiettienphong.getValueAt(id, 15).toString();
         ChiTietTienPhong sv = show(masv);
         fillSinhVienLenForm(sv);
         fillSinhVienLenForm1(sv);
+        txt_trangthai.setText(tb_chitiettienphong.getValueAt(row, 14).toString());
+        txt_hinhthucthanhtoan.setText(tb_chitiettienphong.getValueAt(row, 12).toString());
+        txt_ngaythanhtoan.setText(tb_chitiettienphong.getValueAt(row, 13).toString());
+        
+        
     }//GEN-LAST:event_tb_chitiettienphongMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

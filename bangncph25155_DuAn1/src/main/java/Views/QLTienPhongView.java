@@ -812,7 +812,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM");
             String a = dateFormat.format(ngaytao);
             int a1 = Integer.parseInt(a);
-            
+
             SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy");
             String b = dateFormat1.format(ngaytao);
             int b1 = Integer.parseInt(b);
@@ -820,7 +820,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
                 int test = tpR.checkTienThang(tenphong, a1);
                 int test1 = tprepo.checkNam(tenphong, b1);
                 if (a1 == test && b1 == test1) {
-                    JOptionPane.showMessageDialog(this, "tháng - "+a1+" năm -  " +b1+" phòng - " + tenphong + " đã có hóa đơn ");
+                    JOptionPane.showMessageDialog(this, "tháng - " + a1 + " năm -  " + b1 + " phòng - " + tenphong + " đã có hóa đơn ");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -870,7 +870,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
             String ma = txt_matienphong.getText().toString();
             int index = tb_chitiettienphong.getRowCount() + 1;
-            String macttp = "CTTP" + String.valueOf(index);
+            String macttp = "CTTP" + String.valueOf(cttpR.DemCttp() + 1);
             int sodien = Integer.parseInt(txt_sodien.getText().toString());
             int sonuoc = Integer.parseInt(txt_sonuoc.getText().toString());
             int dongiadien = Integer.parseInt(txt_dongiadien.getText().toString());
@@ -1052,41 +1052,43 @@ public class QLTienPhongView extends javax.swing.JFrame {
         fillSinhVienLenForm(sv);
     }//GEN-LAST:event_tb_chitiettienphongMouseClicked
 
+    private ChiTietTienPhong chiTietTienPhong() throws ParseException {
+        TienPhong tp = new TienPhong();
+        
+        
+        String ma = txt_matienphong.getText().toString();
+        int index = tb_chitiettienphong.getRowCount() + 1;
+        String macttp = "CTTP" + String.valueOf(index);
+        int sodien = Integer.parseInt(txt_sodien.getText().toString());
+        int sonuoc = Integer.parseInt(txt_sonuoc.getText().toString());
+        int dongiadien = Integer.parseInt(txt_dongiadien.getText().toString());
+        int dongianuoc = Integer.parseInt(txt_dongianuoc.getText().toString());
+        int dichvu = Integer.parseInt(txt_dongiadichvu.getText().toString());
+        Date ngaybatdau = sdf.parse(txt_thoigianbatdau.getText().trim());
+        Date ngayhethan = sdf.parse(txt_thoigianbatdau.getText().trim());
+        int tienphong = Integer.parseInt(txt_tienphong.getText().toString());
+        int tongtien = Integer.parseInt(txt_tongtien.getText().toString());
+        UUID id = tpR.findByIdChiTietTienPhong(ma);
+        
+        UUID idtienphong = tpR.findByIdTienPhong(ma);
+        tp.setId(idtienphong);
+        
+        ChiTietTienPhong cttp = new ChiTietTienPhong(id, tp, dichvu, ma, dongiadien, dongianuoc, dongiadien, dongianuoc, ngaybatdau, ngayhethan, tongtien, hinhdien, hinhnuoc);
+        return cttp;
+    }
+
     private void btn_suatienphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suatienphongActionPerformed
+
         try {
             // TODO add your handling code here:
-            int index = tb_chitiettienphong.getSelectedRow();
-            ChiTietTienPhong cttp = cttpR.getAllData().get(index);
-            TienPhong tp = new TienPhong();
-
+            ChiTietTienPhong cttp = chiTietTienPhong();
             String ma = txt_matienphong.getText().toString();
-            int sodien = Integer.parseInt(txt_sodien.getText().toString());
-            int sonuoc = Integer.parseInt(txt_sonuoc.getText().toString());
-            int dongiadien = Integer.parseInt(txt_dongiadien.getText().toString());
-            int dongianuoc = Integer.parseInt(txt_dongianuoc.getText().toString());
-            int dichvu = Integer.parseInt(txt_dongiadichvu.getText().toString());
-            Date ngaybatdau = sdf.parse(txt_thoigianbatdau.getText().trim());
-            Date ngayhethan = sdf.parse(txt_thoigianbatdau.getText().trim());
-            int tienphong = Integer.parseInt(txt_tienphong.getText().toString());
-            int tongtien = Integer.parseInt(txt_tongtien.getText().toString());
-
-            UUID idtienphong = tpR.findByIdTienPhong(ma);
-            tp.setId(idtienphong);
-
-            cttp.setTienPhong(tp);
-            cttp.setBangKeDien(sodien);
-            cttp.setBangKeNuoc(sonuoc);
-            cttp.setDonGiaDien(dongiadien);
-            cttp.setDonGiaNuoc(dongianuoc);
-            cttp.setDichVu(dichvu);
-            cttp.setThoiGianBatDau(ngaybatdau);
-            cttp.setThoiGianKetThuc(ngayhethan);
-            cttp.setDonGia(tongtien);
-            cttp.setHinhAnhDien(hinhdien);
-            cttp.setHinhAnhNuoc(hinhnuoc);
+            cttp.setId(tpR.findByIdChiTietTienPhong(ma));
+            
             cttpR.update(cttp);
             JOptionPane.showMessageDialog(this, "thanh cong");
             LoadChiTietTienPhong(cttpR.getAllData());
+            
         } catch (ParseException ex) {
             Logger.getLogger(QLTienPhongView.class.getName()).log(Level.SEVERE, null, ex);
         }
