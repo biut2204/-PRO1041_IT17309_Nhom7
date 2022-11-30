@@ -494,10 +494,32 @@ public class QLNguoiThueView extends javax.swing.JFrame {
             if (ma.length() == 0
                     || hoten.length() == 0
                     || sdt.length() == 0
-                    || diachi.length() == 0) {
+                    || diachi.length() == 0
+                    || trangthai.length()==0
+                    || email.length()==0
+                    || cmtnd.length()==0 ) {
                 JOptionPane.showMessageDialog(this,
                         "Không được để trống");
             }
+            String SDT = "(09|03|07|08|05)+([0-9]{8})\b";
+            boolean checksdt = sdt.equals(SDT);
+            if(checksdt == false){
+                JOptionPane.showMessageDialog(this, "SĐT không đúng định dạng!");
+                return;
+            }
+            String Email = "^[^ ]+@[^ ]+\\.[a-z]{2,3}$";
+            boolean checkemail = email.equals(Email);
+            if(checkemail == false){
+                JOptionPane.showMessageDialog(this, "Email không đúng định dạng !");
+                return;
+            }
+            String CMT = "([0-9]{12}\b)";
+            boolean checkcmt = cmtnd.equals(CMT);
+            if(checkcmt == false){
+                JOptionPane.showMessageDialog(this, "CMTND không đúng định dạng!");
+                return;
+            }
+            
 
             nt.setMa(ma);
             nt.setHoTen(hoten);
@@ -600,6 +622,34 @@ public class QLNguoiThueView extends javax.swing.JFrame {
 
             String trangthai = txt_trangthai.getText().trim();
             String cmtnd = txt_chungminhthu.getText().trim();
+             if (
+                     hoten.length() == 0
+                    || sdt.length() == 0
+                    || diachi.length() == 0
+                    || trangthai.length()==0
+                    || email.length()==0
+                    || cmtnd.length()==0 ) {
+                JOptionPane.showMessageDialog(this,
+                        "Không được để trống");
+            }
+            String SDT = "(09|03|07|08|05)+([0-9]{8})\b";
+            boolean checksdt = sdt.equals(SDT);
+            if(checksdt == false){
+                JOptionPane.showMessageDialog(this, "SĐT không đúng định dạng!");
+                return;
+            }
+            String Email = "^[^ ]+@[^ ]+\\.[a-z]{2,3}$";
+            boolean checkemail = email.equals(Email);
+            if(checkemail == false){
+                JOptionPane.showMessageDialog(this, "Email không đúng định dạng !");
+                return;
+            }
+            String CMT = "([0-9]{12}\b)";
+            boolean checkcmt = cmtnd.equals(CMT);
+            if(checkcmt == false){
+                JOptionPane.showMessageDialog(this, "CMTND không đúng định dạng!");
+                return;
+            }
             nt.setHoTen(hoten);
             nt.setNgaySinh(ngaysinh);
             nt.setGioiTinh(gioitinh);

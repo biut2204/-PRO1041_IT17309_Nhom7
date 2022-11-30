@@ -35,4 +35,14 @@ public interface IsvNguoiThueImpl {
     public void save(NguoiThue nt);
     
     public void update(NguoiThue nt);
+    
+    public String findMK(String id);
+    
+    public UUID findidTK(String id);
+    
+    public UUID findidNguoiThue(String id);
+    
+    public String findVaiTro(String id);
+    
+    public String findTenTK(String id);
 }
