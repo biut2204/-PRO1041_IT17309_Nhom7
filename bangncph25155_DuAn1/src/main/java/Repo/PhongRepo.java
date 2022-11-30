@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.TypedQuery;
+import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -112,6 +113,28 @@ public class PhongRepo {
         return uuid;
     }
     
+    public String findMaPhong(String ten) {
+        String uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select p.ma from Phong p where p.tenPhong = :tenPhong";
+            TypedQuery<String> query = session.createQuery(statement, String.class);
+            query.setParameter("tenPhong", ten);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public String findMaHopDong(String ten) {
+        String uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select p.ma from HopDong p where p.nguoiThue.hoTen = :hoTen";
+            TypedQuery<String> query = session.createQuery(statement, String.class);
+            query.setParameter("hoTen", ten);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
     public List<Phong> test(float ten, float diXe) {
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
             String hql = "FROM Phong E WHERE E.dienTich >= :ten and E.dienTich <= :diXe";
@@ -125,8 +148,21 @@ public class PhongRepo {
         }
     }
     
+    public UUID findByIdPHopDong(String ten) {
+        UUID uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select p.id from HopDong p where p.nguoiThue.hoTen = :hoTen";
+            TypedQuery<UUID> query = session.createQuery(statement, UUID.class);
+            query.setParameter("hoTen", ten);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+
+    
     public static void main(String[] args) {
         PhongRepo pR = new PhongRepo();
-
+        String ten = "bang1";
+        System.out.println(pR.findByIdPHopDong(ten));
     }
 }

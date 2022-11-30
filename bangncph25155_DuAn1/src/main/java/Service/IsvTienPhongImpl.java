@@ -20,6 +20,8 @@ public interface IsvTienPhongImpl {
     
     public UUID findByIdTienPhong(String ten);
     
+    public UUID findByIdChiTietTienPhong(String ten);
+    
     public Long findTienPhong(String ten);
     
     public Long DemTienPhong();

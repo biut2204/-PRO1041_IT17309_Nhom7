@@ -36,4 +36,9 @@ public class CttpImpl implements IsvCttpImpl{
     public UUID findByIdTienPhong(String ten) {
         return cttpR.findByIdTienPhong(ten);
     }
+
+    @Override
+    public Long DemCttp() {
+        return cttpR.DemCttp();
+    }
 }

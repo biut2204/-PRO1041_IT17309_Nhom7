@@ -78,6 +78,11 @@ public class TienPhongImpl implements IsvTienPhongImpl{
         return tpR.Nuoc(ten);
     }
 
+    @Override
+    public UUID findByIdChiTietTienPhong(String ten) {
+        return tpR.findByIdChiTietTienPhong(ten);
+    }
+
 
 
 

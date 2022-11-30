@@ -82,7 +82,8 @@ public class QLNhaView extends javax.swing.JFrame {
         LoadSuCoKH(sckhR.getAllData());
         Icon();
     }
-    private void Icon(){
+
+    private void Icon() {
         Icon icon = new ImageIcon("timkiem.png");
         this.btn_timkiemphong.setIcon(icon);
         Icon icon1 = new ImageIcon("new.png");
@@ -111,7 +112,7 @@ public class QLNhaView extends javax.swing.JFrame {
         this.btn_suahopdong.setIcon(icon2);
         this.btn_clearhopdong.setIcon(icon3);
     }
-    
+
     private void LoadPhong(List<Phong> list) {
         dtm = (DefaultTableModel) tb_bangphong.getModel();
         dtm.setRowCount(0);
@@ -1276,7 +1277,7 @@ public class QLNhaView extends javax.swing.JFrame {
         Phong phong = new Phong();
         NhaTro nhatro = new NhaTro();
 
-        String ma = "Ma" + String.valueOf(ntR.DemPhong() +1);
+        String ma = "Ma" + String.valueOf(ntR.DemPhong() + 1);
         String tennha = "Nhom 7";
         String tenphong = txt_tenphong.getText().trim();
         String tinhtrang = cb_tinhtrang.getSelectedItem().toString();
@@ -1313,24 +1314,30 @@ public class QLNhaView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lbl_anhphongMouseClicked
 
-    private void btn_suaphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaphongActionPerformed
-        // TODO add your handling code here:
-        int index = tb_bangphong.getSelectedRow();
-        Phong phong = pR.getAllData().get(index);
+    private Phong getPhong() {
         NhaTro nhatro = new NhaTro();
 
+        UUID id = null;
         String tennha = "Nhom 7";
         String tenphong = txt_tenphong.getText().trim();
         String tinhtrang = cb_tinhtrang.getSelectedItem().toString();
+        String ma = test.findMaPhong(tenphong);
         Float dientich = Float.valueOf(txt_dientich.getText());
         UUID idnha = pR.findByIdNhaTro(tennha);
         nhatro.setId(idnha);
 
-        phong.setTinhTrang(tinhtrang);
-        phong.setNhaTro(nhatro);
-        phong.setTenPhong(tenphong);
-        phong.setDienTich(dientich);
-        phong.setAnhPhong(hinh);
+        Phong phong = new Phong(id, nhatro, ma, tenphong, dientich, tinhtrang, hinh);
+
+        return phong;
+    }
+
+    private void btn_suaphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaphongActionPerformed
+        // TODO add your handling code here:
+        Phong phong = getPhong();
+
+        String tenphong = txt_tenphong.getText().toString();
+
+        phong.setId(tpR.findByIdPhong(tenphong));
         pR.update(phong);
         JOptionPane.showMessageDialog(this, "thanh cong");
         LoadPhong(pR.getAllData());
@@ -1370,7 +1377,7 @@ public class QLNhaView extends javax.swing.JFrame {
         String ten = txt_tendichvu.getText().trim();
         int dongia = Integer.parseInt(txt_dongiadichvu.getText().trim());
         String tennha = "Nhom 7";
-        String ma = "DichVu" + String.valueOf(ntR.DemDichVu() +1);
+        String ma = "DichVu" + String.valueOf(ntR.DemDichVu() + 1);
 
         UUID idnha = pR.findByIdNhaTro(tennha);
         nt.setId(idnha);
@@ -1475,55 +1482,67 @@ public class QLNhaView extends javax.swing.JFrame {
         f.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_lamhopdongActionPerformed
 
+    private HopDong getHopDong() throws ParseException {
+
+        ChuNha cn = new ChuNha();
+        NguoiThue nt = new NguoiThue();
+        Phong p = new Phong();
+
+        int index = tb_banghopdong.getRowCount() + 1;
+        String ma = "HopDong" + String.valueOf(index);
+        String tencn = txt_chunhahopdong.getText().trim();
+        String tennt = txt_nguoithuehopdong.getText().trim();
+        String tenp = txt_phonghopdong.getText().trim();
+        int giaP = Integer.parseInt(txt_giaphonghopdong.getText().trim());
+        String noithat = txt_noithathopdong.getText().trim();
+        int soxe = Integer.parseInt(txt_soxehopdong.getText().trim());
+        String hientrang = txt_hientranghopdong.getText().trim();
+        Date ngaybatdau = sdf.parse(txt_ngaybatdauhopdong.getText().trim());
+        Date ngayhethan = sdf.parse(txt_ngayhethanhopdong.getText().trim());
+        Date ngaysua = java.util.Calendar.getInstance().getTime();
+        String noidung = txt_noidunghopdong.getText().trim();
+        String trangthai = cb_trangthai.getSelectedItem().toString();
+        int tiencoc = Integer.parseInt(txt_tiencoc.getText().trim());
+
+        UUID id = test.findByIdPHopDong(tennt);
+
+        UUID idcn = ntR.findByIdCN(tencn);
+        cn.setId(idcn);
+
+        UUID idp = tpR.findByIdPhong(tenp);
+        p.setId(idp);
+
+        UUID idnt = pR.findByIdNT(tennt);
+        nt.setId(idnt);
+
+        HopDong hd = new HopDong(id, cn, p, nt, ma, giaP, tiencoc, noithat, hientrang, soxe, noidung, ngaybatdau, ngayhethan, ngaysua, trangthai);
+        return hd;
+
+    }
+
     private void btn_suahopdongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suahopdongActionPerformed
+
         try {
             // TODO add your handling code here:
-            int index = tb_banghopdong.getSelectedRow();
-            HopDong hd = hdR.getAllData().get(index);
-            ChuNha cn = new ChuNha();
-            NguoiThue nt = new NguoiThue();
-            Phong p = new Phong();
-
-            String tencn = txt_chunhahopdong.getText().trim();
-            String tennt = txt_nguoithuehopdong.getText().trim();
-            String tenp = txt_phonghopdong.getText().trim();
-            Date ngaybatdau = sdf.parse(txt_ngaybatdauhopdong.getText().trim());
-            Date ngayhethan = sdf.parse(txt_ngayhethanhopdong.getText().trim());
-            Date ngaysua = sdf.parse(txt_ngaysuahopdong.getText().trim());
-            String noidung = txt_noidunghopdong.getText().trim();
-            String trangthai = cb_trangthai.getSelectedItem().toString();
-
-            UUID idcn = ntR.findByIdCN(tencn);
-            cn.setId(idcn);
-
-            UUID idp = tpR.findByIdPhong(tenp);
-            p.setId(idp);
-
-            UUID idnt = pR.findByIdNT(tennt);
-            nt.setId(idnt);
-
-            hd.setNguoiThue(nt);
-            hd.setChuNha(cn);
-            hd.setPhong(p);
-            hd.setNgayBatDau(ngaybatdau);
-            hd.setNgayHetHan(ngayhethan);
-            hd.setNgaySua(ngaysua);
-            hd.setNoiDung(noidung);
-            hd.setTrangThai(trangthai);
+            HopDong hd = getHopDong();
+            
+            String ten = txt_nguoithuehopdong.getText().toString();
+            hd.setId(test.findByIdPHopDong(ten));
             hdR.update(hd);
             JOptionPane.showMessageDialog(this, "thanh cong");
             LoadHopDong(hdR.getAllData());
             xoaTrang();
         } catch (ParseException ex) {
-            Logger.getLogger(HopDongView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QLNhaView.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_btn_suahopdongActionPerformed
 
     private void btn_clearhopdongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearhopdongActionPerformed
-        
+
         xoaTrang();
     }//GEN-LAST:event_btn_clearhopdongActionPerformed
-    private void xoaTrang(){
+    private void xoaTrang() {
         txt_chunhahopdong.setText("");
         txt_nguoithuehopdong.setText("");
         txt_phonghopdong.setText("");
@@ -1648,7 +1667,7 @@ public class QLNhaView extends javax.swing.JFrame {
 
     private void txt_nguoithuehopdongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nguoithuehopdongKeyReleased
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txt_nguoithuehopdongKeyReleased
 
     /**

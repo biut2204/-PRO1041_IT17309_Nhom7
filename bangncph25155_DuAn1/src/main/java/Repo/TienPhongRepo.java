@@ -78,11 +78,22 @@ public class TienPhongRepo {
         }
         return uuid;
     }
-
+       
     public UUID findByIdTienPhong(String ten) {
         UUID uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
             String statement = "select p.id from TienPhong p where p.ma = :ma";
+            TypedQuery<UUID> query = session.createQuery(statement, UUID.class);
+            query.setParameter("ma", ten);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public UUID findByIdChiTietTienPhong(String ten) {
+        UUID uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select p.id from ChiTietTienPhong p where p.tienPhong.ma = :ma";
             TypedQuery<UUID> query = session.createQuery(statement, UUID.class);
             query.setParameter("ma", ten);
             uuid = query.getSingleResult();
