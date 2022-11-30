@@ -19,6 +19,9 @@ import org.hibernate.Transaction;
  */
 public class DichVuPhongRepo {
 
+    Session session = HibernateUtils.getFACTORY().openSession();
+    Transaction transaction = session.getTransaction();
+
     public List<DichVuPhong> getAllData() {
         List<DichVuPhong> list = new ArrayList<>();
         Transaction t = null;
@@ -67,6 +70,17 @@ public class DichVuPhongRepo {
         }
     }
 
+    public Boolean saveOrUpdate(DichVuPhong dvp) {
+        try {
+            transaction.begin();
+            session.saveOrUpdate(dvp);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public UUID findByIdDichVu(String ten) {
         UUID uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -77,7 +91,7 @@ public class DichVuPhongRepo {
         }
         return uuid;
     }
-    
+
     public static void main(String[] args) {
         String tendv = "Tien dien";
         DichVuPhongRepo dvpR = new DichVuPhongRepo();

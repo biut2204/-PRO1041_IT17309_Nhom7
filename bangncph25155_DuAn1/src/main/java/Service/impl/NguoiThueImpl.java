@@ -73,4 +73,29 @@ public class NguoiThueImpl implements IsvNguoiThueImpl{
     public void update(NguoiThue nt) {
         ntR.update(nt);
     }
+
+    @Override
+    public String findMK(String id) {
+        return ntR.findmk(id);
+    }
+
+    @Override
+    public UUID findidTK(String id) {
+        return ntR.findidTK(id);
+    }
+
+    @Override
+    public UUID findidNguoiThue(String id) {
+        return ntR.findidNguoiThue(id);
+    }
+
+    @Override
+    public String findVaiTro(String id) {
+        return ntR.findVaiTro(id);
+    }
+
+    @Override
+    public String findTenTK(String id) {
+        return ntR.findTenTK(id);
+    }
 }

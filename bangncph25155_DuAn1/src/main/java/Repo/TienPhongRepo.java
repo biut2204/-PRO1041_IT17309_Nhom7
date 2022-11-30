@@ -114,6 +114,7 @@ public class TienPhongRepo {
     public static void main(String[] args) {
         TienPhongRepo tp = new TienPhongRepo();
         String tenPhong = "bang1";
+        String test;
         String a = tp.findTenPhong(tenPhong);
         System.out.println(a);
     }

@@ -53,7 +53,7 @@ public class QLNguoiThueView extends javax.swing.JFrame {
         dtm.setRowCount(0);
         for (NguoiThue nt : list) {
             dtm.addRow(new Object[]{
-                nt.getMa(), nt.getHoTen(), nt.getNgaySinh(), nt.getGioiTinh(), nt.getSdt(), nt.getEmail(), nt.getDiaChi(), nt.getDiXe(), nt.getTrangThai()});
+                nt.getMa(), nt.getHoTen(), nt.getNgaySinh(), nt.getGioiTinh(), nt.getSdt(), nt.getEmail(), nt.getDiaChi(), nt.getDiXe(), nt.getTrangThai(),nt.getCmtnd()});
         }
     }
 
@@ -68,6 +68,7 @@ public class QLNguoiThueView extends javax.swing.JFrame {
 
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -148,8 +149,11 @@ public class QLNguoiThueView extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(rd_nam);
+        rd_nam.setSelected(true);
         rd_nam.setText("Nam");
 
+        buttonGroup1.add(rd_nu);
         rd_nu.setText("Nu");
 
         txt_diachi.setColumns(20);
@@ -265,13 +269,13 @@ public class QLNguoiThueView extends javax.swing.JFrame {
 
         tb_bang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Ma", "Ho ten", "Ngay sinh", "Gioi tinh", "Sdt", "Email", "Dia chi", "Di xe", "Trang thai"
+                "Ma", "Ho ten", "Ngay sinh", "Gioi tinh", "Sdt", "Email", "Dia chi", "Di xe", "Trang thai", "cmt"
             }
         ));
         tb_bang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -289,6 +293,11 @@ public class QLNguoiThueView extends javax.swing.JFrame {
         });
 
         btn_clear.setText("Clear");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -479,14 +488,38 @@ public class QLNguoiThueView extends javax.swing.JFrame {
             String diachi = txt_diachi.getText().trim();
 
             String trangthai = txt_trangthai.getText().trim();
+            
+            String cmtnd = txt_chungminhthu.getText().trim();
 
             if (ma.length() == 0
                     || hoten.length() == 0
                     || sdt.length() == 0
-                    || diachi.length() == 0) {
+                    || diachi.length() == 0
+                    || trangthai.length()==0
+                    || email.length()==0
+                    || cmtnd.length()==0 ) {
                 JOptionPane.showMessageDialog(this,
                         "Không được để trống");
             }
+            String SDT = "(09|03|07|08|05)+([0-9]{8})\b";
+            boolean checksdt = sdt.equals(SDT);
+            if(checksdt == false){
+                JOptionPane.showMessageDialog(this, "SĐT không đúng định dạng!");
+                return;
+            }
+            String Email = "^[^ ]+@[^ ]+\\.[a-z]{2,3}$";
+            boolean checkemail = email.equals(Email);
+            if(checkemail == false){
+                JOptionPane.showMessageDialog(this, "Email không đúng định dạng !");
+                return;
+            }
+            String CMT = "([0-9]{12}\b)";
+            boolean checkcmt = cmtnd.equals(CMT);
+            if(checkcmt == false){
+                JOptionPane.showMessageDialog(this, "CMTND không đúng định dạng!");
+                return;
+            }
+            
 
             nt.setMa(ma);
             nt.setHoTen(hoten);
@@ -497,10 +530,12 @@ public class QLNguoiThueView extends javax.swing.JFrame {
             nt.setDiaChi(diachi);
             nt.setDiXe(dixe);
             nt.setTrangThai(trangthai);
+            nt.setCmtnd(cmtnd);
 
             JOptionPane.showMessageDialog(this, "thanh cong");
             ntR.save(nt);
             Load(ntR.getAllData());
+            clear();
         } catch (ParseException ex) {
             Logger.getLogger(QLNguoiThueView.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
@@ -549,7 +584,8 @@ public class QLNguoiThueView extends javax.swing.JFrame {
         txt_diachi.setText(String.valueOf(nt.getDiaChi()));
         cbb_dixe.setSelectedItem(nt.getDiXe());
         txt_trangthai.setText(nt.getTrangThai());
-        if (nt.getGioiTinh().equals("Nam")) {
+        txt_chungminhthu.setText(String.valueOf(nt.getCmtnd()));
+        if (nt.getGioiTinh().equalsIgnoreCase("Nam")) {
             rd_nam.setSelected(true);
         } else {
             rd_nu.setSelected(true);
@@ -581,7 +617,36 @@ public class QLNguoiThueView extends javax.swing.JFrame {
             String diachi = txt_diachi.getText().trim();
 
             String trangthai = txt_trangthai.getText().trim();
-
+            String cmtnd = txt_chungminhthu.getText().trim();
+            if (
+                     hoten.length() == 0
+                    || sdt.length() == 0
+                    || diachi.length() == 0
+                    || trangthai.length()==0
+                    || email.length()==0
+                    || cmtnd.length()==0 ) {
+                JOptionPane.showMessageDialog(this,
+                        "Không được để trống");
+            }
+            String SDT = "(09|03|07|08|05)+([0-9]{8})\b";
+            boolean checksdt = sdt.equals(SDT);
+            if(checksdt == false){
+                JOptionPane.showMessageDialog(this, "SĐT không đúng định dạng!");
+                return;
+            }
+            String Email = "^[^ ]+@[^ ]+\\.[a-z]{2,3}$";
+            boolean checkemail = email.equals(Email);
+            if(checkemail == false){
+                JOptionPane.showMessageDialog(this, "Email không đúng định dạng !");
+                return;
+            }
+            String CMT = "([0-9]{12}\b)";
+            boolean checkcmt = cmtnd.equals(CMT);
+            if(checkcmt == false){
+                JOptionPane.showMessageDialog(this, "CMTND không đúng định dạng!");
+                return;
+            }
+            
             nt.setHoTen(hoten);
             nt.setNgaySinh(ngaysinh);
             nt.setGioiTinh(gioitinh);
@@ -590,15 +655,31 @@ public class QLNguoiThueView extends javax.swing.JFrame {
             nt.setDiaChi(diachi);
             nt.setDiXe(dixe);
             nt.setTrangThai(trangthai);
+            nt.setCmtnd(cmtnd);
             ntR.update(nt);
             JOptionPane.showMessageDialog(this, "thanh cong");
             Load(ntR.getAllData());
+            clear();
         } catch (ParseException ex) {
             Logger.getLogger(QLNguoiThueView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btn_suaActionPerformed
 
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+        clear();
+    }//GEN-LAST:event_btn_clearActionPerformed
+
+    private void clear(){
+        txt_ma.setText("");
+        txt_hoten.setText("");
+        txt_ngaysinh.setText("");
+        txt_sdt.setText("");
+        txt_email.setText("");
+        txt_diachi.setText("");
+        txt_trangthai.setText("");
+        txt_chungminhthu.setText("");
+    }
     /**
      * @param args the command line arguments
      */
@@ -646,6 +727,7 @@ public class QLNguoiThueView extends javax.swing.JFrame {
     private javax.swing.JButton btn_dangky;
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_tao;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbb_dixe;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
