@@ -5,6 +5,7 @@
 package Repo;
 
 import HibernateUntils.HibernateUtils;
+import Models.Phong;
 import Models.TienPhong;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.UUID;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -189,12 +191,53 @@ public class TienPhongRepo {
         }
         return uuid;
     }
+    
+    public Long ThongKe(String trangThai, int thang, int nam) {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select sum(a.donGia) from ChiTietTienPhong a where a.tienPhong.trangThai = :trangThai and month(a.tienPhong.ngayTao) = :thang and year(a.tienPhong.ngayTao) = :nam";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            query.setParameter("trangThai", trangThai);
+            query.setParameter("thang", thang);
+            query.setParameter("nam", nam);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public Long ThongKeTong(int thang, int nam) {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select sum(a.donGia) from ChiTietTienPhong a where month(a.tienPhong.ngayTao) = :thang and year(a.tienPhong.ngayTao) = :nam";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            query.setParameter("thang", thang);
+            query.setParameter("nam", nam);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public List<String> listPhong(String tinhTrang) {
+        ArrayList<String> list = new ArrayList<>();
+        try ( Session s = HibernateUtils.getFACTORY().openSession()) {
+            String sql = "select p.tenPhong from Phong p where p.tinhTrang = :tinhTrang";
+            TypedQuery<String> query = s.createQuery(sql, String.class);
+            query.setParameter("tinhTrang", tinhTrang);
 
+            list = (ArrayList<String>) query.getResultList();                       
+        }
+        return list;
+    }
+    
     public static void main(String[] args) {
         TienPhongRepo tp = new TienPhongRepo();
-
-        String tenPhong = "Tien dien";
         
-        System.out.println(tp.Dien(tenPhong));
+        String tenPhong = "Da thanh toan";
+        int thang  = 11;
+        int nam  = 2022;
+        System.out.println(tp.ThongKe(tenPhong, thang, nam));
+//        tp.listCbbMs(tenPhong).forEach(o -> {
+//            System.out.println(o);
+//        });
     }
 }

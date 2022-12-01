@@ -39,5 +39,9 @@ public interface IsvTienPhongImpl {
     public void update(TienPhong tienPhong);
     
     public int checkTienThang(String ten,int ngayTao);
+    
+    public Long ThongKe(String trangThai, int thang, int nam);
+    
+    public Long ThongKeTong(int thang, int nam);
 
 }
