@@ -43,5 +43,9 @@ public interface IsvTienPhongImpl {
     public Long ThongKe(String trangThai, int thang, int nam);
     
     public Long ThongKeTong(int thang, int nam);
+    
+    public Long ThongKeTheoNam(String trangThai, int nam);
+    
+    public Long ThongKeTheoNamTong(int nam);
 
 }

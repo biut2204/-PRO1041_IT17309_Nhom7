@@ -9,6 +9,7 @@ import Models.ChuNha;
 import Models.DichVu;
 import Models.DichVuPhong;
 import Models.NguoiThue;
+import Models.NhaTro;
 import Models.Phong;
 import Service.IsvDichVuImpl;
 import Service.IsvDichVuPhongImpl;
@@ -36,12 +37,12 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-
 /**
  *
  * @author MSI
  */
 public class HopDongView extends javax.swing.JFrame {
+
     private DefaultTableModel dtm;
     private IsvHopDongImpl hdR = new HopDongImpl();
     private IsvPhongImpl pR = new PhongImpl();
@@ -49,13 +50,14 @@ public class HopDongView extends javax.swing.JFrame {
     private IsvTienPhongImpl tpR = new TienPhongImpl();
     private IsvDichVuImpl dvR = new DichVuImpl();
     private IsvDichVuPhongImpl dvpR = new DichVuPhongImpl();
-    
+
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     /**
      * Creates new form HopDongView
      */
-    
+
     private String tenphong;
+
     public HopDongView(String tenphong) {
         initComponents();
         this.tenphong = tenphong;
@@ -66,8 +68,8 @@ public class HopDongView extends javax.swing.JFrame {
         loc();
         Icon();
     }
-    
-    private void Icon(){
+
+    private void Icon() {
         Icon icon = new ImageIcon("save.png");
         this.btn_themhopdong.setIcon(icon);
         Icon icon1 = new ImageIcon("update.png");
@@ -75,17 +77,17 @@ public class HopDongView extends javax.swing.JFrame {
         Icon icon2 = new ImageIcon("clear.png");
         this.btn_clearhopdong.setIcon(icon2);
     }
-    
+
     private void LoadHopDong(List<HopDong> list) {
         dtm = (DefaultTableModel) tb_banghopdong.getModel();
         dtm.setRowCount(0);
         for (HopDong hd : list) {
             dtm.addRow(new Object[]{
-                hd.getChuNha().getHoTen(), hd.getNguoiThue().getHoTen(), hd.getPhong().getTenPhong(), hd.getGiaPhong(),hd.getNoiThatPhong(),
-                hd.getHienTrang(), hd.getSoXe(), hd.getNoiDung(),hd.getNgayBatDau(), hd.getNgayHetHan(), hd.getNgaySua(),hd.getTrangThai(), hd.getMa()});
+                hd.getChuNha().getHoTen(), hd.getNguoiThue().getHoTen(), hd.getPhong().getTenPhong(), hd.getGiaPhong(), hd.getNoiThatPhong(),
+                hd.getHienTrang(), hd.getSoXe(), hd.getNoiDung(), hd.getNgayBatDau(), hd.getNgayHetHan(), hd.getNgaySua(), hd.getTrangThai(), hd.getMa()});
         }
     }
-    
+
     private void LoadDichVu(List<DichVu> list) {
         dtm = (DefaultTableModel) tb_bangdichvu.getModel();
         dtm.setRowCount(0);
@@ -94,7 +96,7 @@ public class HopDongView extends javax.swing.JFrame {
                 dv.getTenDichVu(), dv.getDonGia()});
         }
     }
-    
+
     private void LoadDichVuPhong(List<DichVuPhong> list) {
         dtm = (DefaultTableModel) tb_bangdichvuphong.getModel();
         dtm.setRowCount(0);
@@ -103,8 +105,8 @@ public class HopDongView extends javax.swing.JFrame {
                 dvp.getPhong().getTenPhong(), dvp.getDichVu().getTenDichVu(), dvp.getDonGia(), dvp.getNgayBatdau(), dvp.getNgayHetHan()});
         }
     }
-    
-    private void loc(){
+
+    private void loc() {
         DefaultTableModel dmt = (DefaultTableModel) tb_banghopdong.getModel();
         DefaultTableModel dmt1 = (DefaultTableModel) tb_bangdichvuphong.getModel();
         String search = tenphong;
@@ -115,8 +117,9 @@ public class HopDongView extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(search));
         tr1.setRowFilter(RowFilter.regexFilter(search));
     }
+
     private HopDongView() {
-       
+
     }
 
     /**
@@ -466,6 +469,7 @@ public class HopDongView extends javax.swing.JFrame {
             ChuNha cn = new ChuNha();
             NguoiThue nt = new NguoiThue();
             Phong p = new Phong();
+            NhaTro nhaTro = new NhaTro();
 
             int index = tb_banghopdong.getRowCount() + 1;
             String ma = "HopDong" + String.valueOf(index);
@@ -482,7 +486,7 @@ public class HopDongView extends javax.swing.JFrame {
             String noidung = txt_noidunghopdong.getText().trim();
             String trangthai = cb_trangthai.getSelectedItem().toString();
             int tiencoc = Integer.parseInt(txt_TienCoc.getText().trim());
-            
+
             UUID idcn = ntR.findByIdCN(tencn);
             cn.setId(idcn);
 
@@ -507,6 +511,19 @@ public class HopDongView extends javax.swing.JFrame {
             hd.setTrangThai(trangthai);
             hd.setTienCoc(tiencoc);
             hdR.save(hd);
+
+            String map = pR.findMaPhong(tenp).toString();
+            String tennha = "Nhom 7";
+            String tenphong = txt_phonghopdong.getText().trim();
+            String tinhtrang = "Đã có người thuê";
+            String hinhanh = pR.findAnhPhong(tenp).toString();
+            Float dientich = Float.parseFloat(pR.findDienTichPhong(tenp).toString());
+            UUID idnha = pR.findByIdNhaTro(tennha);
+            
+            nhaTro.setId(idnha);
+            
+            p = new Phong(idp, nhaTro, map, tenphong, dientich, tinhtrang, hinhanh);
+            pR.update(p);
             JOptionPane.showMessageDialog(this, "thanh cong");
             LoadHopDong(hdR.getAllData());
             clear();
@@ -563,9 +580,9 @@ public class HopDongView extends javax.swing.JFrame {
 
     private void btn_clearhopdongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearhopdongActionPerformed
         clear();
-        
+
     }//GEN-LAST:event_btn_clearhopdongActionPerformed
-    private void clear(){
+    private void clear() {
         txt_chunhahopdong.setText("");
         txt_nguoithuehopdong.setText("");
         txt_phonghopdong.setText("");
@@ -582,25 +599,25 @@ public class HopDongView extends javax.swing.JFrame {
             if (row == -1) {
                 return;
             }
-            
+
             Phong p = new Phong();
             DichVuPhong dvp = new DichVuPhong();
             DichVu dv = new DichVu();
-            
+
             String tenphong = txt_phonghopdong.getText().trim();
             String tendichvu = tb_bangdichvu.getValueAt(row, 0).toString();
             int dongia = Integer.parseInt(tb_bangdichvu.getValueAt(row, 1).toString());
             Date ngaybatdau = sdf.parse(JOptionPane.showInputDialog("Ngay bat dau :"));
             Date ngayketthuc = sdf.parse(JOptionPane.showInputDialog("Ngay ket thuc :"));
-            
-            String ma = "DV" + String .valueOf(dvpR.DemDichVuPhong() + 1);
-            
+
+            String ma = "DV" + String.valueOf(dvpR.DemDichVuPhong() + 1);
+
             UUID idp = tpR.findByIdPhong(tenphong);
             p.setId(idp);
-            
+
             UUID iddv = dvpR.findByIdDichVu(tendichvu);
             dv.setId(iddv);
-            
+
             dvp.setPhong(p);
             dvp.setDichVu(dv);
             dvp.setDonGia(dongia);
@@ -609,12 +626,12 @@ public class HopDongView extends javax.swing.JFrame {
             dvp.setMa(ma);
             dvpR.save(dvp);
             LoadDichVuPhong(dvpR.getAllData());
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(HopDongView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_tb_bangdichvuMouseClicked
 
     private void tb_banghopdongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_banghopdongMouseClicked

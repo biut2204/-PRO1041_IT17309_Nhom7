@@ -124,6 +124,28 @@ public class PhongRepo {
         return uuid;
     }
     
+    public Float findDienTichPhong(String ten) {
+        Float uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select p.dienTich from Phong p where p.tenPhong = :tenPhong";
+            TypedQuery<Float> query = session.createQuery(statement, Float.class);
+            query.setParameter("tenPhong", ten);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public String findAnhPhong(String ten) {
+        String uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select p.anhPhong from Phong p where p.tenPhong = :tenPhong";
+            TypedQuery<String> query = session.createQuery(statement, String.class);
+            query.setParameter("tenPhong", ten);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
     public String findMaHopDong(String ten) {
         String uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -162,7 +184,7 @@ public class PhongRepo {
     
     public static void main(String[] args) {
         PhongRepo pR = new PhongRepo();
-        String ten = "bang1";
-        System.out.println(pR.findByIdPHopDong(ten));
+        String ten = "P101";
+        System.out.println(pR.findDienTichPhong(ten));
     }
 }

@@ -21,6 +21,12 @@ public interface IsvPhongImpl {
     
     public Long findSoNguoiHienCo(String ten);
     
+    public String findMaPhong(String ten);
+    
+    public String findAnhPhong(String ten);
+    
+    public Float findDienTichPhong(String ten);
+    
     public Long findSoXeHienCo(String ten, String xe);
     
     public void save(Phong phong);
