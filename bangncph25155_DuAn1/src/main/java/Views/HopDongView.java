@@ -195,6 +195,11 @@ public class HopDongView extends javax.swing.JFrame {
         jLabel4.setText("So xe :");
 
         cb_trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Phòng trống", "Đã có người thuê" }));
+        cb_trangthai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_trangthaiActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Tien coc");
 
@@ -455,8 +460,8 @@ public class HopDongView extends javax.swing.JFrame {
             NguoiThue nt = new NguoiThue();
             Phong p = new Phong();
 
-            int index = tb_banghopdong.getRowCount() + 1;
-            String ma = "HopDong" + String.valueOf(index);
+//            int index = tb_banghopdong.getRowCount() + 1;
+            String ma = "HopDong4" + ntR.findSoHD() + 1;
             String tencn = txt_chunhahopdong.getText().trim();
             String tennt = txt_nguoithuehopdong.getText().trim();
             String tenp = txt_phonghopdong.getText().trim();
@@ -627,6 +632,10 @@ public class HopDongView extends javax.swing.JFrame {
     private void txt_phonghopdongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_phonghopdongKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_phonghopdongKeyReleased
+
+    private void cb_trangthaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_trangthaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_trangthaiActionPerformed
 
     /**
      * @param args the command line arguments

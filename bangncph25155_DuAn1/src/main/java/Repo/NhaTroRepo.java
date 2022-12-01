@@ -18,6 +18,7 @@ import org.hibernate.Transaction;
  * @author MSI
  */
 public class NhaTroRepo {
+
     public List<NhaTro> getAllData() {
         List<NhaTro> list = new ArrayList<>();
         Transaction t = null;
@@ -49,7 +50,7 @@ public class NhaTroRepo {
             s.close();
         }
     }
-    
+
     public void update(NhaTro nhaTro) {
         Transaction t = null;
         Session s = HibernateUtils.getFACTORY().openSession();
@@ -65,7 +66,7 @@ public class NhaTroRepo {
             s.close();
         }
     }
-    
+
     public UUID findByIdCN(String ten) {
         UUID uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -76,4 +77,40 @@ public class NhaTroRepo {
         }
         return uuid;
     }
-}
+
+    public Long findSoHD() {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select Count(p.ma) from HopDong p ";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+
+    public String checkTenPhong(String ten) {
+        String uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select tenPhong from Phong p where p.tenPhong =:tenPhong";
+            TypedQuery<String> query = session.createQuery(statement, String.class);
+            query.setParameter("tenPhong", ten);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+
+    public static void main(String[] args) {
+        NhaTroRepo ntR = new NhaTroRepo();
+//                System.out.println(ntR.findSoHD()+1);
+        String tenphong = "123434";
+        String a = ntR.checkTenPhong(tenphong);
+        try {
+            boolean ktra = a.equals(tenphong);
+        } catch (Exception e) {
+            System.out.println("thanh cong");
+        }
+        
+      
+        }
+    }
+

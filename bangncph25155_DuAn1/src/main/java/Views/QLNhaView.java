@@ -13,6 +13,7 @@ import Models.NguoiThue;
 import Models.NhaTro;
 import Models.Phong;
 import Models.SuCoNhaTro;
+import Repo.NhaTroRepo;
 import Repo.PhongRepo;
 import Service.IsvDichVuImpl;
 import Service.IsvDichVuPhongImpl;
@@ -68,6 +69,7 @@ public class QLNhaView extends javax.swing.JFrame {
     private IsvSuCoKH sckhR = new SuCoKHImpl();
     private PhongRepo test = new PhongRepo();
     private SuCoKH sckh;
+    private NhaTroRepo nhaTroR = new NhaTroRepo();
 
     /**
      * Creates new form QLNhaView
@@ -417,6 +419,11 @@ public class QLNhaView extends javax.swing.JFrame {
         });
 
         btn_clearphong.setText("Clear");
+        btn_clearphong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearphongActionPerformed(evt);
+            }
+        });
 
         lbl_anhphong.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1256,17 +1263,29 @@ public class QLNhaView extends javax.swing.JFrame {
         String tinhtrang = cb_tinhtrang.getSelectedItem().toString();
         Float dientich = Float.valueOf(txt_dientich.getText());
         UUID idnha = pR.findByIdNhaTro(tennha);
-        nhatro.setId(idnha);
+        Boolean checkMa = false;
+        for (Phong nt : pR.getAllData()) {
+            if (txt_tenphong.getText().equalsIgnoreCase(nt.getTenPhong())) {
+                checkMa = true;
+            }
+        }
+        if (checkMa == true) {
+            JOptionPane.showMessageDialog(this, "Tên phòng đã tồn tại");
+        } else {
+            nhatro.setId(idnha);
 
-        phong.setMa(ma);
-        phong.setNhaTro(nhatro);
-        phong.setTenPhong(tenphong);
-        phong.setDienTich(dientich);
-        phong.setTinhTrang(tinhtrang);
-        phong.setAnhPhong(hinh);
-        pR.save(phong);
-        JOptionPane.showMessageDialog(this, "thanh cong");
-        LoadPhong(pR.getAllData());
+            phong.setMa(ma);
+            phong.setNhaTro(nhatro);
+            phong.setTenPhong(tenphong);
+            phong.setDienTich(dientich);
+            phong.setTinhTrang(tinhtrang);
+            phong.setAnhPhong(hinh);
+            pR.save(phong);
+            JOptionPane.showMessageDialog(this, "Thêm phòng thành công");
+            LoadPhong(pR.getAllData());
+        }
+
+
     }//GEN-LAST:event_btn_themphongActionPerformed
 
     private void lbl_anhphongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_anhphongMouseClicked
@@ -1495,10 +1514,10 @@ public class QLNhaView extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_suahopdongActionPerformed
 
     private void btn_clearhopdongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearhopdongActionPerformed
-        
+
         xoaTrang();
     }//GEN-LAST:event_btn_clearhopdongActionPerformed
-    private void xoaTrang(){
+    private void xoaTrang() {
         txt_chunhahopdong.setText("");
         txt_nguoithuehopdong.setText("");
         txt_phonghopdong.setText("");
@@ -1623,8 +1642,12 @@ public class QLNhaView extends javax.swing.JFrame {
 
     private void txt_nguoithuehopdongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nguoithuehopdongKeyReleased
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txt_nguoithuehopdongKeyReleased
+
+    private void btn_clearphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearphongActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_clearphongActionPerformed
 
     /**
      * @param args the command line arguments

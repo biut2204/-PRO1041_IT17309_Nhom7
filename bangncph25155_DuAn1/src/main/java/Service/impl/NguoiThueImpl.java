@@ -73,4 +73,43 @@ public class NguoiThueImpl implements IsvNguoiThueImpl{
     public void update(NguoiThue nt) {
         ntR.update(nt);
     }
+
+    @Override
+    public String findMK(String id) {
+        return ntR.findmk(id);
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public UUID findidTK(String id) {
+        return ntR.findidTK(id);
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+
+    @Override
+    public String findVaiTro(String id) {
+        return ntR.findVaiTro(id);
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public UUID findidNguoiThue(String id) {
+        return ntR.findidNguoiThue(id);
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String findTenTK(String id) {
+        return ntR.findTenTK(id);
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String checkHoTen(String id) {
+        return ntR.checkHoTen(id);
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+
 }

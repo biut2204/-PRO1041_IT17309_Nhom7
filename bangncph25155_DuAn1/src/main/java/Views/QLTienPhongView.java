@@ -121,6 +121,24 @@ public class QLTienPhongView extends javax.swing.JFrame {
         for (int i = 0; i < tb_thongke.getRowCount(); i++) {
             Tong += Integer.parseInt(tb_thongke.getValueAt(i, 2).toString());
         }
+        jlbThongKe.setText("Tổng tiền : " + x.format(Tong) + " " + "VND");
+    }
+        private void tongchuathanhtoan() {
+//                dtm = (DefaultTableModel) tb_thongke.getModel();
+        DecimalFormat x = new DecimalFormat("###,###,###");
+        int Tong = 0;
+        for (int i = 0; i < tb_thongke.getRowCount(); i++) {
+            Tong += Integer.parseInt(tb_thongke.getValueAt(i, 2).toString());
+        }
+        jlbThongKe.setText("Tổng tiền chưa thanh toán : " + x.format(Tong) + " " + "VND");
+    }
+            private void tongdathanhtoan() {
+//                dtm = (DefaultTableModel) tb_thongke.getModel();
+        DecimalFormat x = new DecimalFormat("###,###,###");
+        int Tong = 0;
+        for (int i = 0; i < tb_thongke.getRowCount(); i++) {
+            Tong += Integer.parseInt(tb_thongke.getValueAt(i, 2).toString());
+        }
         jlbThongKe.setText("Tổng doanh thu : " + x.format(Tong) + " " + "VND");
     }
 
@@ -133,6 +151,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         btn_tao1 = new javax.swing.JButton();
@@ -186,8 +205,8 @@ public class QLTienPhongView extends javax.swing.JFrame {
         txt_tkThongKe = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jlbThongKe = new javax.swing.JLabel();
-        cb_ThongKe = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
+        rd_DaThanhToan = new javax.swing.JRadioButton();
+        rd_ChuaThanhToan = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -663,14 +682,21 @@ public class QLTienPhongView extends javax.swing.JFrame {
         });
 
         jlbThongKe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jlbThongKe.setText("Tổng Doanh Thu : ");
+        jlbThongKe.setText("Tổng tiền :");
 
-        cb_ThongKe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Da thanh toan", "chua thanh toan" }));
-
-        jButton4.setText("Tim kiem");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(rd_DaThanhToan);
+        rd_DaThanhToan.setText("Đã thanh toán");
+        rd_DaThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                rd_DaThanhToanActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(rd_ChuaThanhToan);
+        rd_ChuaThanhToan.setText("Chưa thanh toán");
+        rd_ChuaThanhToan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rd_ChuaThanhToanActionPerformed(evt);
             }
         });
 
@@ -685,17 +711,17 @@ public class QLTienPhongView extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cb_ThongKe, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txt_tkThongKe))
+                                .addComponent(txt_tkThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41)
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton4)
-                                    .addComponent(jButton2)))))
+                                .addComponent(jButton2))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(rd_DaThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(rd_ChuaThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(141, 141, 141)
-                        .addComponent(jlbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(756, Short.MAX_VALUE))
+                        .addComponent(jlbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(647, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -704,11 +730,11 @@ public class QLTienPhongView extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_tkThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cb_ThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
-                .addGap(29, 29, 29)
+                    .addComponent(rd_DaThanhToan)
+                    .addComponent(rd_ChuaThanhToan))
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(jlbThongKe)
@@ -834,7 +860,6 @@ public class QLTienPhongView extends javax.swing.JFrame {
                 TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
                 tb_bangdichvuphong.setRowSorter(tr);
                 tr.setRowFilter(RowFilter.regexFilter(search));
-
                 LoadDichVuPhong(dvpR.getAllData());
             }
 
@@ -866,7 +891,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
             String ma = txt_matienphong.getText().toString();
             int index = tb_chitiettienphong.getRowCount() + 1;
-            String macttp = "CTTP" + String.valueOf(index);
+            String macttp = "CTTP" + String.valueOf(index)+1;
             int sodien = Integer.parseInt(txt_sodien.getText().toString());
             int sonuoc = Integer.parseInt(txt_sonuoc.getText().toString());
             int dongiadien = Integer.parseInt(txt_dongiadien.getText().toString());
@@ -1109,15 +1134,29 @@ public class QLTienPhongView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rd_tatcaActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void rd_DaThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd_DaThanhToanActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel dmt = (DefaultTableModel) tb_thongke.getModel();
-        String search = cb_ThongKe.getSelectedItem().toString();
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
-        tb_thongke.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(search));
-        tongthongke();
-    }//GEN-LAST:event_jButton4ActionPerformed
+            if (rd_DaThanhToan.isSelected()) {
+            DefaultTableModel dmt = (DefaultTableModel) tb_thongke.getModel();
+            String search = "Da thanh toan";
+            TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+            tb_thongke.setRowSorter(tr);
+            tr.setRowFilter(RowFilter.regexFilter(search));
+            tongdathanhtoan();
+        }
+    }//GEN-LAST:event_rd_DaThanhToanActionPerformed
+
+    private void rd_ChuaThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd_ChuaThanhToanActionPerformed
+        // TODO add your handling code here:
+            if (rd_ChuaThanhToan.isSelected()) {
+            DefaultTableModel dmt = (DefaultTableModel) tb_thongke.getModel();
+            String search = "chua thanh toan";
+            TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+            tb_thongke.setRowSorter(tr);
+            tr.setRowFilter(RowFilter.regexFilter(search));
+            tongchuathanhtoan();
+        }
+    }//GEN-LAST:event_rd_ChuaThanhToanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1162,10 +1201,9 @@ public class QLTienPhongView extends javax.swing.JFrame {
     private javax.swing.JButton btn_suatienphong;
     private javax.swing.JButton btn_tao1;
     private javax.swing.JButton btn_taotienphong;
-    private javax.swing.JComboBox<String> cb_ThongKe;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -1194,6 +1232,8 @@ public class QLTienPhongView extends javax.swing.JFrame {
     private javax.swing.JLabel jlbThongKe;
     private javax.swing.JLabel lbl_anhsodien;
     private javax.swing.JLabel lbl_anhsonuoc;
+    private javax.swing.JRadioButton rd_ChuaThanhToan;
+    private javax.swing.JRadioButton rd_DaThanhToan;
     private javax.swing.JRadioButton rd_chuadongtien;
     private javax.swing.JRadioButton rd_daongtien;
     private javax.swing.JRadioButton rd_tatca;

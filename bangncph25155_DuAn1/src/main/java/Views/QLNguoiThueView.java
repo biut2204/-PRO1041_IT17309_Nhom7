@@ -465,6 +465,12 @@ public class QLNguoiThueView extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_ngaysinhActionPerformed
 
     private void btn_dangkyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangkyActionPerformed
+                Boolean checkMa = false;
+        for (NguoiThue nt : ntR.getAllData()) {
+            if (txt_hoten.getText().equalsIgnoreCase(nt.getHoTen())) {
+                checkMa = true;
+            }
+        }
         try {
             // TODO add your handling code here:
             NguoiThue nt = new NguoiThue();
@@ -498,8 +504,10 @@ public class QLNguoiThueView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,
                         "Không được để trống");
             }
-
-            nt.setMa(ma);
+            if(checkMa==true){
+                JOptionPane.showMessageDialog(this,"Họ tên đã tồn tại");
+            }else{
+                            nt.setMa(ma);
             nt.setHoTen(hoten);
             nt.setNgaySinh(ngaysinh);
             nt.setGioiTinh(gioitinh);
@@ -514,6 +522,8 @@ public class QLNguoiThueView extends javax.swing.JFrame {
             ntR.save(nt);
             Load(ntR.getAllData());
             clear();
+            }
+
         } catch (ParseException ex) {
             Logger.getLogger(QLNguoiThueView.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
