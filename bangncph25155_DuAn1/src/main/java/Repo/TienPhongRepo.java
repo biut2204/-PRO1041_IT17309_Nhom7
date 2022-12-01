@@ -205,6 +205,29 @@ public class TienPhongRepo {
         return uuid;
     }
     
+    public Long ThongKeTheoNam(String trangThai, int nam) {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select sum(a.donGia) from ChiTietTienPhong a where a.tienPhong.trangThai = :trangThai and year(a.tienPhong.ngayTao) = :nam";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            query.setParameter("trangThai", trangThai);
+            query.setParameter("nam", nam);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public Long ThongKeTheoNamTong(int nam) {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select sum(a.donGia) from ChiTietTienPhong a where year(a.tienPhong.ngayTao) = :nam";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            query.setParameter("nam", nam);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
     public Long ThongKeTong(int thang, int nam) {
         Long uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -235,7 +258,7 @@ public class TienPhongRepo {
         String tenPhong = "Da thanh toan";
         int thang  = 11;
         int nam  = 2022;
-        System.out.println(tp.ThongKe(tenPhong, thang, nam));
+        System.out.println(tp.ThongKeTheoNam(tenPhong, nam));
 //        tp.listCbbMs(tenPhong).forEach(o -> {
 //            System.out.println(o);
 //        });

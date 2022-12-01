@@ -111,6 +111,8 @@ public class QLNhaView extends javax.swing.JFrame {
         this.btn_timkiem.setIcon(icon);
         this.btn_suahopdong.setIcon(icon2);
         this.btn_clearhopdong.setIcon(icon3);
+        Icon icon11 = new ImageIcon("obama.png");
+        this.lbl_anhphong.setIcon(icon11);
     }
 
     private void LoadPhong(List<Phong> list) {

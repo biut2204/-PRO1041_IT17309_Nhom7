@@ -52,4 +52,19 @@ public class PhongImpl implements IsvPhongImpl{
     public void update(Phong phong) {
         pR.update(phong);
     }
+
+    @Override
+    public String findMaPhong(String ten) {
+        return pR.findMaPhong(ten);
+    }
+
+    @Override
+    public Float findDienTichPhong(String ten) {
+        return pR.findDienTichPhong(ten);
+    }
+
+    @Override
+    public String findAnhPhong(String ten) {
+        return pR.findAnhPhong(ten);
+    }
 }
