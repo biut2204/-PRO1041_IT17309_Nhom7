@@ -83,6 +83,16 @@ public class TienPhongImpl implements IsvTienPhongImpl{
         return tpR.findByIdChiTietTienPhong(ten);
     }
 
+    @Override
+    public Long ThongKe(String trangThai, int thang, int nam) {
+        return  tpR.ThongKe(trangThai, thang, nam);
+    }
+
+    @Override
+    public Long ThongKeTong(int thang, int nam) {
+        return tpR.ThongKeTong(thang, nam);
+    }
+
 
 
 

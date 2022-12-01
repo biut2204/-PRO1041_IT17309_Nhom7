@@ -304,6 +304,8 @@ public class QLNhaView extends javax.swing.JFrame {
         pa_trangchu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pa_trangchu.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
+        jPanel3.setBackground(new java.awt.Color(204, 255, 204));
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 2, 36)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Hello");
@@ -341,6 +343,8 @@ public class QLNhaView extends javax.swing.JFrame {
         Hello.addTab("Trang chu", jPanel2);
 
         pa_trangchu.addTab("Trang chu", Hello);
+
+        jPanel4.setBackground(new java.awt.Color(204, 204, 255));
 
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -544,6 +548,8 @@ public class QLNhaView extends javax.swing.JFrame {
 
         pa_trangchu.addTab("Phòng", pa_phong);
 
+        jPanel9.setBackground(new java.awt.Color(51, 255, 255));
+
         jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel20.setText("Ten dich vu :");
@@ -659,6 +665,8 @@ public class QLNhaView extends javax.swing.JFrame {
         pa_dichvu.addTab("Dich vu", jPanel5);
 
         pa_trangchu.addTab("Dich Vu", pa_dichvu);
+
+        jPanel6.setBackground(new java.awt.Color(102, 255, 204));
 
         jPanel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -791,6 +799,8 @@ public class QLNhaView extends javax.swing.JFrame {
         pa_suconhatro.addTab("Su co nha tro", jPanel6);
 
         pa_trangchu.addTab("Su co nha tro", pa_suconhatro);
+
+        jPanel16.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel30.setText("Mã");
 
@@ -945,6 +955,8 @@ public class QLNhaView extends javax.swing.JFrame {
         jTabbedPane6.addTab("tab1", jPanel16);
 
         pa_trangchu.addTab("Su co phong", jTabbedPane6);
+
+        jPanel13.setBackground(new java.awt.Color(255, 255, 204));
 
         jPanel14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
