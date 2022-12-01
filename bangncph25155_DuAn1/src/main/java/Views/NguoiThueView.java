@@ -7,10 +7,8 @@ package Views;
 import Models.ChiTietTienPhong;
 import Models.ChuNha;
 import Models.DichVuPhong;
-import Models.NguoiThue;
 import Models.Phong;
 import Models.SuCoKH;
-import Models.TaiKhoan;
 import Models.TienPhong;
 import Service.IsvCttpImpl;
 import Service.IsvDichVuPhongImpl;
@@ -18,7 +16,6 @@ import Service.IsvNguoiThueImpl;
 import Service.IsvNhaTroImpl;
 import Service.IsvPhongImpl;
 import Service.IsvSuCoKH;
-import Service.IsvTaiKhoanImpl;
 import Service.IsvTienPhongImpl;
 import Service.impl.CttpImpl;
 import Service.impl.DichVuPhongImpl;
@@ -26,7 +23,6 @@ import Service.impl.NguoiThueImpl;
 import Service.impl.NhaTroImpl;
 import Service.impl.PhongImpl;
 import Service.impl.SuCoKHImpl;
-import Service.impl.TaiKhoanImpl;
 import Service.impl.TienPhongImpl;
 import java.awt.Image;
 import java.text.ParseException;
@@ -55,7 +51,6 @@ public class NguoiThueView extends javax.swing.JFrame {
     private IsvDichVuPhongImpl dvpR = new DichVuPhongImpl();
     private IsvPhongImpl pR = new PhongImpl();
     private IsvSuCoKH sckhR = new SuCoKHImpl();
-    private IsvTaiKhoanImpl tkR = new TaiKhoanImpl();
     /**
      * Creates new form NguoiThue
      */
@@ -73,9 +68,8 @@ public class NguoiThueView extends javax.swing.JFrame {
         LoadSuCoKH(sckhR.getAllData());
         shotSuCoKH(tpR.findTenPhong(dataNguoiThue));
         txtPhongSCKH.setText(tpR.findTenPhong(dataNguoiThue));
-
     }
-
+    
     private NguoiThueView() {
 
     }
@@ -239,14 +233,6 @@ public class NguoiThueView extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         txt_matienphong = new javax.swing.JTextField();
         txt_timkiem = new javax.swing.JTextField();
-        jPanel9 = new javax.swing.JPanel();
-        txt_MKCu = new javax.swing.JTextField();
-        txt_MKMoi = new javax.swing.JTextField();
-        txt_XacNhanMK = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -373,12 +359,6 @@ public class NguoiThueView extends javax.swing.JFrame {
         jLabel27.setText("Mô tả");
 
         jLabel28.setText("Trạng thái");
-
-        txtPhongSCKH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPhongSCKHActionPerformed(evt);
-            }
-        });
 
         jButton1.setText("Thong bao");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -774,64 +754,6 @@ public class NguoiThueView extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Tien phong", jPanel3);
 
-        jLabel24.setText("Nhập mk cũ");
-
-        jLabel30.setText("Nhập mk mới");
-
-        jLabel31.setText("Xác nhận mk mới");
-
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(73, 73, 73)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_XacNhanMK, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                            .addComponent(txt_MKMoi)
-                            .addComponent(txt_MKCu)))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(328, 328, 328)
-                        .addComponent(jButton3)))
-                .addContainerGap(883, Short.MAX_VALUE))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txt_MKCu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_MKMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel30))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_XacNhanMK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel31))
-                .addGap(87, 87, 87)
-                .addComponent(jButton3)
-                .addContainerGap(202, Short.MAX_VALUE))
-        );
-
-        jTabbedPane5.addTab("Doi mat khau", jPanel9);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -993,41 +915,6 @@ public class NguoiThueView extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_txt_timkiemKeyReleased
 
-    private void txtPhongSCKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhongSCKHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhongSCKHActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        NguoiThue nt = new NguoiThue();
-        TaiKhoan tk = new TaiKhoan();
-        String mkcu = txt_MKCu.getText().trim();
-        String mk1 = txt_MKMoi.getText().trim();
-        String mk2 = txt_XacNhanMK.getText().trim();
-        boolean ktra = mk1.equals(mk2);
-        String mk = ntR.findMK(dataNguoiThue);
-        UUID nguoithueid = ntR.findidNguoiThue(txt_ma.getText());
-        String vaitro = ntR.findVaiTro(txt_ma.getText());
-        String tentk = ntR.findTenTK(txt_ma.getText());
-        UUID id = ntR.findidTK(txt_ma.getText());
-        UUID idNT = ntR.findidNguoiThue(txt_ma.getText());
-        if (mkcu == mk) {
-            JOptionPane.showMessageDialog(this, "Mật khẩu sai");
-        } else if (ktra == false) {
-            JOptionPane.showMessageDialog(this, "mat khau khong dung");
-        } else {
-            nt.setId(idNT);
-            tk.setVaiTro(vaitro);
-            tk.setTenTaiKhoan(tentk);
-            tk.setId(id);
-            tk.setMatKhau(mk2);
-            tk.setNguoiThue(nt);
-            tkR.update(tk);
-            JOptionPane.showMessageDialog(this, "thanh cong");
-
-        }
-
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1075,7 +962,6 @@ public class NguoiThueView extends javax.swing.JFrame {
     private javax.swing.JButton btn_thanhtoan;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1092,15 +978,12 @@ public class NguoiThueView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1116,7 +999,6 @@ public class NguoiThueView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
@@ -1132,9 +1014,6 @@ public class NguoiThueView extends javax.swing.JFrame {
     private javax.swing.JTextField txtTenSuCoKH;
     private javax.swing.JTextField txtTimeSuCo;
     private javax.swing.JTextField txtTrangThaiSuCo;
-    private javax.swing.JTextField txt_MKCu;
-    private javax.swing.JTextField txt_MKMoi;
-    private javax.swing.JTextField txt_XacNhanMK;
     private javax.swing.JTextField txt_diachi;
     private javax.swing.JTextField txt_dichvu;
     private javax.swing.JTextField txt_dixe;

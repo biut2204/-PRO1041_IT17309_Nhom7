@@ -20,6 +20,4 @@ public interface IsvNhaTroImpl {
     public void save(NhaTro nhaTro);
 
     public void update(NhaTro nhaTro);
-    
-    public long findSoHD();
 }

@@ -78,7 +78,7 @@ public class TienPhongRepo {
         }
         return uuid;
     }
-
+    
     public UUID findByIdTienPhong(String ten) {
         UUID uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
@@ -111,8 +111,7 @@ public class TienPhongRepo {
         }
         return uuid;
     }
-
-    public Integer checkTienThang(String ten, int ngayTao) {
+    public Integer checkTienThang(String ten,int ngayTao) {
         Integer uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
             String statement = "select month(p.ngayTao) from TienPhong p where month(p.ngayTao)= :ngayTao and p.phong.tenPhong = :tenPhong";
@@ -123,8 +122,7 @@ public class TienPhongRepo {
         }
         return uuid;
     }
-
-    public Integer checkNam(String ten, int ngayTao) {
+        public Integer checkNam(String ten,int ngayTao) {
         Integer uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
             String statement = "select year(p.ngayTao) from TienPhong p where year(p.ngayTao)= :ngayTao and p.phong.tenPhong = :tenPhong";
@@ -136,28 +134,12 @@ public class TienPhongRepo {
         return uuid;
     }
 
-    public Integer ThongKeThang(int ngayTao) {
-        Integer uuid;
-        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
-            String statement = "select sum(a.donGia) from ChiTietTienPhong a  where month(a.TienPhong.ngayThanhToan) = :ngayThanhToan";
-            TypedQuery<Integer> query = session.createQuery(statement, Integer.class);
-            query.setParameter("ngayTao", ngayTao);
-            uuid = query.getSingleResult();
-        }
-        return uuid;
-    }
-
     public static void main(String[] args) {
         TienPhongRepo tp = new TienPhongRepo();
 
-//        String tenPhong = "bang1";
-//        String test;
-//        String a = tp.findTenPhong(tenPhong);
-//        System.out.println(a);
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//        Date ngayTao = 19/11/2003 ;
-//        System.out.println(tp.ThongKeThang(ten, ngayTao));
-          int ngayTao =11;
-          System.out.println(tp.ThongKeThang(ngayTao));
+        String tenPhong = "bang1";
+        String test;
+        String a = tp.findTenPhong(tenPhong);
+        System.out.println(a);
     }
 }

@@ -37,10 +37,9 @@ public class HibernateUtils {
         Properties properties = new Properties();
         properties.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");
         properties.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=DUAN1_NHOM");
+        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=DUAN1_NHOM8");
         properties.put(Environment.USER, "sa");
-        properties.put(Environment.PASS, "123");
-
+        properties.put(Environment.PASS, "123456");
         properties.put(Environment.SHOW_SQL, "true");   
         //gen DB t? �?ng
         //properties.put(Environment.HBM2DDL_AUTO, "create");

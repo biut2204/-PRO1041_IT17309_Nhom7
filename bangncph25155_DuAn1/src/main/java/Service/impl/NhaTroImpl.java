@@ -36,12 +36,4 @@ public class NhaTroImpl implements IsvNhaTroImpl{
     public UUID findByIdCN(String ten) {
         return pR.findByIdCN(ten);
     }
-
-    @Override
-    public long findSoHD() {
-        return pR.findSoHD();
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
 }
