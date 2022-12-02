@@ -10,6 +10,7 @@ import Service.IsvNguoiThueImpl;
 import Service.IsvTaiKhoanImpl;
 import Service.impl.NguoiThueImpl;
 import Service.impl.TaiKhoanImpl;
+import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -55,6 +58,27 @@ public class QLNguoiThueView extends javax.swing.JFrame {
             dtm.addRow(new Object[]{
                 nt.getMa(), nt.getHoTen(), nt.getNgaySinh(), nt.getGioiTinh(), nt.getSdt(), nt.getEmail(), nt.getDiaChi(), nt.getDiXe(), nt.getTrangThai(),nt.getCmtnd()});
         }
+    }
+        private Boolean checkEmpty(JTextField txt) {
+        if (txt.getText().isEmpty()) {
+            txt.setBackground(Color.YELLOW);
+            return false;
+        } else {
+            txt.setBackground(Color.WHITE);
+            return true;
+        }
+
+    }
+
+    private Boolean checkEmptyDiaChi(JTextArea ta) {
+        if (ta.getText().isEmpty()) {
+            ta.setBackground(Color.YELLOW);
+            return false;
+        } else {
+            ta.setBackground(Color.WHITE);
+            return true;
+        }
+
     }
 
     /**
@@ -465,80 +489,88 @@ public class QLNguoiThueView extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_ngaysinhActionPerformed
 
     private void btn_dangkyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangkyActionPerformed
+       Boolean checkHoTen = false;
+        Boolean checkMa = false;
+        for (NguoiThue nt : ntR.getAllData()) {
+            if (txt_hoten.getText().equalsIgnoreCase(nt.getHoTen())) {
+                checkHoTen = true;
+            }
+        }
+        for (NguoiThue nt : ntR.getAllData()) {
+            if (txt_ma.getText().equalsIgnoreCase(nt.getMa())) {
+                checkMa = true;
+            }
+        }
         try {
-            // TODO add your handling code here:
-            NguoiThue nt = new NguoiThue();
-            String ma = txt_ma.getText().trim();
-            String hoten = txt_hoten.getText().trim();
-            Date ngaysinh = sdf.parse(txt_ngaysinh.getText().trim());
-            String gioitinh = "Nam";
+            Boolean check = true;
+            if (checkEmpty(txt_ma) == false || checkEmpty(txt_hoten) == false || checkEmpty(txt_chungminhthu) == false || checkEmpty(txt_email) == false || checkEmpty(txt_sdt) == false || checkEmptyDiaChi(txt_diachi) == false) {
+                check = false;
+                JOptionPane.showMessageDialog(this, "Không được để trống");
+            } else {
+                String sdt = txt_sdt.getText().trim();
 
-            if (rd_nam.isSelected()) {
-                gioitinh = "Nam";
-            } else if (rd_nu.isSelected()) {
-                gioitinh = "Nu";
+                String email = txt_email.getText().trim();
+
+                String dixe = cbb_dixe.getSelectedItem().toString();
+
+                String diachi = txt_diachi.getText().trim();
+
+                String trangthai = txt_trangthai.getText().trim();
+
+                String cmtnd = txt_chungminhthu.getText().trim();
+                if (txt_sdt.getText().matches("\\d{10}") == false) {
+                    JOptionPane.showMessageDialog(this, "SDT khong hop le");
+                    return;
+                }
+                if (txt_email.getText().matches("^[^ ]+@[^ ]+\\.[a-z]{2,3}$") == false) {
+                    JOptionPane.showMessageDialog(this, "Email khong hop le");
+                    return;
+                }
+                if (txt_chungminhthu.getText().matches("\\d{12}") == false) {
+                    JOptionPane.showMessageDialog(this, "CMT khong hop le");
+                    return;
+                }
+                if (checkHoTen == true) {
+                    JOptionPane.showMessageDialog(this, "Họ tên đã tồn tại");
+                    return;
+                }
+                if (checkMa == true) {
+                    JOptionPane.showMessageDialog(this, "Mã đã tồn tại");
+                    return;
+                }
+                NguoiThue nt = new NguoiThue();
+                String ma = txt_ma.getText().trim();
+                String hoten = txt_hoten.getText().trim();
+                Date ngaysinh = sdf.parse(txt_ngaysinh.getText().trim());
+                String gioitinh = "Nam";
+
+                if (rd_nam.isSelected()) {
+                    gioitinh = "Nam";
+                } else if (rd_nu.isSelected()) {
+                    gioitinh = "Nu";
+                }
+
+                nt.setMa(ma);
+                nt.setHoTen(hoten);
+                nt.setNgaySinh(ngaysinh);
+                nt.setGioiTinh(gioitinh);
+                nt.setSdt(sdt);
+                nt.setEmail(email);
+                nt.setDiaChi(diachi);
+                nt.setDiXe(dixe);
+                nt.setTrangThai(trangthai);
+                nt.setCmtnd(cmtnd);
+
+                JOptionPane.showMessageDialog(this, "thanh cong");
+                ntR.save(nt);
+                Load(ntR.getAllData());
+                clear();
             }
 
-            String sdt = txt_sdt.getText().trim();
-
-            String email = txt_email.getText().trim();
-
-            String dixe = cbb_dixe.getSelectedItem().toString();
-
-            String diachi = txt_diachi.getText().trim();
-
-            String trangthai = txt_trangthai.getText().trim();
-            
-            String cmtnd = txt_chungminhthu.getText().trim();
-
-            if (ma.length() == 0
-                    || hoten.length() == 0
-                    || sdt.length() == 0
-                    || diachi.length() == 0
-                    || trangthai.length()==0
-                    || email.length()==0
-                    || cmtnd.length()==0 ) {
-                JOptionPane.showMessageDialog(this,
-                        "Không được để trống");
-            }
-            String SDT = "(09|03|07|08|05)+([0-9]{8})\b";
-            boolean checksdt = sdt.equals(SDT);
-            if(checksdt == false){
-                JOptionPane.showMessageDialog(this, "SĐT không đúng định dạng!");
-                return;
-            }
-            String Email = "^[^ ]+@[^ ]+\\.[a-z]{2,3}$";
-            boolean checkemail = email.equals(Email);
-            if(checkemail == false){
-                JOptionPane.showMessageDialog(this, "Email không đúng định dạng !");
-                return;
-            }
-            String CMT = "([0-9]{12}\b)";
-            boolean checkcmt = cmtnd.equals(CMT);
-            if(checkcmt == false){
-                JOptionPane.showMessageDialog(this, "CMTND không đúng định dạng!");
-                return;
-            }
-            
-
-            nt.setMa(ma);
-            nt.setHoTen(hoten);
-            nt.setNgaySinh(ngaysinh);
-            nt.setGioiTinh(gioitinh);
-            nt.setSdt(sdt);
-            nt.setEmail(email);
-            nt.setDiaChi(diachi);
-            nt.setDiXe(dixe);
-            nt.setTrangThai(trangthai);
-            nt.setCmtnd(cmtnd);
-
-            JOptionPane.showMessageDialog(this, "thanh cong");
-            ntR.save(nt);
-            Load(ntR.getAllData());
-            clear();
         } catch (ParseException ex) {
             Logger.getLogger(QLNguoiThueView.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Ngày sinh phải nhập đúng định dạng mm/dd/yyyy");
         }
     }//GEN-LAST:event_btn_dangkyActionPerformed
 
@@ -599,72 +631,77 @@ public class QLNguoiThueView extends javax.swing.JFrame {
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
 
         try {
-            // TODO add your handling code here:
-            int index = tb_bang.getSelectedRow();
-            NguoiThue nt = ntR.getAllData().get(index);
-            String hoten = txt_hoten.getText().trim();
-            Date ngaysinh = sdf.parse(txt_ngaysinh.getText().trim());
-            String gioitinh = "Nam";
+            Boolean check = true;
+            if (checkEmpty(txt_ma) == false || checkEmpty(txt_hoten) == false || checkEmpty(txt_chungminhthu) == false || checkEmpty(txt_email) == false || checkEmpty(txt_sdt) == false || checkEmptyDiaChi(txt_diachi) == false) {
+                check = false;
+                JOptionPane.showMessageDialog(this, "Không được để trống");
+            } else {
+                int index = tb_bang.getSelectedRow();
+                NguoiThue nt = ntR.getAllData().get(index);
+                String sdt = txt_sdt.getText().trim();
 
-            if (rd_nam.isSelected()) {
-                gioitinh = "Nam";
-            } else if (rd_nu.isSelected()) {
-                gioitinh = "Nu";
+                String email = txt_email.getText().trim();
+
+                String dixe = cbb_dixe.getSelectedItem().toString();
+
+                String diachi = txt_diachi.getText().trim();
+
+                String trangthai = txt_trangthai.getText().trim();
+
+                String cmtnd = txt_chungminhthu.getText().trim();
+                if (txt_sdt.getText().matches("\\d{10}") == false) {
+                    JOptionPane.showMessageDialog(this, "SDT khong hop le");
+                    return;
+                }
+                if (txt_email.getText().matches("^[^ ]+@[^ ]+\\.[a-z]{2,3}$") == false) {
+                    JOptionPane.showMessageDialog(this, "Email khong hop le");
+                    return;
+                }
+                if (txt_chungminhthu.getText().matches("\\d{12}") == false) {
+                    JOptionPane.showMessageDialog(this, "CMT khong hop le");
+                    return;
+                }
+//                if (checkHoTen == true) {
+//                    JOptionPane.showMessageDialog(this, "Họ tên đã tồn tại");
+//                    return;
+//                }
+//                if (checkMa == true) {
+//                    JOptionPane.showMessageDialog(this, "Mã đã tồn tại");
+//                    return;
+//                }
+
+                String ma = txt_ma.getText().trim();
+                String hoten = txt_hoten.getText().trim();
+                Date ngaysinh = sdf.parse(txt_ngaysinh.getText().trim());
+                String gioitinh = "Nam";
+
+                if (rd_nam.isSelected()) {
+                    gioitinh = "Nam";
+                } else if (rd_nu.isSelected()) {
+                    gioitinh = "Nu";
+                }
+
+//                nt.setMa(ma);
+//                nt.setHoTen(hoten);
+                nt.setNgaySinh(ngaysinh);
+                nt.setGioiTinh(gioitinh);
+                nt.setSdt(sdt);
+                nt.setEmail(email);
+                nt.setDiaChi(diachi);
+                nt.setDiXe(dixe);
+                nt.setTrangThai(trangthai);
+                nt.setCmtnd(cmtnd);
+
+                JOptionPane.showMessageDialog(this, "update thanh cong");
+                ntR.update(nt);
+                Load(ntR.getAllData());
+                clear();
             }
 
-            String sdt = txt_sdt.getText().trim();
-
-            String email = txt_email.getText().trim();
-
-            String dixe = cbb_dixe.getSelectedItem().toString();
-
-            String diachi = txt_diachi.getText().trim();
-
-            String trangthai = txt_trangthai.getText().trim();
-            String cmtnd = txt_chungminhthu.getText().trim();
-             if (
-                     hoten.length() == 0
-                    || sdt.length() == 0
-                    || diachi.length() == 0
-                    || trangthai.length()==0
-                    || email.length()==0
-                    || cmtnd.length()==0 ) {
-                JOptionPane.showMessageDialog(this,
-                        "Không được để trống");
-            }
-            String SDT = "(09|03|07|08|05)+([0-9]{8})\b";
-            boolean checksdt = sdt.equals(SDT);
-            if(checksdt == false){
-                JOptionPane.showMessageDialog(this, "SĐT không đúng định dạng!");
-                return;
-            }
-            String Email = "^[^ ]+@[^ ]+\\.[a-z]{2,3}$";
-            boolean checkemail = email.equals(Email);
-            if(checkemail == false){
-                JOptionPane.showMessageDialog(this, "Email không đúng định dạng !");
-                return;
-            }
-            String CMT = "([0-9]{12}\b)";
-            boolean checkcmt = cmtnd.equals(CMT);
-            if(checkcmt == false){
-                JOptionPane.showMessageDialog(this, "CMTND không đúng định dạng!");
-                return;
-            }
-            nt.setHoTen(hoten);
-            nt.setNgaySinh(ngaysinh);
-            nt.setGioiTinh(gioitinh);
-            nt.setSdt(sdt);
-            nt.setEmail(email);
-            nt.setDiaChi(diachi);
-            nt.setDiXe(dixe);
-            nt.setTrangThai(trangthai);
-            nt.setCmtnd(cmtnd);
-            ntR.update(nt);
-            JOptionPane.showMessageDialog(this, "thanh cong");
-            Load(ntR.getAllData());
-            clear();
         } catch (ParseException ex) {
             Logger.getLogger(QLNguoiThueView.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Ngày sinh phải nhập đúng định dạng mm/dd/yyyy");
         }
 
     }//GEN-LAST:event_btn_suaActionPerformed
