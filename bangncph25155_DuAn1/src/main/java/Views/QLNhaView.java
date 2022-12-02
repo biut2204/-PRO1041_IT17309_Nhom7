@@ -1288,6 +1288,16 @@ public class QLNhaView extends javax.swing.JFrame {
     String hinh = null;
     private void btn_themphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themphongActionPerformed
         // TODO add your handling code here:
+        Boolean checkTenPhong = false;
+        for (Phong p : pR.getAllData()) {
+            if (txt_tenphong.getText().equalsIgnoreCase(p.getTenPhong())) {
+                checkTenPhong = true;
+            }
+        }
+        if (checkTenPhong == true) {
+            JOptionPane.showMessageDialog(this, "Tên phòng đã tồn tại");
+            return;
+        }
         Phong phong = new Phong();
         NhaTro nhatro = new NhaTro();
 
@@ -1539,7 +1549,7 @@ public class QLNhaView extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             HopDong hd = getHopDong();
-            
+
             String ten = txt_nguoithuehopdong.getText().toString();
             hd.setId(test.findByIdPHopDong(ten));
             hdR.update(hd);
