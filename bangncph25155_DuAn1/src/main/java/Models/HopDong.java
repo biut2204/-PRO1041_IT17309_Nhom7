@@ -47,6 +47,15 @@ public class HopDong {
     
     @Column(name = "TienCoc")
     private int tienCoc;
+    
+    @Column(name = "NoiThatPhong")
+    private String noiThatPhong;
+    
+    @Column(name = "HienTrangThue")
+    private String hienTrang;
+    
+    @Column(name = "AnhHienTrangThue")
+    private String anhHienTrang;
 
     public UUID getId() {
         return id;
@@ -120,6 +129,30 @@ public class HopDong {
         this.hienTrang = hienTrang;
     }
 
+    public String getAnhHienTrang() {
+        return anhHienTrang;
+    }
+
+    public void setAnhHienTrang(String anhHienTrang) {
+        this.anhHienTrang = anhHienTrang;
+    }
+
+    public String getHienTrangTraPhong() {
+        return hienTrangTraPhong;
+    }
+
+    public void setHienTrangTraPhong(String hienTrangTraPhong) {
+        this.hienTrangTraPhong = hienTrangTraPhong;
+    }
+
+    public String getAnhHienTrangTraPhong() {
+        return anhHienTrangTraPhong;
+    }
+
+    public void setAnhHienTrangTraPhong(String anhHienTrangTraPhong) {
+        this.anhHienTrangTraPhong = anhHienTrangTraPhong;
+    }
+
     public int getSoXe() {
         return soXe;
     }
@@ -168,7 +201,7 @@ public class HopDong {
         this.trangThai = trangThai;
     }
 
-    public HopDong(UUID id, ChuNha chuNha, Phong phong, NguoiThue nguoiThue, String ma, int giaPhong, int tienCoc, String noiThatPhong, String hienTrang, int soXe, String noiDung, Date ngayBatDau, Date ngayHetHan, Date ngaySua, String trangThai) {
+    public HopDong(UUID id, ChuNha chuNha, Phong phong, NguoiThue nguoiThue, String ma, int giaPhong, int tienCoc, String noiThatPhong, String hienTrang, String anhHienTrang, String hienTrangTraPhong, String anhHienTrangTraPhong, int soXe, String noiDung, Date ngayBatDau, Date ngayHetHan, Date ngaySua, String trangThai) {
         this.id = id;
         this.chuNha = chuNha;
         this.phong = phong;
@@ -178,6 +211,9 @@ public class HopDong {
         this.tienCoc = tienCoc;
         this.noiThatPhong = noiThatPhong;
         this.hienTrang = hienTrang;
+        this.anhHienTrang = anhHienTrang;
+        this.hienTrangTraPhong = hienTrangTraPhong;
+        this.anhHienTrangTraPhong = anhHienTrangTraPhong;
         this.soXe = soXe;
         this.noiDung = noiDung;
         this.ngayBatDau = ngayBatDau;
@@ -186,11 +222,11 @@ public class HopDong {
         this.trangThai = trangThai;
     }
     
-    @Column(name = "NoiThatPhong")
-    private String noiThatPhong;
+    @Column(name = "HienTrangTraPhong")
+    private String hienTrangTraPhong;
     
-    @Column(name = "HienTrang")
-    private String hienTrang;
+    @Column(name = "AnhHienTrangTraPhong")
+    private String anhHienTrangTraPhong;
     
     @Column(name = "SoXe")
     private int soXe;

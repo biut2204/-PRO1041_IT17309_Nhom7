@@ -7,13 +7,17 @@ package Views;
 import Models.ChiTietTienPhong;
 import Models.ChuNha;
 import Models.DichVuPhong;
+import Models.HopDong;
 import Models.NguoiThue;
 import Models.Phong;
 import Models.SuCoKH;
 import Models.TaiKhoan;
 import Models.TienPhong;
+import Repo.PhongRepo;
+import Repo.TraPhongRepo;
 import Service.IsvCttpImpl;
 import Service.IsvDichVuPhongImpl;
+import Service.IsvHopDongImpl;
 import Service.IsvNguoiThueImpl;
 import Service.IsvNhaTroImpl;
 import Service.IsvPhongImpl;
@@ -22,6 +26,7 @@ import Service.IsvTaiKhoanImpl;
 import Service.IsvTienPhongImpl;
 import Service.impl.CttpImpl;
 import Service.impl.DichVuPhongImpl;
+import Service.impl.HopDongImpl;
 import Service.impl.NguoiThueImpl;
 import Service.impl.NhaTroImpl;
 import Service.impl.PhongImpl;
@@ -58,6 +63,10 @@ public class NguoiThueView extends javax.swing.JFrame {
     private IsvPhongImpl pR = new PhongImpl();
     private IsvSuCoKH sckhR = new SuCoKHImpl();
     private IsvTaiKhoanImpl tkR = new TaiKhoanImpl();
+    private TraPhongRepo traphongR = new TraPhongRepo();
+    private PhongRepo test = new PhongRepo();
+    private IsvNhaTroImpl nhatroR = new NhaTroImpl();
+    private IsvHopDongImpl hdR = new HopDongImpl();
 
     /**
      * Creates new form NguoiThue
@@ -183,6 +192,7 @@ public class NguoiThueView extends javax.swing.JFrame {
         txt_diachi = new javax.swing.JTextField();
         txt_dixe = new javax.swing.JTextField();
         txt_trangthai = new javax.swing.JTextField();
+        btn_traphong = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -352,21 +362,35 @@ public class NguoiThueView extends javax.swing.JFrame {
                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
+        btn_traphong.setText("Trả phòng");
+        btn_traphong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_traphongActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(343, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(212, 212, 212))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(212, 212, 212))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btn_traphong, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(531, 531, 531))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(341, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addComponent(btn_traphong, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
         );
 
         jTabbedPane5.addTab("Thong tin", jPanel1);
@@ -923,7 +947,7 @@ public class NguoiThueView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jTabbedPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
+                .addComponent(jTabbedPane5)
                 .addContainerGap())
         );
 
@@ -955,7 +979,7 @@ public class NguoiThueView extends javax.swing.JFrame {
 
         UUID idp = tpR.findByIdPhong(tenp);
         p.setId(idp);
-        
+
         TienPhong tienPhong = new TienPhong(id, p, ma, hinhthucthanhtoan, ngaytao, ngaythanhtoan, trangthai, ghichu);
         return tienPhong;
 
@@ -965,10 +989,10 @@ public class NguoiThueView extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             TienPhong tp = getTienPhong();
-            
+
             String ma = txt_matienphong.getText().toString();
             tp.setId(tpR.findByIdTienPhong(ma));
-            
+
             tpR.update(tp);
             JOptionPane.showMessageDialog(this, "thanh cong");
             LoadChiTietTienPhong(cttpR.getAllData());
@@ -1023,8 +1047,8 @@ public class NguoiThueView extends javax.swing.JFrame {
         txt_trangthai.setText(tb_chitiettienphong.getValueAt(row, 14).toString());
         txt_hinhthucthanhtoan.setText(tb_chitiettienphong.getValueAt(row, 12).toString());
         txt_ngaythanhtoan.setText(tb_chitiettienphong.getValueAt(row, 13).toString());
-        
-        
+
+
     }//GEN-LAST:event_tb_chitiettienphongMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1096,11 +1120,11 @@ public class NguoiThueView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMkCuActionPerformed
 
     private void btnLuuMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuMKActionPerformed
-        if(txtTaiKhoan.getText().equals("")){
+        if (txtTaiKhoan.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập tài khoản!");
             return;
         }
-        if(txtMkCu.getText().equals("")){
+        if (txtMkCu.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu cũ!");
             return;
         }
@@ -1125,11 +1149,9 @@ public class NguoiThueView extends javax.swing.JFrame {
         String tentk = ntR.findTenTK(txt_ma.getText());
         UUID id = ntR.findidTK(txt_ma.getText());
         UUID idNT = ntR.findidNguoiThue(txt_ma.getText());
-        if(mkcu == mk ){
+        if (mkcu == mk) {
             JOptionPane.showMessageDialog(this, "mat khau sai");
-        }
-
-        else if (ktra == false) {
+        } else if (ktra == false) {
             JOptionPane.showMessageDialog(this, "Mật khẩu không trùng nhau");
         } else {
             nt.setId(idNT);
@@ -1149,6 +1171,64 @@ public class NguoiThueView extends javax.swing.JFrame {
         TaiKhoan sp = tkR.getAllData().get(index);
         txtTaiKhoan.setText(sp.getTenTaiKhoan());
     }//GEN-LAST:event_tblTableMouseClicked
+
+    private HopDong getHopDong() throws ParseException {
+
+        ChuNha cn = new ChuNha();
+        NguoiThue nt = new NguoiThue();
+        Phong p = new Phong();
+
+        UUID idhd = traphongR.findIdHopDong(dataNguoiThue);
+        String ma = traphongR.findMaHopDong(dataNguoiThue);
+        String tencn = "admin";
+        UUID idnt = traphongR.findNguoiThue(dataNguoiThue);
+        UUID idp = traphongR.findPhong(dataNguoiThue);
+        int giaphong = traphongR.findGiaPhong(dataNguoiThue);
+        String noithat = traphongR.findNoiThat(dataNguoiThue);
+        int soxe = traphongR.findSoXe(dataNguoiThue);
+        String hientrang = traphongR.findHienTrangThue(dataNguoiThue);
+        String anhhientrang = traphongR.findAnhHienTrangThue(dataNguoiThue);
+        String hientrangtra = "";
+        String anhhientrangtra = "";
+        Date ngaybatdau = traphongR.findNgayBatDau(dataNguoiThue);
+        Date ngayhethan = traphongR.findNgayHetHan(dataNguoiThue);
+        String noidung = traphongR.findNoiDung(dataNguoiThue);
+        String trangthai = "Dang xu li";
+        int tiencoc = traphongR.findTienCoc(dataNguoiThue);
+        Date ngaysua = java.util.Calendar.getInstance().getTime();
+
+        UUID idcn = nhatroR.findByIdCN(tencn);
+        cn.setId(idcn);
+
+        nt.setId(idnt);
+        p.setId(idp);
+
+        HopDong hd = new HopDong(idhd, cn, p, nt, ma, giaphong, tiencoc, noithat, hientrang, anhhientrang, hientrangtra, anhhientrangtra, soxe, noidung, ngaybatdau, ngayhethan, ngaysua, trangthai);
+
+        return hd;
+
+    }
+
+    private void btn_traphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_traphongActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            int confirm = JOptionPane.showConfirmDialog(this,
+                    "Ban muon thong bao chu nha tra phong ?");
+
+            if (confirm != JOptionPane.YES_OPTION) {
+                return;
+            }
+            HopDong hd = getHopDong();
+
+            UUID idhd = traphongR.findIdHopDong(dataNguoiThue);
+            hd.setId(idhd);
+            hdR.update(hd);
+            JOptionPane.showMessageDialog(this, "thanh cong");
+        } catch (ParseException ex) {
+            Logger.getLogger(QLNhaView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_traphongActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1196,6 +1276,7 @@ public class NguoiThueView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLuuMK;
     private javax.swing.JButton btn_thanhtoan;
+    private javax.swing.JButton btn_traphong;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

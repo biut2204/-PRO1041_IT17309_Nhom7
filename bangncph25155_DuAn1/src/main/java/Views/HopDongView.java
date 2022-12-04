@@ -23,6 +23,9 @@ import Service.impl.HopDongImpl;
 import Service.impl.NhaTroImpl;
 import Service.impl.PhongImpl;
 import Service.impl.TienPhongImpl;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,8 +33,10 @@ import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -84,7 +89,7 @@ public class HopDongView extends javax.swing.JFrame {
         for (HopDong hd : list) {
             dtm.addRow(new Object[]{
                 hd.getChuNha().getHoTen(), hd.getNguoiThue().getHoTen(), hd.getPhong().getTenPhong(), hd.getGiaPhong(), hd.getNoiThatPhong(),
-                hd.getHienTrang(), hd.getSoXe(), hd.getNoiDung(), hd.getNgayBatDau(), hd.getNgayHetHan(), hd.getNgaySua(), hd.getTrangThai(), hd.getMa()});
+                hd.getHienTrang(), hd.getSoXe(), hd.getNoiDung(), hd.getNgayBatDau(), hd.getNgayHetHan(), hd.getTienCoc(), hd.getTrangThai(), hd.getMa()});
         }
     }
 
@@ -170,6 +175,8 @@ public class HopDongView extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_bangdichvuphong = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        lbl_anhhientrangphongthue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -311,7 +318,7 @@ public class HopDongView extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Chu nha", "Nguoi thue", "Phong", "Gia phong", "Noi that phong", "Hien trang", "So xe", "Noi dung", "Ngay bat dau", "Ngay het han", "Ngay sua", "Trang thai"
+                "Chu nha", "Nguoi thue", "Phong", "Gia phong", "Noi that phong", "Hien trang", "So xe", "Noi dung", "Ngay bat dau", "Ngay het han", "Tien coc", "Trang thai"
             }
         ));
         tb_banghopdong.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -411,6 +418,31 @@ public class HopDongView extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Hình ảnh hiện trạng phòng"));
+
+        lbl_anhhientrangphongthue.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_anhhientrangphongthueMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_anhhientrangphongthue, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_anhhientrangphongthue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -427,24 +459,33 @@ public class HopDongView extends javax.swing.JFrame {
                         .addGap(146, 146, 146)
                         .addComponent(btn_clearhopdong))
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(41, 41, 41))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_themhopdong)
@@ -452,16 +493,14 @@ public class HopDongView extends javax.swing.JFrame {
                             .addComponent(btn_clearhopdong))
                         .addGap(54, 54, 54)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    String hinh = null;
     private void btn_themhopdongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themhopdongActionPerformed
         try {
             // TODO add your handling code here:
@@ -482,7 +521,7 @@ public class HopDongView extends javax.swing.JFrame {
             String hientrang = txt_hientranghopdong.getText().trim();
             Date ngaybatdau = sdf.parse(txt_ngaybatdauhopdong.getText().trim());
             Date ngayhethan = sdf.parse(txt_ngayhethanhopdong.getText().trim());
-            Date ngaysua = java.util.Calendar.getInstance().getTime();
+            //Date ngaysua = java.util.Calendar.getInstance().getTime();
             String noidung = txt_noidunghopdong.getText().trim();
             String trangthai = cb_trangthai.getSelectedItem().toString();
             int tiencoc = Integer.parseInt(txt_TienCoc.getText().trim());
@@ -506,7 +545,8 @@ public class HopDongView extends javax.swing.JFrame {
             hd.setHienTrang(hientrang);
             hd.setNgayBatDau(ngaybatdau);
             hd.setNgayHetHan(ngayhethan);
-            hd.setNgaySua(ngaysua);
+            //hd.setNgaySua(ngaysua);
+            hd.setAnhHienTrang(hinh);
             hd.setNoiDung(noidung);
             hd.setTrangThai(trangthai);
             hd.setTienCoc(tiencoc);
@@ -519,9 +559,9 @@ public class HopDongView extends javax.swing.JFrame {
             String hinhanh = pR.findAnhPhong(tenp).toString();
             Float dientich = Float.parseFloat(pR.findDienTichPhong(tenp).toString());
             UUID idnha = pR.findByIdNhaTro(tennha);
-            
+
             nhaTro.setId(idnha);
-            
+
             p = new Phong(idp, nhaTro, map, tenphong, dientich, tinhtrang, hinhanh);
             pR.update(p);
             JOptionPane.showMessageDialog(this, "thanh cong");
@@ -563,6 +603,7 @@ public class HopDongView extends javax.swing.JFrame {
             hd.setNguoiThue(nt);
             hd.setChuNha(cn);
             hd.setPhong(p);
+            hd.setAnhHienTrang(hinh);
             hd.setNgayBatDau(ngaybatdau);
             hd.setNgayHetHan(ngayhethan);
             hd.setNgaySua(ngaysua);
@@ -636,26 +677,45 @@ public class HopDongView extends javax.swing.JFrame {
 
     private void tb_banghopdongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_banghopdongMouseClicked
         // TODO add your handling code here:
-        int index = tb_banghopdong.getSelectedRow();
-        HopDong hd = hdR.getAllData().get(index);
-        txt_chunhahopdong.setText(hd.getChuNha().getHoTen());
-        txt_nguoithuehopdong.setText(hd.getNguoiThue().getHoTen());
-        txt_phonghopdong.setText(hd.getPhong().getTenPhong());
-        txt_giaphonghopdong.setText(String.valueOf(hd.getGiaPhong()));
-        txt_noithathopdong.setText(hd.getNoiThatPhong());
-        txt_hientranghopdong.setText(hd.getHienTrang());
-        txt_soxehopdong.setText(String.valueOf(hd.getSoXe()));
-        txt_noidunghopdong.setText(hd.getNoiDung());
-        txt_ngaybatdauhopdong.setText(String.valueOf(hd.getNgayBatDau()));
-        txt_ngayhethanhopdong.setText(String.valueOf(hd.getNgayHetHan()));
-        txt_ngaysuahopdong.setText(String.valueOf(hd.getNgaySua()));
-        cb_trangthai.setSelectedItem(hd.getTrangThai());
-        txt_TienCoc.setText(String.valueOf(hd.getTienCoc()));
+        int row = tb_banghopdong.getSelectedRow();
+        if (row == -1) {
+            return;
+        }
+        txt_chunhahopdong.setText(tb_banghopdong.getValueAt(row, 0).toString());
+        txt_nguoithuehopdong.setText(tb_banghopdong.getValueAt(row, 1).toString());
+        txt_phonghopdong.setText(tb_banghopdong.getValueAt(row, 2).toString());
+        txt_giaphonghopdong.setText(tb_banghopdong.getValueAt(row, 3).toString());
+        txt_noithathopdong.setText(tb_banghopdong.getValueAt(row, 4).toString());
+        txt_hientranghopdong.setText(tb_banghopdong.getValueAt(row, 5).toString());
+        txt_soxehopdong.setText(tb_banghopdong.getValueAt(row, 6).toString());
+        txt_noidunghopdong.setText(tb_banghopdong.getValueAt(row, 7).toString());
+        txt_ngaybatdauhopdong.setText(tb_banghopdong.getValueAt(row, 8).toString());
+        txt_ngayhethanhopdong.setText(tb_banghopdong.getValueAt(row, 9).toString());
+        txt_TienCoc.setText(tb_banghopdong.getValueAt(row, 10).toString());
+        cb_trangthai.setSelectedItem(tb_banghopdong.getValueAt(row, 11).toString());
     }//GEN-LAST:event_tb_banghopdongMouseClicked
 
     private void txt_phonghopdongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_phonghopdongKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_phonghopdongKeyReleased
+
+    private void lbl_anhhientrangphongthueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_anhhientrangphongthueMouseClicked
+        // TODO add your handling code here:
+        try {
+            JFileChooser jfc = new JFileChooser("E:\\GitHub\\PRO1041_IT17309_NHom8\\Da1_Nhom7");
+            jfc.showOpenDialog(null);
+            File file = jfc.getSelectedFile();
+            Image img = ImageIO.read(file);
+            hinh = file.getName();
+            lbl_anhhientrangphongthue.setText("");
+            int width = lbl_anhhientrangphongthue.getWidth();
+            int height = lbl_anhhientrangphongthue.getHeight();
+            lbl_anhhientrangphongthue.setIcon(new ImageIcon(img.getScaledInstance(width, height, 0)));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            System.out.println("ERROR" + ex.toString());
+        }
+    }//GEN-LAST:event_lbl_anhhientrangphongthueMouseClicked
 
     /**
      * @param args the command line arguments
@@ -713,10 +773,12 @@ public class HopDongView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JLabel lbl_anhhientrangphongthue;
     private javax.swing.JTable tb_bangdichvu;
     private javax.swing.JTable tb_bangdichvuphong;
     private javax.swing.JTable tb_banghopdong;
