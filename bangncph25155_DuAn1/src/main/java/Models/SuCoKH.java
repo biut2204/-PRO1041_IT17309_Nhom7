@@ -46,6 +46,9 @@ public class SuCoKH {
     @Column(name = "MoTa")
     private String moTa;
     
+    @Column(name = "ChiPhiSuaChua")
+    private int chiPhiSuaChua;
+    
     @Column(name = "TrangThai")
     private String trangThai;
 
@@ -105,6 +108,14 @@ public class SuCoKH {
         this.moTa = moTa;
     }
 
+    public int getChiPhiSuaChua() {
+        return chiPhiSuaChua;
+    }
+
+    public void setChiPhiSuaChua(int chiPhiSuaChua) {
+        this.chiPhiSuaChua = chiPhiSuaChua;
+    }
+
     public String getTrangThai() {
         return trangThai;
     }
@@ -113,7 +124,7 @@ public class SuCoKH {
         this.trangThai = trangThai;
     }
 
-    public SuCoKH(UUID id, Phong phong, ChuNha chuNha, String ma, String tenSuCo, Date thoiGianThongBao, String moTa, String trangThai) {
+    public SuCoKH(UUID id, Phong phong, ChuNha chuNha, String ma, String tenSuCo, Date thoiGianThongBao, String moTa, int chiPhiSuaChua, String trangThai) {
         this.id = id;
         this.phong = phong;
         this.chuNha = chuNha;
@@ -121,9 +132,10 @@ public class SuCoKH {
         this.tenSuCo = tenSuCo;
         this.thoiGianThongBao = thoiGianThongBao;
         this.moTa = moTa;
+        this.chiPhiSuaChua = chiPhiSuaChua;
         this.trangThai = trangThai;
     }
-
+    
     public SuCoKH() {
     }
     
