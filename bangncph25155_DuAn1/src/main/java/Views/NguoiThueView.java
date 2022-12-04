@@ -33,6 +33,7 @@ import Service.impl.PhongImpl;
 import Service.impl.SuCoKHImpl;
 import Service.impl.TaiKhoanImpl;
 import Service.impl.TienPhongImpl;
+import java.awt.Color;
 import java.awt.Image;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,7 +43,9 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -163,6 +166,16 @@ public class NguoiThueView extends javax.swing.JFrame {
         txt_dixe.setText(dixe);
         txt_trangthai.setText(trangthai);
     }
+        private Boolean checkEmpty(JTextField txt) {
+        if (txt.getText().isEmpty()) {
+            txt.setBackground(Color.YELLOW);
+            return false;
+        } else {
+            txt.setBackground(Color.WHITE);
+            return true;
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -251,6 +264,9 @@ public class NguoiThueView extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         txt_matienphong = new javax.swing.JTextField();
         txt_timkiem = new javax.swing.JTextField();
+        cb_Nam = new javax.swing.JComboBox<>();
+        cb_Thang = new javax.swing.JComboBox<>();
+        btn_timKiemThang = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
@@ -759,12 +775,28 @@ public class NguoiThueView extends javax.swing.JFrame {
                             .addComponent(txt_matienphong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
+        txt_timkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_timkiemActionPerformed(evt);
+            }
+        });
         txt_timkiem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_timkiemKeyReleased(evt);
+            }
+        });
+
+        cb_Nam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", " " }));
+
+        cb_Thang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+
+        btn_timKiemThang.setText("Tìm kiếm");
+        btn_timKiemThang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_timKiemThangActionPerformed(evt);
             }
         });
 
@@ -773,14 +805,23 @@ public class NguoiThueView extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(cb_Thang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cb_Nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(btn_timKiemThang)
+                                .addGap(27, 27, 27)
+                                .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)))
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -790,11 +831,17 @@ public class NguoiThueView extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cb_Nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_timKiemThang)
+                            .addComponent(cb_Thang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)))
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -852,6 +899,11 @@ public class NguoiThueView extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tblTable);
 
         jButton3.setText("Clear");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -998,6 +1050,7 @@ public class NguoiThueView extends javax.swing.JFrame {
             LoadChiTietTienPhong(cttpR.getAllData());
         } catch (ParseException ex) {
             Logger.getLogger(NguoiThueView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this,"Thời gian nhập phải có định dạng dd/MM/yyyy");
         }
     }//GEN-LAST:event_btn_thanhtoanActionPerformed
 
@@ -1054,8 +1107,13 @@ public class NguoiThueView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
+            Boolean checknull=true;
             // TODO add your handling code here:
-            SuCoKH sckh = new SuCoKH();
+            if(checkEmpty(txtMaSCKH)==false || checkEmpty(txtTenSuCoKH)==false || checkEmpty(txtTimeSuCo)==false ){
+                checknull=false;
+                JOptionPane.showMessageDialog(this,"Không để trống thông tin");
+            }else{
+                 SuCoKH sckh = new SuCoKH();
             Phong p = new Phong();
             ChuNha cn = new ChuNha();
 
@@ -1086,8 +1144,11 @@ public class NguoiThueView extends javax.swing.JFrame {
             sckhR.save(sckh);
             JOptionPane.showMessageDialog(this, "thanh cong");
             LoadSuCoKH(sckhR.getAllData());
+            }
+           
         } catch (ParseException ex) {
             ex.printStackTrace();
+            JOptionPane.showMessageDialog(this,"Thời gian nhập phải có định dạng dd/MM/yyyy");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1230,6 +1291,42 @@ public class NguoiThueView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_traphongActionPerformed
 
+    private void txt_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timkiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_timkiemActionPerformed
+
+    private void btn_timKiemThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timKiemThangActionPerformed
+//        DefaultTableModel dmt = (DefaultTableModel) tb_chitiettienphong.getModel();
+//        String search = cb_ThongKe.getSelectedItem().toString();
+//        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+//        tb_chitiettienphong.setRowSorter(tr);
+//        tr.setRowFilter(RowFilter.regexFilter(search));
+
+        DefaultTableModel dmt1 = (DefaultTableModel) tb_chitiettienphong.getModel();
+        String a = cb_Thang.getSelectedItem().toString();
+        String b = cb_Nam.getSelectedItem().toString();
+        String search1 = b + "-" + a;
+        TableRowSorter<DefaultTableModel> tr1 = new TableRowSorter<DefaultTableModel>(dmt1);
+        tb_chitiettienphong.setRowSorter(tr1);
+        if (cb_Thang.getSelectedItem().toString() == "Tháng" && cb_Nam.getSelectedItem().toString() == "Năm") {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn tháng và năm");}
+            else if (cb_Thang.getSelectedItem().toString() == "Tháng") {
+                tr1.setRowFilter(RowFilter.regexFilter(b));
+            } else {
+            tr1.setRowFilter(RowFilter.regexFilter(search1));
+        }
+//        tr1.setRowFilter(RowFilter.regexFilter(search1));       // TODO add your handling code here:
+    }//GEN-LAST:event_btn_timKiemThangActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        txtTaiKhoan.setText(null);
+        txtMkCu.setText(null);
+        txtMkMoi.setText(null);
+        txtNhapLaiMK.setText(null);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1276,7 +1373,10 @@ public class NguoiThueView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLuuMK;
     private javax.swing.JButton btn_thanhtoan;
+    private javax.swing.JButton btn_timKiemThang;
     private javax.swing.JButton btn_traphong;
+    private javax.swing.JComboBox<String> cb_Nam;
+    private javax.swing.JComboBox<String> cb_Thang;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
