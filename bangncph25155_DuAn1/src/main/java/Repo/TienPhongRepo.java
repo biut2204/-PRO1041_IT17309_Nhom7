@@ -240,6 +240,52 @@ public class TienPhongRepo {
         return uuid;
     }
     
+    public Long ThongKeNamScnt(int nam) {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = " select Sum(p.chiPhiSuaChua) from SuCoNhaTro p where year(p.thoiGianThongBao) = :thoiGianThongBao";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            query.setParameter("thoiGianThongBao", nam);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public Long ThongKeThangScnt(int thang, int nam) {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = " select Sum(p.chiPhiSuaChua) from SuCoNhaTro p where month(p.thoiGianThongBao) = :thang and year(p.thoiGianThongBao) = :thoiGianThongBao";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            query.setParameter("thang", thang);
+            query.setParameter("thoiGianThongBao", nam);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public Long ThongKeNamSckh(int nam) {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = " select Sum(p.chiPhiSuaChua) from SuCoKH p where year(p.thoiGianThongBao) = :thoiGianThongBao";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            query.setParameter("thoiGianThongBao", nam);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
+    public Long ThongKeThangSckh(int thang, int nam) {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = " select Sum(p.chiPhiSuaChua) from SuCoKH p where month(p.thoiGianThongBao) = :thang and year(p.thoiGianThongBao) = :thoiGianThongBao";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            query.setParameter("thang", thang);
+            query.setParameter("thoiGianThongBao", nam);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
+    }
+    
     public List<String> listPhong(String tinhTrang) {
         ArrayList<String> list = new ArrayList<>();
         try ( Session s = HibernateUtils.getFACTORY().openSession()) {

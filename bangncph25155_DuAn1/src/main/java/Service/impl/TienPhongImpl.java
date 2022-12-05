@@ -103,6 +103,26 @@ public class TienPhongImpl implements IsvTienPhongImpl{
         return tpR.ThongKeTheoNamTong(nam);
     }
 
+    @Override
+    public Long ThongKeNamScnt(int nam) {
+        return tpR.ThongKeNamScnt(nam);
+    }
+
+    @Override
+    public Long ThongKeThangScnt(int thang, int nam) {
+        return tpR.ThongKeThangScnt(thang, nam);
+    }
+
+    @Override
+    public Long ThongKeNamSckh(int nam) {
+        return tpR.ThongKeNamSckh(nam);
+    }
+
+    @Override
+    public Long ThongKeThangSckh(int thang, int nam) {
+        return tpR.ThongKeThangSckh(thang, nam);
+    }
+
 
 
 
