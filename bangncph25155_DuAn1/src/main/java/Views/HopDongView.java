@@ -186,7 +186,7 @@ public class HopDongView extends javax.swing.JFrame {
 
         jLabel23.setText("Nguoi thue :");
 
-        jLabel24.setText("Phong ;");
+        jLabel24.setText("Phong :");
 
         jLabel25.setText("Ngay bat dau :");
 
@@ -198,6 +198,7 @@ public class HopDongView extends javax.swing.JFrame {
 
         jLabel29.setText("Noi dung :");
 
+        txt_phonghopdong.setEditable(false);
         txt_phonghopdong.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_phonghopdongKeyReleased(evt);
@@ -216,7 +217,7 @@ public class HopDongView extends javax.swing.JFrame {
 
         jLabel4.setText("So xe :");
 
-        cb_trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Phòng trống", "Đã có người thuê" }));
+        cb_trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Phòng trống", "Đã có người thuê", "Dang xu li", "Da tra phong" }));
 
         jLabel5.setText("Tien coc");
 

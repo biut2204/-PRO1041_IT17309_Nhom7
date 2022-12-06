@@ -32,6 +32,7 @@ import Service.impl.PhongImpl;
 import Service.impl.SuCoNhaTroImpl;
 import Service.impl.TienPhongImpl;
 import Service.impl.SuCoKHImpl;
+import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -46,7 +47,9 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -116,8 +119,8 @@ public class QLNhaView extends javax.swing.JFrame {
         this.btnClear.setIcon(icon3);
         this.btn_timkiem.setIcon(icon);
         this.btn_clearhopdong.setIcon(icon3);
-        Icon icon11 = new ImageIcon("obama.png");
-        this.lbl_anhphong.setIcon(icon11);
+//        Icon icon11 = new ImageIcon("obama.png");
+//        this.lbl_anhphong.setIcon(icon11);
     }
 
     private void LoadPhong(List<Phong> list) {
@@ -210,6 +213,17 @@ public class QLNhaView extends javax.swing.JFrame {
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
         tb_datraphong.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
+    }
+
+    private Boolean checkEmpty(JTextField txt) {
+        if (txt.getText().isEmpty()) {
+            txt.setBackground(Color.YELLOW);
+            return false;
+        } else {
+            txt.setBackground(Color.WHITE);
+            return true;
+        }
+
     }
 
     /**
@@ -550,7 +564,16 @@ public class QLNhaView extends javax.swing.JFrame {
         });
 
         btn_clearphong.setText("Clear");
+        btn_clearphong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearphongActionPerformed(evt);
+            }
+        });
 
+        lbl_anhphong.setBackground(new java.awt.Color(204, 204, 204));
+        lbl_anhphong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_anhphong.setText("Chọn ảnh");
+        lbl_anhphong.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         lbl_anhphong.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbl_anhphongMouseClicked(evt);
@@ -775,6 +798,12 @@ public class QLNhaView extends javax.swing.JFrame {
         jLabel18.setText("Mo ta :");
 
         jLabel19.setText("Trang thai :");
+
+        txt_tensuco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_tensucoActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("Chi phi sua :");
 
@@ -1827,6 +1856,7 @@ public class QLNhaView extends javax.swing.JFrame {
     String hinh = null;
     private void btn_themphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themphongActionPerformed
         // TODO add your handling code here:
+        Boolean checknull = true;
         Boolean checkTenPhong = false;
         for (Phong p : pR.getAllData()) {
             if (txt_tenphong.getText().equalsIgnoreCase(p.getTenPhong())) {
@@ -1837,32 +1867,38 @@ public class QLNhaView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Tên phòng đã tồn tại");
             return;
         }
-        Phong phong = new Phong();
-        NhaTro nhatro = new NhaTro();
+        if (checkEmpty(txt_tenphong) == false || checkEmpty(txt_dientich) == false || hinh == null) {
+            checknull = false;
+            JOptionPane.showMessageDialog(this, "Không được để trống thông tin");
+        } else {
+            Phong phong = new Phong();
+            NhaTro nhatro = new NhaTro();
 
-        String ma = "Ma" + String.valueOf(ntR.DemPhong() + 1);
-        String tennha = "Nhom 7";
-        String tenphong = txt_tenphong.getText().trim();
-        String tinhtrang = cb_tinhtrang.getSelectedItem().toString();
-        Float dientich = Float.valueOf(txt_dientich.getText());
-        UUID idnha = pR.findByIdNhaTro(tennha);
-        nhatro.setId(idnha);
+            String ma = "Ma" + String.valueOf(ntR.DemPhong() + 1);
+            String tennha = "Nhom 7";
+            String tenphong = txt_tenphong.getText().trim();
+            String tinhtrang = cb_tinhtrang.getSelectedItem().toString();
+            Float dientich = Float.valueOf(txt_dientich.getText());
+            UUID idnha = pR.findByIdNhaTro(tennha);
+            nhatro.setId(idnha);
 
-        phong.setMa(ma);
-        phong.setNhaTro(nhatro);
-        phong.setTenPhong(tenphong);
-        phong.setDienTich(dientich);
-        phong.setTinhTrang(tinhtrang);
-        phong.setAnhPhong(hinh);
-        pR.save(phong);
-        JOptionPane.showMessageDialog(this, "thanh cong");
-        LoadPhong(pR.getAllData());
+            phong.setMa(ma);
+            phong.setNhaTro(nhatro);
+            phong.setTenPhong(tenphong);
+            phong.setDienTich(dientich);
+            phong.setTinhTrang(tinhtrang);
+            phong.setAnhPhong(hinh);
+            pR.save(phong);
+            JOptionPane.showMessageDialog(this, "thanh cong");
+            LoadPhong(pR.getAllData());
+        }
+
     }//GEN-LAST:event_btn_themphongActionPerformed
 
     private void lbl_anhphongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_anhphongMouseClicked
         // TODO add your handling code here:
         try {
-            JFileChooser jfc = new JFileChooser("E:\\GitHub\\PRO1041_IT17309_NHom8\\Da1_Nhom7");
+            JFileChooser jfc = new JFileChooser("C:\\Users\\acer\\OneDrive\\Desktop\\-PRO1041_IT17309_Nhom7-main\\-PRO1041_IT17309_Nhom7\\-PRO1041_IT17309_Nhom7-main\\bangncph25155_DuAn1\\bangncph25155_DuAn1");
             jfc.showOpenDialog(null);
             File file = jfc.getSelectedFile();
             Image img = ImageIO.read(file);
@@ -1910,7 +1946,7 @@ public class QLNhaView extends javax.swing.JFrame {
         txt_tenphong.setText(sv.getTenPhong());
         txt_dientich.setText(String.valueOf(sv.getDienTich()));
         cb_tinhtrang.setSelectedItem(sv.getTinhTrang());
-        ImageIcon imgIcon = new ImageIcon("E:/GitHub/PRO1041_IT17309_NHom8/Da1_Nhom7/src/main/java/images/" + sv.getAnhPhong());
+        ImageIcon imgIcon = new ImageIcon("C:\\Users\\acer\\OneDrive\\Desktop\\-PRO1041_IT17309_Nhom7-main\\-PRO1041_IT17309_Nhom7\\-PRO1041_IT17309_Nhom7-main\\bangncph25155_DuAn1\\bangncph25155_DuAn1\\" + sv.getAnhPhong());
         Image img = imgIcon.getImage();
         lbl_anhphong.setIcon(new ImageIcon(img.getScaledInstance(lbl_anhphong.getWidth(), lbl_anhphong.getHeight(), 0)));
     }
@@ -1934,24 +1970,31 @@ public class QLNhaView extends javax.swing.JFrame {
 
     private void btn_themdichvuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themdichvuActionPerformed
         // TODO add your handling code here:
-        DichVu dv = new DichVu();
-        NhaTro nt = new NhaTro();
+        Boolean checknull = true;
+        if (checkEmpty(txt_tendichvu) == false || checkEmpty(txt_dongiadichvu) == false) {
+            checknull = false;
+            JOptionPane.showMessageDialog(this, "Không được để trống thông tin");
+        } else {
+            DichVu dv = new DichVu();
+            NhaTro nt = new NhaTro();
 
-        String ten = txt_tendichvu.getText().trim();
-        int dongia = Integer.parseInt(txt_dongiadichvu.getText().trim());
-        String tennha = "Nhom 7";
-        String ma = "DichVu" + String.valueOf(ntR.DemDichVu() + 1);
+            String ten = txt_tendichvu.getText().trim();
+            int dongia = Integer.parseInt(txt_dongiadichvu.getText().trim());
+            String tennha = "Nhom 7";
+            String ma = "DichVu" + String.valueOf(ntR.DemDichVu() + 1);
 
-        UUID idnha = pR.findByIdNhaTro(tennha);
-        nt.setId(idnha);
+            UUID idnha = pR.findByIdNhaTro(tennha);
+            nt.setId(idnha);
 
-        dv.setTenDichVu(ten);
-        dv.setDonGia(dongia);
-        dv.setMa(ma);
-        dv.setNhaTro(nt);
-        dvR.save(dv);
-        JOptionPane.showMessageDialog(this, "thanh cong");
-        LoadDichVu(dvR.getAllData());
+            dv.setTenDichVu(ten);
+            dv.setDonGia(dongia);
+            dv.setMa(ma);
+            dv.setNhaTro(nt);
+            dvR.save(dv);
+            JOptionPane.showMessageDialog(this, "thanh cong");
+            LoadDichVu(dvR.getAllData());
+        }
+
     }//GEN-LAST:event_btn_themdichvuActionPerformed
 
     private void btn_cleardichvuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cleardichvuActionPerformed
@@ -1971,9 +2014,14 @@ public class QLNhaView extends javax.swing.JFrame {
     }//GEN-LAST:event_tb_bangdichvuMouseClicked
 
     private void btn_thongbaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongbaoActionPerformed
+
         try {
-            // TODO add your handling code here:
-            SuCoNhaTro scnt = new SuCoNhaTro();
+            Boolean checknull = true;
+            if (checkEmpty(txt_tensuco) == false || checkEmpty(txt_chiphisuachuanhatro) == false || checkEmpty(txt_thoigianthongbao) == false) {
+                checknull = false;
+                JOptionPane.showMessageDialog(this, "Không được để trống thông tin");
+            }else{
+                 SuCoNhaTro scnt = new SuCoNhaTro();
             NhaTro nt = new NhaTro();
             ChuNha cn = new ChuNha();
 
@@ -2003,8 +2051,12 @@ public class QLNhaView extends javax.swing.JFrame {
             scntR.save(scnt);
             JOptionPane.showMessageDialog(this, "thanh cong");
             LoadSuCoNhaTro(scntR.getAllData());
+            }
+            // TODO add your handling code here:
+           
         } catch (ParseException ex) {
             ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Thời gian thông báo phải có dạng dd/mm/yyyy");
         }
     }//GEN-LAST:event_btn_thongbaoActionPerformed
 
@@ -2234,9 +2286,33 @@ public class QLNhaView extends javax.swing.JFrame {
 
             UUID idhd = traphongR.findIdHopDong(dataNguoiThue);
             hd.setId(idhd);
+
             hdR.update(hd);
+
+            Phong p = new Phong();
+            NhaTro nhaTro = new NhaTro();
+
+            String tenp = txt_traphong_tenphong.getText().trim();
+
+            UUID idp = tpR.findByIdPhong(tenp);
+            p.setId(idp);
+
+            String map = pR.findMaPhong(tenp).toString();
+            String tennha = "Nhom 7";
+            String tenphong = txt_traphong_tenphong.getText().trim();
+            String tinhtrang = "Phòng trống";
+            String hinhanh = pR.findAnhPhong(tenp).toString();
+            Float dientich = Float.parseFloat(pR.findDienTichPhong(tenp).toString());
+            UUID idnha = pR.findByIdNhaTro(tennha);
+
+            nhaTro.setId(idnha);
+
+            p = new Phong(idp, nhaTro, map, tenphong, dientich, tinhtrang, hinhanh);
+            pR.update(p);
             JOptionPane.showMessageDialog(this, "thanh cong");
             LoadTraPhong(hdR.getAllData());
+            LoadPhong(pR.getAllData());
+            LoadHopDong(hdR.getAllData());
         } catch (ParseException ex) {
             Logger.getLogger(QLNhaView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -2373,6 +2449,16 @@ public class QLNhaView extends javax.swing.JFrame {
         tb_SuCoKH.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_btn_timkiemsckhActionPerformed
+
+    private void txt_tensucoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tensucoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_tensucoActionPerformed
+
+    private void btn_clearphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearphongActionPerformed
+        // TODO add your handling code here:
+        txt_tenphong.setText(null);
+        txt_dientich.setText(null);
+    }//GEN-LAST:event_btn_clearphongActionPerformed
 
     /**
      * @param args the command line arguments

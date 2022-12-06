@@ -98,4 +98,10 @@ public class NguoiThueImpl implements IsvNguoiThueImpl{
     public String findTenTK(String id) {
         return ntR.findTenTK(id);
     }
+
+    @Override
+    public Long findMaNT() {
+        return ntR.findMaNT();
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

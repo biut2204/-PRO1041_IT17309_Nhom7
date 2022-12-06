@@ -218,7 +218,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel24">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Phong ;"/>
+            <Property name="text" type="java.lang.String" value="Phong :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel25">
@@ -251,6 +251,9 @@
         <Component class="javax.swing.JTextField" name="txt_nguoithuehopdong">
         </Component>
         <Component class="javax.swing.JTextField" name="txt_phonghopdong">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <Events>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_phonghopdongKeyReleased"/>
           </Events>
@@ -307,9 +310,11 @@
         <Component class="javax.swing.JComboBox" name="cb_trangthai">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
+              <StringArray count="4">
                 <StringItem index="0" value="Ph&#xf2;ng tr&#x1ed1;ng"/>
                 <StringItem index="1" value="&#x110;&#xe3; c&#xf3; ng&#x1b0;&#x1edd;i thu&#xea;"/>
+                <StringItem index="2" value="Dang xu li"/>
+                <StringItem index="3" value="Da tra phong"/>
               </StringArray>
             </Property>
           </Properties>
