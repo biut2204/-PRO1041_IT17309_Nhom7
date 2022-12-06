@@ -16,9 +16,14 @@ import Service.IsvTienPhongImpl;
 import Service.impl.CttpImpl;
 import Service.impl.DichVuPhongImpl;
 import Service.impl.TienPhongImpl;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.sun.xml.bind.v2.schemagen.Util;
 import java.awt.Image;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -78,13 +83,13 @@ public class QLTienPhongView extends javax.swing.JFrame {
         loadDSPhong(tprepo.listPhong("Đã có người thuê"));
         Anh();
     }
-    
-    private void Anh(){
+
+    private void Anh() {
         Icon icon1 = new ImageIcon("delete.png");
         this.lbl_anhsodien.setIcon(icon1);
         this.lbl_anhsonuoc.setIcon(icon1);
     }
-    
+
     void rdTinhTrang() {
         buttonGroup = new ButtonGroup();
         buttonGroup.add(rd_tatca);
@@ -224,6 +229,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         txt_chiphiscnt = new javax.swing.JTextField();
         txt_chiphisckh = new javax.swing.JTextField();
+        btn_pdf = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -765,6 +771,13 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
         jLabel16.setText("Chi phi sua chua phong :");
 
+        btn_pdf.setText("Exprot pdf");
+        btn_pdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pdfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -811,7 +824,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txt_chiphisckh, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                                     .addComponent(txt_chiphiscnt))))
-                        .addContainerGap(183, Short.MAX_VALUE))
+                        .addContainerGap(189, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -825,7 +838,9 @@ public class QLTienPhongView extends javax.swing.JFrame {
                                 .addComponent(btn_thongketheonam, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(32, 32, 32)
                                 .addComponent(jButton5)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(48, 48, 48)
+                        .addComponent(btn_pdf)
+                        .addContainerGap(232, Short.MAX_VALUE))))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -841,7 +856,9 @@ public class QLTienPhongView extends javax.swing.JFrame {
                     .addComponent(cb_thang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cb_nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_pdf))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
@@ -877,9 +894,9 @@ public class QLTienPhongView extends javax.swing.JFrame {
             .addGap(0, 1369, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 85, Short.MAX_VALUE)
+                    .addGap(0, 96, Short.MAX_VALUE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 85, Short.MAX_VALUE)))
+                    .addGap(0, 96, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1372,6 +1389,51 @@ public class QLTienPhongView extends javax.swing.JFrame {
             txt_chiphiscnt.setText(String.valueOf(tpR.ThongKeNamScnt(nam)));
         }
     }//GEN-LAST:event_btn_thongketheonamActionPerformed
+
+    private void btn_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pdfActionPerformed
+        // TODO add your handling code here:
+        String path = "";
+        JFileChooser j = new JFileChooser();
+        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int x = j.showSaveDialog(this);
+
+        if (x == JFileChooser.APPROVE_OPTION) {
+            path = j.getSelectedFile().getPath();
+        }
+
+        Document doc = new Document();
+
+        try {
+            PdfWriter.getInstance(doc, new FileOutputStream(path + "thongke.pdf"));
+            doc.open();
+
+            PdfPTable tbl = new PdfPTable(4);
+
+            tbl.addCell("Phong");
+            tbl.addCell("Ngay thanh toan");
+            tbl.addCell("Thanh tien");
+            tbl.addCell("Trang thai");
+            for (int i = 0; i < tb_thongke.getRowCount(); i++) {
+                String phong = tb_thongke.getValueAt(i, 0).toString();
+                String ngay = tb_thongke.getValueAt(i, 1).toString();
+                String tien = tb_thongke.getValueAt(i, 2).toString();
+                String trangthai = tb_thongke.getValueAt(i, 3).toString();
+
+                tbl.addCell(phong);
+                tbl.addCell(ngay);
+                tbl.addCell(tien);
+                tbl.addCell(trangthai);
+            }
+            doc.add(tbl);
+            JOptionPane.showMessageDialog(this,"Xuất thành công");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(QLTienPhongView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(QLTienPhongView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        doc.close();
+
+    }//GEN-LAST:event_btn_pdfActionPerformed
     private void In() {
         //ArrayList<ChiTietTienPhong> cttp = new ArrayList<ChiTietTienPhong>();
         try {
@@ -1389,10 +1451,10 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
             cell = row.createCell(2, CellType.STRING);
             cell.setCellValue("Ngay thanh toan");
-            
+
             cell = row.createCell(3, CellType.STRING);
             cell.setCellValue("Thanh tien");
-            
+
             cell = row.createCell(3, CellType.STRING);
             cell.setCellValue("Trang thai");
 
@@ -1410,11 +1472,11 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
                 cell = row.createCell(3, CellType.STRING);
                 cell.setCellValue(cttpR.getAllData().get(i).getDonGia());
-                
+
                 cell = row.createCell(3, CellType.STRING);
                 cell.setCellValue(cttpR.getAllData().get(i).getTienPhong().getTrangThai());
             }
-            
+
             File f = new File("C://Users//MSI//Documents//Duan1//test.xlsx");
             try {
                 FileOutputStream fis = new FileOutputStream(f);
@@ -1467,6 +1529,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cleartienphong;
+    private javax.swing.JButton btn_pdf;
     private javax.swing.JButton btn_suatienphong;
     private javax.swing.JButton btn_tao1;
     private javax.swing.JButton btn_taonhanh;

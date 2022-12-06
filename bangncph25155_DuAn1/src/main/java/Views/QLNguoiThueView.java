@@ -56,10 +56,11 @@ public class QLNguoiThueView extends javax.swing.JFrame {
         dtm.setRowCount(0);
         for (NguoiThue nt : list) {
             dtm.addRow(new Object[]{
-                nt.getMa(), nt.getHoTen(), nt.getNgaySinh(), nt.getGioiTinh(), nt.getSdt(), nt.getEmail(), nt.getDiaChi(), nt.getDiXe(), nt.getTrangThai(),nt.getCmtnd()});
+                nt.getMa(), nt.getHoTen(), nt.getNgaySinh(), nt.getGioiTinh(), nt.getSdt(), nt.getEmail(), nt.getDiaChi(), nt.getDiXe(), nt.getTrangThai(), nt.getCmtnd()});
         }
     }
-        private Boolean checkEmpty(JTextField txt) {
+
+    private Boolean checkEmpty(JTextField txt) {
         if (txt.getText().isEmpty()) {
             txt.setBackground(Color.YELLOW);
             return false;
@@ -166,6 +167,8 @@ public class QLNguoiThueView extends javax.swing.JFrame {
         jLabel6.setText("Sdt :");
 
         jLabel7.setText("Di xe :");
+
+        txt_ma.setEditable(false);
 
         txt_ngaysinh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -489,7 +492,7 @@ public class QLNguoiThueView extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_ngaysinhActionPerformed
 
     private void btn_dangkyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangkyActionPerformed
-       Boolean checkHoTen = false;
+        Boolean checkHoTen = false;
         Boolean checkMa = false;
         for (NguoiThue nt : ntR.getAllData()) {
             if (txt_hoten.getText().equalsIgnoreCase(nt.getHoTen())) {
@@ -503,7 +506,7 @@ public class QLNguoiThueView extends javax.swing.JFrame {
         }
         try {
             Boolean check = true;
-            if (checkEmpty(txt_ma) == false || checkEmpty(txt_hoten) == false || checkEmpty(txt_chungminhthu) == false || checkEmpty(txt_email) == false || checkEmpty(txt_sdt) == false || checkEmptyDiaChi(txt_diachi) == false) {
+            if (checkEmpty(txt_hoten) == false || checkEmpty(txt_chungminhthu) == false || checkEmpty(txt_email) == false || checkEmpty(txt_sdt) == false || checkEmptyDiaChi(txt_diachi) == false) {
                 check = false;
                 JOptionPane.showMessageDialog(this, "Không được để trống");
             } else {
@@ -534,12 +537,12 @@ public class QLNguoiThueView extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Họ tên đã tồn tại");
                     return;
                 }
-                if (checkMa == true) {
-                    JOptionPane.showMessageDialog(this, "Mã đã tồn tại");
-                    return;
-                }
+//                if (checkMa == true) {
+//                    JOptionPane.showMessageDialog(this, "Mã đã tồn tại");
+//                    return;
+//                }
                 NguoiThue nt = new NguoiThue();
-                String ma = txt_ma.getText().trim();
+                String ma = "NT" + String.valueOf((ntR.findMaNT() + 1));
                 String hoten = txt_hoten.getText().trim();
                 Date ngaysinh = sdf.parse(txt_ngaysinh.getText().trim());
                 String gioitinh = "Nam";
@@ -581,23 +584,33 @@ public class QLNguoiThueView extends javax.swing.JFrame {
 
     private void btn_taoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_taoActionPerformed
         // TODO add your handling code here:
-        TaiKhoan tk = new TaiKhoan();
-        NguoiThue nt = new NguoiThue();
-        String ten = txt_tennguoithue.getText().trim();
-        String taikhoan = txt_taikhoan.getText().trim();
         String mk1 = txt_matkhau.getText().trim();
         String mk2 = txt_xacnhanmatkhau.getText().trim();
-        String vaitro = "nguoi thue";
-        UUID id = tkR.findByTen(ten);
         boolean ktra = mk1.equals(mk2);
-        if (ktra == false) {
+        Boolean checknull = true;
+        if (checkEmpty(txt_tennguoithue) == false || checkEmpty(txt_taikhoan) == false || checkEmpty(txt_matkhau) == false || checkEmpty(txt_xacnhanmatkhau) == false) {
+            checknull = false;
+            JOptionPane.showMessageDialog(this, "Không được để trống thông tin");
+        } else if (ktra == false) {
             JOptionPane.showMessageDialog(this, "mat khau khong dung");
         } else {
-            nt.setId(id);
+            TaiKhoan tk = new TaiKhoan();
+            NguoiThue nt = new NguoiThue();
+            String ten = txt_tennguoithue.getText().trim();
+            String taikhoan = txt_taikhoan.getText().trim();
+            try {
+                String vaitro = "nguoi thue";
+                UUID id = tkR.findByTen(ten);
+                nt.setId(id);
+                tk.setVaiTro(vaitro);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Tên người thuê không tồn tại");
+            }
+
             tk.setNguoiThue(nt);
             tk.setTenTaiKhoan(taikhoan);
             tk.setMatKhau(mk2);
-            tk.setVaiTro(vaitro);
+
             tkR.save(tk);
             JOptionPane.showMessageDialog(this, "thanh cong");
 
@@ -619,8 +632,6 @@ public class QLNguoiThueView extends javax.swing.JFrame {
 
         txt_chungminhthu.setText(String.valueOf(nt.getCmtnd()));
         if (nt.getGioiTinh().equalsIgnoreCase("Nam")) {
-
-
 
             rd_nam.setSelected(true);
         } else {
@@ -710,7 +721,7 @@ public class QLNguoiThueView extends javax.swing.JFrame {
         clear();
     }//GEN-LAST:event_btn_clearActionPerformed
 
-    private void clear(){
+    private void clear() {
         txt_ma.setText("");
         txt_hoten.setText("");
         txt_ngaysinh.setText("");
@@ -720,6 +731,7 @@ public class QLNguoiThueView extends javax.swing.JFrame {
         txt_trangthai.setText("");
         txt_chungminhthu.setText("");
     }
+
     /**
      * @param args the command line arguments
      */

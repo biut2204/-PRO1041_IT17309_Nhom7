@@ -164,7 +164,8 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-     public String findmk(String id) {
+
+    public String findmk(String id) {
         String uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
             String statement = "select tk.matKhau from TaiKhoan tk where tk.nguoiThue.ma = :ma ";
@@ -174,7 +175,8 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-         public UUID findidTK(String id) {
+
+    public UUID findidTK(String id) {
         UUID uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
             String statement = "select tk.id from TaiKhoan tk where tk.nguoiThue.ma = :ma ";
@@ -184,7 +186,8 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-        public UUID findidNguoiThue(String id) {
+
+    public UUID findidNguoiThue(String id) {
         UUID uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
             String statement = "select nt.id from NguoiThue nt where nt.ma = :ma ";
@@ -194,7 +197,8 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-         public String findVaiTro(String id) {
+
+    public String findVaiTro(String id) {
         String uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
             String statement = "select tk.vaiTro from TaiKhoan tk where tk.nguoiThue.ma = :ma";
@@ -204,7 +208,8 @@ public class NguoiThueRepo {
         }
         return uuid;
     }
-          public String findTenTK(String id) {
+
+    public String findTenTK(String id) {
         String uuid;
         try ( Session session = HibernateUtils.getFACTORY().openSession()) {
             String statement = "select tk.tenTaiKhoan from TaiKhoan tk where tk.nguoiThue.ma = :ma";
@@ -213,7 +218,17 @@ public class NguoiThueRepo {
             uuid = query.getSingleResult();
         }
         return uuid;
+    }
+
+    public Long findMaNT() {
+        Long uuid;
+        try ( Session session = HibernateUtils.getFACTORY().openSession()) {
+            String statement = "select Count(p.ma) from NguoiThue p ";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            uuid = query.getSingleResult();
         }
+        return uuid;
+    }
 
     public static void main(String[] args) {
         NguoiThueRepo ntR = new NguoiThueRepo();

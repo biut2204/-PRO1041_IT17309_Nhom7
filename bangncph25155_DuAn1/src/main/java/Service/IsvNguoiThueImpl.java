@@ -45,4 +45,6 @@ public interface IsvNguoiThueImpl {
     public String findVaiTro(String id);
     
     public String findTenTK(String id);
+    
+    public Long findMaNT();
 }

@@ -71,5 +71,15 @@
             <version>9.0.38</version>
 
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.lowagie/itext -->
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>4.2.1</version>
+        </dependency>
+
+
     </dependencies>
+
+
 </project>
