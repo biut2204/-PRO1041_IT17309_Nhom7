@@ -1898,7 +1898,7 @@ public class QLNhaView extends javax.swing.JFrame {
     private void lbl_anhphongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_anhphongMouseClicked
         // TODO add your handling code here:
         try {
-            JFileChooser jfc = new JFileChooser("C:\\Users\\acer\\OneDrive\\Desktop\\-PRO1041_IT17309_Nhom7-main\\-PRO1041_IT17309_Nhom7\\-PRO1041_IT17309_Nhom7-main\\bangncph25155_DuAn1\\bangncph25155_DuAn1");
+            JFileChooser jfc = new JFileChooser("E:\\GitHub\\PRO1041_IT17309_NHom8\\Da1_Nhom7");
             jfc.showOpenDialog(null);
             File file = jfc.getSelectedFile();
             Image img = ImageIO.read(file);
