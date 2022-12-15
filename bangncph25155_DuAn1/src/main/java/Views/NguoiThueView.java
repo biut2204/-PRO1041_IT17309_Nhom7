@@ -166,7 +166,8 @@ public class NguoiThueView extends javax.swing.JFrame {
         txt_dixe.setText(dixe);
         txt_trangthai.setText(trangthai);
     }
-        private Boolean checkEmpty(JTextField txt) {
+
+    private Boolean checkEmpty(JTextField txt) {
         if (txt.getText().isEmpty()) {
             txt.setBackground(Color.YELLOW);
             return false;
@@ -1019,12 +1020,15 @@ public class NguoiThueView extends javax.swing.JFrame {
     }//GEN-LAST:event_tb_bangdichvuphongMouseClicked
 
     private TienPhong getTienPhong() throws ParseException {
+
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Phong p = new Phong();
         String ma = txt_matienphong.getText().toString();
         String tenp = txt_tenphong.getText().toString();
         String hinhthucthanhtoan = txt_hinhthucthanhtoan.getText().trim();
         Date ngaythanhtoan = java.util.Calendar.getInstance().getTime();
-        Date ngaytao = sdf.parse(txt_ngaytao.getText().toString());
+
+        Date ngaytao = sdf1.parse(txt_ngaytao.getText().toString());
         String trangthai = "Da thanh toan";
         String ghichu = "";
         UUID id = tpR.findByIdTienPhong(ma);
@@ -1038,6 +1042,7 @@ public class NguoiThueView extends javax.swing.JFrame {
     }
 
     private void btn_thanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thanhtoanActionPerformed
+
         try {
             // TODO add your handling code here:
             TienPhong tp = getTienPhong();
@@ -1050,7 +1055,6 @@ public class NguoiThueView extends javax.swing.JFrame {
             LoadChiTietTienPhong(cttpR.getAllData());
         } catch (ParseException ex) {
             Logger.getLogger(NguoiThueView.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this,"Thời gian nhập phải có định dạng dd/MM/yyyy");
         }
     }//GEN-LAST:event_btn_thanhtoanActionPerformed
 
@@ -1076,7 +1080,6 @@ public class NguoiThueView extends javax.swing.JFrame {
     }
 
     private void tb_chitiettienphongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_chitiettienphongMouseClicked
-        // TODO add your handling code here:
         int row = tb_chitiettienphong.getSelectedRow();
         if (row == -1) {
             return;
@@ -1100,55 +1103,53 @@ public class NguoiThueView extends javax.swing.JFrame {
         txt_trangthai.setText(tb_chitiettienphong.getValueAt(row, 14).toString());
         txt_hinhthucthanhtoan.setText(tb_chitiettienphong.getValueAt(row, 12).toString());
         txt_ngaythanhtoan.setText(tb_chitiettienphong.getValueAt(row, 13).toString());
-
-
     }//GEN-LAST:event_tb_chitiettienphongMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            Boolean checknull=true;
+            Boolean checknull = true;
             // TODO add your handling code here:
-            if(checkEmpty(txtMaSCKH)==false || checkEmpty(txtTenSuCoKH)==false || checkEmpty(txtTimeSuCo)==false ){
-                checknull=false;
-                JOptionPane.showMessageDialog(this,"Không để trống thông tin");
-            }else{
-                 SuCoKH sckh = new SuCoKH();
-            Phong p = new Phong();
-            ChuNha cn = new ChuNha();
+            if (checkEmpty(txtMaSCKH) == false || checkEmpty(txtTenSuCoKH) == false || checkEmpty(txtTimeSuCo) == false) {
+                checknull = false;
+                JOptionPane.showMessageDialog(this, "Không để trống thông tin");
+            } else {
+                SuCoKH sckh = new SuCoKH();
+                Phong p = new Phong();
+                ChuNha cn = new ChuNha();
 
-            String ma = "SCKH " + ntR.findSo();
+                String ma = "SCKH " + ntR.findSo();
 
-            String tenphong = txtPhongSCKH.getText().trim();
-            Date ngay = sdf.parse(txtTimeSuCo.getText().trim());
-            String mota = txtMoTaSuCo.getText().trim();
-            String tensuco = txtTenSuCoKH.getText().trim();
-            String trangthai = "đang sửa";
-            String tenchunha = "admin";
+                String tenphong = txtPhongSCKH.getText().trim();
+                Date ngay = sdf.parse(txtTimeSuCo.getText().trim());
+                String mota = txtMoTaSuCo.getText().trim();
+                String tensuco = txtTenSuCoKH.getText().trim();
+                String trangthai = "đang sửa";
+                String tenchunha = "admin";
 
-            UUID idphong = sckhR.findByIdPhong(tenphong);
-            p.setId(idphong);
+                UUID idphong = sckhR.findByIdPhong(tenphong);
+                p.setId(idphong);
 
-            UUID idchunha = nR.findByIdCN(tenchunha);
-            cn.setId(idchunha);
+                UUID idchunha = nR.findByIdCN(tenchunha);
+                cn.setId(idchunha);
 
-            sckh.setMa(ma);
-            sckh.setPhong(p);
-            sckh.setChuNha(cn);
-            sckh.setTenSuCo(tensuco);
-            sckh.setThoiGianThongBao(ngay);
-            sckh.setMoTa(mota);
-            sckh.setTrangThai(trangthai);
-            sckh.setChuNha(cn);
-            sckh.setMa(ma);
-            sckhR.save(sckh);
-            JOptionPane.showMessageDialog(this, "thanh cong");
-            LoadSuCoKH(sckhR.getAllData());
+                sckh.setMa(ma);
+                sckh.setPhong(p);
+                sckh.setChuNha(cn);
+                sckh.setTenSuCo(tensuco);
+                sckh.setThoiGianThongBao(ngay);
+                sckh.setMoTa(mota);
+                sckh.setTrangThai(trangthai);
+                sckh.setChuNha(cn);
+                sckh.setMa(ma);
+                sckhR.save(sckh);
+                JOptionPane.showMessageDialog(this, "thanh cong");
+                LoadSuCoKH(sckhR.getAllData());
             }
-           
+
         } catch (ParseException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(this,"Thời gian nhập phải có định dạng dd/MM/yyyy");
+            JOptionPane.showMessageDialog(this, "Thời gian nhập phải có định dạng dd/MM/yyyy");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1309,10 +1310,10 @@ public class NguoiThueView extends javax.swing.JFrame {
         TableRowSorter<DefaultTableModel> tr1 = new TableRowSorter<DefaultTableModel>(dmt1);
         tb_chitiettienphong.setRowSorter(tr1);
         if (cb_Thang.getSelectedItem().toString() == "Tháng" && cb_Nam.getSelectedItem().toString() == "Năm") {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn tháng và năm");}
-            else if (cb_Thang.getSelectedItem().toString() == "Tháng") {
-                tr1.setRowFilter(RowFilter.regexFilter(b));
-            } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn tháng và năm");
+        } else if (cb_Thang.getSelectedItem().toString() == "Tháng") {
+            tr1.setRowFilter(RowFilter.regexFilter(b));
+        } else {
             tr1.setRowFilter(RowFilter.regexFilter(search1));
         }
 //        tr1.setRowFilter(RowFilter.regexFilter(search1));       // TODO add your handling code here:
@@ -1324,7 +1325,7 @@ public class NguoiThueView extends javax.swing.JFrame {
         txtMkCu.setText(null);
         txtMkMoi.setText(null);
         txtNhapLaiMK.setText(null);
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

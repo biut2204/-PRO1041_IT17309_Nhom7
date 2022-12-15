@@ -21,6 +21,8 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.sun.xml.bind.v2.schemagen.Util;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -713,6 +715,15 @@ public class QLTienPhongView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tb_thongke);
 
+        txt_tkThongKe.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_tkThongKeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_tkThongKeFocusLost(evt);
+            }
+        });
+
         jButton2.setText("Tìm kiếm ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -721,6 +732,11 @@ public class QLTienPhongView extends javax.swing.JFrame {
         });
 
         cb_ThongKe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Da thanh toan", "chua thanh toan" }));
+        cb_ThongKe.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cb_ThongKeKeyReleased(evt);
+            }
+        });
 
         jButton4.setText("Loc");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -786,45 +802,42 @@ public class QLTienPhongView extends javax.swing.JFrame {
                 .addGap(129, 129, 129)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(cb_thang, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(cb_nam, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(cb_ThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton4))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(txt_tkThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(cb_thang, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(cb_nam, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cb_ThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton4))
+                                .addComponent(txt_tongtienchuathu, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(txt_tkThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jButton2))
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(144, 144, 144)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txt_tongtienchuathu, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txt_tongtiendathu, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-                                            .addComponent(txt_tongdoanhthu))))
-                                .addGap(33, 33, 33)
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_chiphisckh, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                                    .addComponent(txt_chiphiscnt))))
-                        .addContainerGap(189, Short.MAX_VALUE))
+                                    .addComponent(txt_tongtiendathu, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                                    .addComponent(txt_tongdoanhthu))))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_chiphisckh, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                            .addComponent(txt_chiphiscnt)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -838,9 +851,9 @@ public class QLTienPhongView extends javax.swing.JFrame {
                                 .addComponent(btn_thongketheonam, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(32, 32, 32)
                                 .addComponent(jButton5)))
-                        .addGap(48, 48, 48)
-                        .addComponent(btn_pdf)
-                        .addContainerGap(232, Short.MAX_VALUE))))
+                        .addGap(34, 34, 34)
+                        .addComponent(btn_pdf)))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -856,9 +869,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
                     .addComponent(cb_thang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cb_nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_pdf))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
@@ -867,7 +878,8 @@ public class QLTienPhongView extends javax.swing.JFrame {
                     .addComponent(cb_TKnam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_thongketheothang)
                     .addComponent(jButton5)
-                    .addComponent(btn_thongketheonam))
+                    .addComponent(btn_thongketheonam)
+                    .addComponent(btn_pdf))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -1287,12 +1299,6 @@ public class QLTienPhongView extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel dmt = (DefaultTableModel) tb_thongke.getModel();
-        String search = cb_ThongKe.getSelectedItem().toString();
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
-        tb_thongke.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(search));
-
         DefaultTableModel dmt1 = (DefaultTableModel) tb_thongke.getModel();
         String a = cb_thang.getSelectedItem().toString();
         String b = cb_nam.getSelectedItem().toString();
@@ -1300,6 +1306,12 @@ public class QLTienPhongView extends javax.swing.JFrame {
         TableRowSorter<DefaultTableModel> tr1 = new TableRowSorter<DefaultTableModel>(dmt1);
         tb_thongke.setRowSorter(tr1);
         tr1.setRowFilter(RowFilter.regexFilter(search1));
+
+        DefaultTableModel dmt = (DefaultTableModel) tb_thongke.getModel();
+        String search = cb_ThongKe.getSelectedItem().toString();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+        tb_thongke.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btn_taonhanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_taonhanhActionPerformed
@@ -1425,7 +1437,7 @@ public class QLTienPhongView extends javax.swing.JFrame {
                 tbl.addCell(trangthai);
             }
             doc.add(tbl);
-            JOptionPane.showMessageDialog(this,"Xuất thành công");
+            JOptionPane.showMessageDialog(this, "Xuất thành công");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(QLTienPhongView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
@@ -1434,6 +1446,33 @@ public class QLTienPhongView extends javax.swing.JFrame {
         doc.close();
 
     }//GEN-LAST:event_btn_pdfActionPerformed
+
+    private void txt_tkThongKeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tkThongKeFocusGained
+        // TODO add your handling code here:
+//        if(txt_tkThongKe.getText().equals("Tìm kiếm...")){
+//            txt_tkThongKe.setText("");
+//            txt_tkThongKe.setForeground(new Color(0, 0, 0));
+//            txt_tkThongKe.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+//        }
+    }//GEN-LAST:event_txt_tkThongKeFocusGained
+
+    private void txt_tkThongKeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tkThongKeFocusLost
+        // TODO add your handling code here:
+//        if(txt_tkThongKe.getText().equals("")){
+//            txt_tkThongKe.setText("Tìm kiếm...");
+//            txt_tkThongKe.setForeground(new Color(153, 153, 153));
+//            txt_tkThongKe.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+//        }
+    }//GEN-LAST:event_txt_tkThongKeFocusLost
+
+    private void cb_ThongKeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cb_ThongKeKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel dmt = (DefaultTableModel) tb_thongke.getModel();
+        String search = cb_ThongKe.getSelectedItem().toString();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+        tb_thongke.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(search));
+    }//GEN-LAST:event_cb_ThongKeKeyReleased
     private void In() {
         //ArrayList<ChiTietTienPhong> cttp = new ArrayList<ChiTietTienPhong>();
         try {
